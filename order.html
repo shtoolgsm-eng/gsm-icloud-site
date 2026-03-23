@@ -2,21 +2,158 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>طلب الخدمة</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طلب إزالة iCloud</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; }
+h1 { text-align: center; color: #333; }
+form { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+label { display: block; margin: 10px 0 5px; }
+input, select, textarea { width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; }
+#paypal-button-container { margin-top: 20px; }
+</style>
 </head>
 <body>
-<h2>📥 طلب إزالة iCloud</h2>
-<form id="orderForm">
-<input type="text" id="imei" placeholder="IMEI" required><br><br>
-<select id="device">
-<option>iPhone</option>
-<option>iPad</option>
-<option>Apple Watch</option>
-</select><br><br>
-<input type="email" id="email" placeholder="البريد الإلكتروني" required><br><br>
-<button type="submit">إرسال الطلب</button>
+
+<h1>طلب إزالة iCloud</h1>
+
+<form id="icloudForm">
+<label for="deviceType">نوع الجهاز:</label>
+<select id="deviceType" required>
+<option value="">اختر نوع الجهاز</option>
+<option value="iPhone">iPhone</option>
+<option value="iPad">iPad</option>
+<option value="Apple Watch">Apple Watch</option>
+</select>
+
+<label for="deviceModel">موديل الجهاز:</label>
+<select id="deviceModel" required>
+<option value="">اختر الموديل</option>
+</select>
+
+<label for="imei">رقم IMEI:</label>
+<input type="text" id="imei" maxlength="15" required>
+
+<label for="serial">سيريال نمبر:</label>
+<input type="text" id="serial" required>
+
+<label for="email">البريد الإلكتروني:</label>
+<input type="email" id="email" required>
+
+<label for="country">بلد الشراء:</label>
+<input type="text" id="country" required>
+
+<label for="notes">ملاحظات إضافية:</label>
+<textarea id="notes" rows="3"></textarea>
+
+<label>السعر:</label>
+<input type="text" id="price" readonly style="background:#eee;">
 </form>
-<script src="app.js"></script>
+
+<div id="paypal-button-container"></div>
+
+<!-- رابط مكتبة PayPal SDK -->
+<!-- ضع PayPal Client ID هنا لاحقًا -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+
+<script>
+// قائمة المنتجات مع الأسعار
+const products = {
+  "iPhone 6":25,"iPhone 6 Plus":25,"iPhone 6s":25,"iPhone 6s Plus":25,"iPhone SE":30,
+  "iPhone 7":30,"iPhone 7 Plus":30,"iPhone 8":35,"iPhone 8 Plus":35,"iPhone X":35,
+  "iPhone XR":40,"iPhone XS":40,"iPhone XS Max":45,"iPhone 11":45,"iPhone 11 Pro":55,
+  "iPhone 11 Pro Max":75,"iPhone 12":90,"iPhone 12 mini":90,"iPhone 12 Pro":95,
+  "iPhone 12 Pro Max":100,"iPhone 13":115,"iPhone 13 mini":120,"iPhone 13 Pro":135,
+  "iPhone 13 Pro Max":150,"iPhone 14":160,"iPhone 14 Plus":160,"iPhone 14 Pro":165,
+  "iPhone 14 Pro Max":175,"iPhone 15":165,"iPhone 15 Plus":175,"iPhone 15 Pro":180,
+  "iPhone 15 Pro Max":190,"iPhone 16":190,"iPhone 16 Plus":195,"iPhone 16 Pro":195,
+  "iPhone 16 Pro Max":205,"iPhone 16e":195,"iPhone 17":195,"iPhone 17 Pro":200,
+  "iPhone 17 Pro Max":210,"iPhone 17 Air":200,"iPad 8":50,"iPad 9":55,"iPad 10":65,
+  "iPad Air 4":80,"iPad Air 5":85,"iPad Pro 9.7":140,"iPad Pro 10.5":140,
+  "iPad Pro 11 (1→4)":140,"iPad Pro 12.9 (1→6)":150,"Apple Watch Series 4":0,
+  "Apple Watch Series 5":0,"Apple Watch Series 6":0,"Apple Watch Series 7":0,
+  "Apple Watch Series 8":0,"Apple Watch Series 9":0,"Apple Watch Series 10/11":0,
+  "Apple Watch Ultra 1":0,"Apple Watch Ultra 2":0,"Apple Watch Ultra 3":0
+};
+
+const deviceType = document.getElementById('deviceType');
+const deviceModel = document.getElementById('deviceModel');
+const priceField = document.getElementById('price');
+
+deviceType.addEventListener('change', () => {
+  const type = deviceType.value;
+  deviceModel.innerHTML = '<option value="">اختر الموديل</option>';
+  for (let model in products) {
+    if (model.startsWith(type)) {
+      const opt = document.createElement('option');
+      opt.value = model;
+      opt.textContent = model;
+      deviceModel.appendChild(opt);
+    }
+  }
+  priceField.value = '';
+});
+
+deviceModel.addEventListener('change', () => {
+  const model = deviceModel.value;
+  priceField.value = products[model] ? `$${products[model]}` : 'غير محدد';
+});
+
+// إعدادات JSONbin
+const JSONBIN_API_KEY = 'YOUR_JSONBIN_API_KEY'; // ضع API Key الخاص بك هنا
+const JSONBIN_BIN_ID = 'YOUR_JSONBIN_BIN_ID';   // ضع Bin ID الخاص بك هنا
+
+// PayPal Buttons
+paypal.Buttons({
+  createOrder: function(data, actions) {
+    const model = deviceModel.value;
+    const amount = products[model] || 0;
+    return actions.order.create({
+      purchase_units: [{
+        amount: { value: amount.toString() },
+        description: `طلب إزالة iCloud - ${model}`
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert('تم الدفع بنجاح بواسطة ' + details.payer.name.given_name + '!');
+      
+      const orderData = {
+        deviceType: deviceType.value,
+        deviceModel: deviceModel.value,
+        imei: document.getElementById('imei').value,
+        serial: document.getElementById('serial').value,
+        email: document.getElementById('email').value,
+        country: document.getElementById('country').value,
+        notes: document.getElementById('notes').value,
+        price: priceField.value,
+        payerName: details.payer.name.given_name,
+        date: new Date().toISOString()
+      };
+
+      // حفظ الطلب في JSONbin
+      fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+        method: 'GET',
+        headers: { 'X-Master-Key': JSONBIN_API_KEY }
+      })
+      .then(res => res.json())
+      .then(res => {
+        const allOrders = res.record || [];
+        allOrders.push(orderData);
+        fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+          method: 'PUT',
+          headers: {
+            'X-Master-Key': JSONBIN_API_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(allOrders)
+        }).then(() => console.log('تم حفظ الطلب في JSONbin'));
+      });
+    });
+  }
+}).render('#paypal-button-container');
+</script>
+
 </body>
 </html>
