@@ -1,0 +1,13 @@
+fetch('products.json')
+  .then(res => res.json())
+  .then(products => {
+    const container = document.getElementById('products-container');
+    products.forEach(p => {
+      container.innerHTML += `
+        <div class="product">
+          <h3>${p.name}</h3>
+          <p>Price: $${p.price}</p>
+        </div>
+      `;
+    });
+  });
