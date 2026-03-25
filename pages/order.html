@@ -1,1 +1,25 @@
-<!DOCTYPE html><html><head><title>طلب خدمة</title></head><body><h1>نموذج الطلب</h1></body></html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>طلب خدمة</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>طلب الخدمة</h2>
+<form id="orderForm">
+  <input type="text" id="name" placeholder="الاسم" required>
+  <input type="email" id="email" placeholder="البريد" required>
+  <input type="text" id="product" readonly>
+  <input type="number" id="price" readonly>
+  <!-- PayPal / Bitcoin Integration here -->
+  <button type="submit">ادفع و أرسل الطلب</button>
+</form>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("product").value = localStorage.getItem("selectedProduct");
+  document.getElementById("price").value = localStorage.getItem("selectedPrice");
+});
+</script>
+</body>
+</html>
