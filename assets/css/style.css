@@ -2,41 +2,39 @@ body {
   font-family: 'Poppins', sans-serif;
   background-color: #F7F9FC;
   color: #1f2937;
+  text-align: center;
   margin: 0;
   padding: 0;
 }
+
 header {
-  background-color: #0f172a;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-nav a {
-  margin: 0 10px;
-  color: #3b82f6;
-  text-decoration: none;
-  font-weight: bold;
-}
-.hero {
   background: #3b82f6;
   color: white;
-  text-align: center;
-  padding: 50px 20px;
+  padding: 20px;
 }
+
+h1, h2 {
+  margin: 10px 0;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 .btn {
-  background: #f59e0b;
+  display: inline-block;
+  background: #2563eb;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
+  margin-top: 10px;
 }
-.services, .features {
-  margin: 40px 20px;
-}
-.card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+.btn:hover {
+  background: #1e40af;
 }
