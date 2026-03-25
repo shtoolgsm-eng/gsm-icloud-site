@@ -1,0 +1,1 @@
+console.log('GSM SHTOOL JS loaded');
