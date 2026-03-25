@@ -2,15 +2,107 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>خدمات iCloud الرسمية</title>
-<link rel="stylesheet" href="style.css">
+<title>GSM iCloud Service</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+.hero {
+  padding: 60px;
+}
+
+.btn {
+  background: #3b82f6;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+section {
+  margin: 40px 0;
+}
+
+.card {
+  background: #1e293b;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+input, select, button {
+  padding: 10px;
+  margin: 5px;
+  width: 80%;
+}
+
+button {
+  background: green;
+  color: white;
+}
+</style>
 </head>
+
 <body>
-<header><h1>🔓 خدمات إزالة iCloud الرسمية</h1></header>
-<div class="container">
-<div class="card"><h2>📱 iPhone</h2><a href="order.html"><button>اطلب الآن</button></a></div>
-<div class="card"><h2>📲 iPad</h2><a href="order.html"><button>اطلب الآن</button></a></div>
-<div class="card"><h2>⌚ Apple Watch</h2><a href="order.html"><button>اطلب الآن</button></a></div>
-</div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>خدمة فك iCloud الرسمية</h1>
+  <p>فتح أجهزة iPhone و iPad بطريقة رسمية عبر IMEI</p>
+  <a href="#order" class="btn">ابدأ الآن</a>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <h2>الخدمات</h2>
+
+  <div class="card">فتح iCloud رسمي</div>
+  <div class="card">إزالة MDM</div>
+  <div class="card">فحص الجهاز</div>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <h2>المميزات</h2>
+  <p>✔ خدمة رسمية 100%</p>
+  <p>✔ سرعة التنفيذ</p>
+  <p>✔ دعم 24/7</p>
+</section>
+
+<!-- HOW -->
+<section>
+  <h2>طريقة الاستخدام</h2>
+  <p>1. اختر الخدمة</p>
+  <p>2. أدخل IMEI</p>
+  <p>3. ادفع</p>
+  <p>4. استلم النتيجة</p>
+</section>
+
+<!-- ORDER -->
+<section id="order">
+  <h2>طلب الخدمة</h2>
+
+  <input type="text" placeholder="الاسم">
+  <input type="text" placeholder="IMEI">
+
+  <select>
+    <option>iPhone 6 - $25</option>
+    <option>iPhone 7 - $30</option>
+  </select>
+
+  <button onclick="sendOrder()">إرسال</button>
+</section>
+
+<script>
+function sendOrder() {
+  alert("تم إرسال الطلب (مؤقت)");
+}
+</script>
+
 </body>
 </html>
