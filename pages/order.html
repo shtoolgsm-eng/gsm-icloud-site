@@ -2,25 +2,145 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>طلب خدمة</title>
-<link rel="stylesheet" href="style.css">
+<title>طلب خدمة GSM SHTOOL</title>
+<link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+
 <h2>طلب الخدمة</h2>
+
 <form id="orderForm">
-  <input type="text" id="name" placeholder="الاسم" required>
-  <input type="email" id="email" placeholder="البريد" required>
-  <input type="text" id="product" readonly>
-  <input type="number" id="price" readonly>
-  <!-- PayPal / Bitcoin Integration here -->
-  <button type="submit">ادفع و أرسل الطلب</button>
+  <label>اختر نوع الجهاز:</label>
+  <select id="deviceType" required>
+    <option value="">-- اختر --</option>
+    <option value="iPhone">iPhone</option>
+    <option value="iPad">iPad</option>
+    <option value="Apple Watch">Apple Watch</option>
+  </select>
+
+  <label>اختر الموديل:</label>
+  <select id="model" required>
+    <option value="">-- اختر الموديل --</option>
+  </select>
+
+  <label>أدخل الرقم التسلسلي (IMEI):</label>
+  <input type="text" id="imei" placeholder="IMEI" required>
+
+  <label>المبلغ المطلوب ($):</label>
+  <input type="text" id="price" readonly>
+
+  <button type="submit">ادفع واطلب الخدمة</button>
 </form>
+
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("product").value = localStorage.getItem("selectedProduct");
-  document.getElementById("price").value = localStorage.getItem("selectedPrice");
-  bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
+const products = {
+  iPhone: [
+    {name: "iPhone 6", price: 25}, 
+    {name: "iPhone 6 Plus", price: 25}, 
+    {name: "iPhone 6s", price: 25}, 
+    {name: "iPhone 6s Plus", price: 25},
+    {name: "iPhone SE", price: 30}, 
+    {name: "iPhone 7", price: 30}, 
+    {name: "iPhone 7 Plus", price: 30}, 
+    {name: "iPhone 8", price: 35},
+    {name: "iPhone 8 Plus", price: 35}, 
+    {name: "iPhone X", price: 35}, 
+    {name: "iPhone XR", price: 40}, 
+    {name: "iPhone XS", price: 40},
+    {name: "iPhone XS Max", price: 45}, 
+    {name: "iPhone 11", price: 45}, 
+    {name: "iPhone 11 Pro", price: 55}, 
+    {name: "iPhone 11 Pro Max", price: 75},
+    {name: "iPhone 12", price: 90}, 
+    {name: "iPhone 12 mini", price: 90}, 
+    {name: "iPhone 12 Pro", price: 95}, 
+    {name: "iPhone 12 Pro Max", price: 100},
+    {name: "iPhone 13", price: 115}, 
+    {name: "iPhone 13 mini", price: 120}, 
+    {name: "iPhone 13 Pro", price: 135}, 
+    {name: "iPhone 13 Pro Max", price: 150},
+    {name: "iPhone 14", price: 160}, 
+    {name: "iPhone 14 Plus", price: 160}, 
+    {name: "iPhone 14 Pro", price: 165}, 
+    {name: "iPhone 14 Pro Max", price: 175},
+    {name: "iPhone 15", price: 165}, 
+    {name: "iPhone 15 Plus", price: 175}, 
+    {name: "iPhone 15 Pro", price: 180}, 
+    {name: "iPhone 15 Pro Max", price: 190},
+    {name: "iPhone 16", price: 190}, 
+    {name: "iPhone 16 Plus", price: 195}, 
+    {name: "iPhone 16 Pro", price: 195}, 
+    {name: "iPhone 16 Pro Max", price: 205},
+    {name: "iPhone 16e", price: 195}, 
+    {name: "iPhone 17", price: 195}, 
+    {name: "iPhone 17 Pro", price: 200}, 
+    {name: "iPhone 17 Pro Max", price: 210},
+    {name: "iPhone 17 Air", price: 200}
+  ],
+  iPad: [
+    {name: "iPad 8", price: 50}, 
+    {name: "iPad 9", price: 55}, 
+    {name: "iPad 10", price: 65},
+    {name: "Air 4", price: 80}, 
+    {name: "Air 5", price: 85},
+    {name: "Pro 9.7", price: 140}, 
+    {name: "Pro 10.5", price: 140}, 
+    {name: "Pro 11 (1-4)", price: 140},
+    {name: "Pro 12.9 (1-6)", price: 150}
+  ],
+  "Apple Watch": [
+    {name: "Series 4", price: 0}, 
+    {name: "Series 5", price: 0}, 
+    {name: "Series 6", price: 0}, 
+    {name: "Series 7 & 0", price: 0},
+    {name: "Series 8", price: 0}, 
+    {name: "Series 9", price: 0}, 
+    {name: "Series 10 / 11", price: 0},
+    {name: "Ultra 1", price: 0}, 
+    {name: "Ultra 2", price: 0}, 
+    {name: "Ultra 3", price: 0}
+  ]
+};
+
+document.getElementById("deviceType").addEventListener("change", function(){
+  const modelSelect = document.getElementById("model");
+  modelSelect.innerHTML = '<option value="">-- اختر الموديل --</option>';
+  const selectedDevice = this.value;
+  if(products[selectedDevice]){
+    products[selectedDevice].forEach(p => {
+      const option = document.createElement("option");
+      option.value = p.price;
+      option.text = p.name + " - $" + p.price;
+      modelSelect.add(option);
+    });
+  }
+  document.getElementById("price").value = "";
+});
+
+document.getElementById("model").addEventListener("change", function(){
+  document.getElementById("price").value = this.value;
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const device = document.getElementById("deviceType").value;
+  const model = document.getElementById("model").options[document.getElementById("model").selectedIndex].text;
+  const imei = document.getElementById("imei").value;
+  const amount = document.getElementById("price").value;
+
+  if(!device || !model || !imei || !amount){
+    alert("الرجاء ملء جميع الحقول!");
+    return;
+  }
+
+  const btcAddress = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
+  const btcUrl = `bitcoin:${btcAddress}?amount=${amount}`;
+  window.open(btcUrl, "_blank");
+
+  alert(`تم إرسال طلبك!\nالجهاز: ${model}\nIMEI: ${imei}\nالمبلغ: $${amount}\nسيتم التواصل عبر shtoolgsm@gmail.com`);
 });
 </script>
+
+<a href="../index.html" class="btn">العودة للصفحة الرئيسية</a>
 </body>
 </html>
