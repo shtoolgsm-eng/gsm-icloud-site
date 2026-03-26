@@ -169,20 +169,43 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
       timestamp: serverTimestamp()
     });
 
-    // رسالة نجاح
-    document.getElementById("successMsg").style.display = "block";
+    <!-- رسالة نجاح + زر الدفع -->
+<p id="successMsg" style="display:none; color:green;">تم حفظ الطلب بنجاح!</p>
+<a id="payBtn" href="#" target="_blank" style="display:none;">ادفع الآن</a>
 
-    // رابط البيتكوين (تم التحديث)
-    const btcAddress = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
-    const btcUrl = `bitcoin:${btcAddress}?amount=${amount}`;
-    window.open(btcUrl, "_blank");
+<script>
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    console.log("تم حفظ الطلب:", docRef.id);
+    try {
+        const docRef = await addDoc(collection(db, "orders"), {
+            name,
+            email,
+            deviceType: device,
+            model: modelText,
+            imei,
+            price: amount,
+            status: "بانتظار الدفع",
+            timestamp: serverTimestamp()
+        });
 
-  } catch (error) {
-    console.error(error);
-    alert("حدث خطأ أثناء حفظ الطلب");
-  }
+        // عرض رسالة نجاح
+        const successMsg = document.getElementById("successMsg");
+        successMsg.style.display = "block";
+
+        // إعداد رابط البيتكوين
+        const btcAddress = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7xmamflrmql0sqvsmqvhazr9";
+        const btcUrl = `bitcoin:${btcAddress}?amount=${amount}`;
+
+        const payBtn = document.getElementById("payBtn");
+        payBtn.href = btcUrl;
+        payBtn.style.display = "inline-block";
+
+        console.log("تم حفظ الطلب:", docRef.id);
+    } catch (error) {
+        console.error(error);
+        alert("حدث خطأ أثناء حفظ الطلب");
+    }
 });
 </script>
 
