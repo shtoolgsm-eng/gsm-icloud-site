@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الدفع - GSM iCloud</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }
+        .card { background: white; padding: 20px; border-radius: 10px; shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; max-width: 90%; }
+        .address { background: #eee; padding: 10px; border: 1px dashed #333; word-break: break-all; margin: 20px 0; font-weight: bold; color: #d32f2f; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; cursor: pointer; border: none; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>تم تسجيل طلبك بنجاح!</h2>
+    <p>يرجى تحويل المبلغ إلى محفظة الـ Bitcoin التالية لإتمام العملية:</p>
+    
+    <div class="address" id="wallet">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
+    
+    <button class="btn" onclick="copyWallet()">نسخ عنوان المحفظة</button>
+    <br><br>
+    <p style="font-size: 0.9em; color: #666;">بعد التحويل، سيتم معالجة طلبك تلقائياً.</p>
+    <a href="index.html" style="color: #007bff;">العودة للرئيسية</a>
+</div>
+
+<script>
+    function copyWallet() {
+        var textArea = document.createElement("textarea");
+        textArea.value = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        alert("تم نسخ العنوان بنجاح");
+    }
+</script>
+
+</body>
+</html>
