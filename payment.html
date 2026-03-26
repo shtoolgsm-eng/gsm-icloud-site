@@ -4,36 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إتمام الدفع - GSM iCloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }
-        .card { background: white; padding: 20px; border-radius: 10px; shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; max-width: 90%; }
-        .address { background: #eee; padding: 10px; border: 1px dashed #333; word-break: break-all; margin: 20px 0; font-weight: bold; color: #d32f2f; }
-        .btn { background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; cursor: pointer; border: none; }
+        :root { --primary: #f7931a; --dark: #1a1a1a; --gray: #f4f4f4; }
+        body { font-family: 'Tajawal', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .payment-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 90%; max-width: 400px; text-align: center; border-top: 8px solid var(--primary); }
+        .btc-logo { width: 60px; margin-bottom: 10px; }
+        h2 { color: var(--dark); margin-bottom: 10px; }
+        .qr-container { background: white; padding: 15px; display: inline-block; border-radius: 15px; border: 1px solid #ddd; margin: 20px 0; }
+        .address-box { background: var(--gray); padding: 12px; border-radius: 10px; font-size: 0.85em; word-break: break-all; color: #555; border: 1px solid #e0e0e0; margin-bottom: 20px; font-family: monospace; }
+        .btn-copy { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; font-size: 1em; }
+        .btn-copy:hover { background: #e88200; transform: translateY(-2px); }
+        .footer-text { margin-top: 20px; font-size: 0.8em; color: #888; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>تم تسجيل طلبك بنجاح!</h2>
-    <p>يرجى تحويل المبلغ إلى محفظة الـ Bitcoin التالية لإتمام العملية:</p>
-    
-    <div class="address" id="wallet">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
-    
-    <button class="btn" onclick="copyWallet()">نسخ عنوان المحفظة</button>
-    <br><br>
-    <p style="font-size: 0.9em; color: #666;">بعد التحويل، سيتم معالجة طلبك تلقائياً.</p>
-    <a href="index.html" style="color: #007bff;">العودة للرئيسية</a>
+<div class="payment-card">
+    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="BTC" class="btc-logo">
+    <h2>تأكيد الدفع بالبتكوين</h2>
+    <p>امسح الكود أو انسخ العنوان لإتمام الطلب</p>
+
+    <div class="qr-container">
+        <div id="qrcode"></div>
+    </div>
+
+    <div class="address-box" id="btc-address">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
+
+    <button class="btn-copy" onclick="copyAddress()">نسخ عنوان المحفظة</button>
+
+    <div class="footer-text">
+        بعد التحويل، سيتم مراجعة العملية تلقائياً خلال دقائق.
+        <br><br>
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">العودة للرئيسية</a>
+    </div>
 </div>
 
 <script>
-    function copyWallet() {
-        var textArea = document.createElement("textarea");
-        textArea.value = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-        alert("تم نسخ العنوان بنجاح");
+    // توليد الباركود تلقائياً عند تحميل الصفحة
+    const walletAddress = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
+    new QRCode(document.getElementById("qrcode"), {
+        text: walletAddress,
+        width: 180,
+        height: 180,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+
+    function copyAddress() {
+        navigator.clipboard.writeText(walletAddress).then(() => {
+            alert("✅ تم نسخ عنوان المحفظة بنجاح");
+        });
     }
 </script>
 
