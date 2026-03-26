@@ -32,7 +32,12 @@
   <button type="submit">ادفع واطلب الخدمة</button>
 </form>
 
-<script>
+<script type="module" src="../firebase-config.js"></script>
+
+<script type="module">
+// 2. استيراد الدوال اللازمة من Firebase
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
 const products = {
   iPhone: [
     {name: "iPhone 6", price: 25}, 
@@ -73,8 +78,8 @@ const products = {
     {name: "iPhone 16 Pro Max", price: 205},
     {name: "iPhone 16e", price: 195}, 
     {name: "iPhone 17", price: 195}, 
-    {name: "iPhone 17 Pro", price: 200}, 
-    {name: "iPhone 17 Pro Max", price: 210},
+    {name: "iPhone 17 Pro", price: 200}, {
+      name: "iPhone 17 Pro Max", price: 210},
     {name: "iPhone 17 Air", price: 200}
   ],
   iPad: [
@@ -102,6 +107,7 @@ const products = {
   ]
 };
 
+// منطق تحديث القوائم
 document.getElementById("deviceType").addEventListener("change", function(){
   const modelSelect = document.getElementById("model");
   modelSelect.innerHTML = '<option value="">-- اختر الموديل --</option>';
@@ -121,23 +127,45 @@ document.getElementById("model").addEventListener("change", function(){
   document.getElementById("price").value = this.value;
 });
 
-document.getElementById("orderForm").addEventListener("submit", function(e){
+// 3. معالجة الإرسال إلى Firebase ثم فتح رابط الدفع
+document.getElementById("orderForm").addEventListener("submit", async function(e){
   e.preventDefault();
+  
   const device = document.getElementById("deviceType").value;
-  const model = document.getElementById("model").options[document.getElementById("model").selectedIndex].text;
+  const modelElement = document.getElementById("model");
+  const modelText = modelElement.options[modelElement.selectedIndex].text;
   const imei = document.getElementById("imei").value;
   const amount = document.getElementById("price").value;
 
-  if(!device || !model || !imei || !amount){
+  if(!device || !modelText || !imei || !amount){
     alert("الرجاء ملء جميع الحقول!");
     return;
   }
 
-  const btcAddress = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
-  const btcUrl = `bitcoin:${btcAddress}?amount=${amount}`;
-  window.open(btcUrl, "_blank");
+  // حفظ البيانات في Firebase Firestore أولاً
+  try {
+    const docRef = await addDoc(collection(window.db, "orders"), {
+      deviceType: device,
+      model: modelText,
+      imei: imei,
+      price: amount,
+      status: "بانتظار الدفع",
+      timestamp: serverTimestamp()
+    });
 
-  alert(`تم إرسال طلبك!\nالجهاز: ${model}\nIMEI: ${imei}\nالمبلغ: $${amount}\nسيتم التواصل عبر shtoolgsm@gmail.com`);
+    console.log("تم حفظ الطلب برقم: ", docRef.id);
+
+    // بعد النجاح في الحفظ، نفتح رابط البيتكوين
+    const btcAddress = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
+    const btcUrl = `bitcoin:${btcAddress}?amount=${amount}`;
+    window.open(btcUrl, "_blank");
+
+    alert(`تم تسجيل طلبك بنجاح!\nرقم المرجع: ${docRef.id}\nيرجى إتمام عملية الدفع في المحفظة.`);
+    
+  } catch (error) {
+    console.error("خطأ في الاتصال بقاعدة البيانات: ", error);
+    alert("حدث خطأ أثناء حفظ الطلب. تأكد من إعدادات Firestore Rules.");
+  }
 });
 </script>
 
