@@ -1,12 +1,165 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>تواصل معنا</title>
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - GSM SHTOOL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #00d2ff;
+            --whatsapp-green: #25d366;
+            --telegram-blue: #0088cc;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: radial-gradient(circle at top, #1e293b, #0f172a);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .contact-info h2 { color: var(--primary-blue); margin-bottom: 20px; }
+        .contact-info p { color: #94a3b8; font-size: 0.95rem; line-height: 1.8; }
+
+        /* أزرار التواصل السريع */
+        .social-links { margin-top: 30px; }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 15px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .btn-whatsapp { background: rgba(37, 211, 102, 0.1); border: 1px solid var(--whatsapp-green); color: var(--whatsapp-green); }
+        .btn-telegram { background: rgba(0, 136, 204, 0.1); border: 1px solid var(--telegram-blue); color: var(--telegram-blue); }
+        .btn-email { background: rgba(255, 255, 255, 0.05); border: 1px solid #94a3b8; color: #cbd5e1; }
+
+        .social-btn:hover { transform: translateX(-10px); }
+
+        /* نموذج المراسلة */
+        .contact-form { display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            font-family: 'Cairo';
+            outline: none;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary-blue); }
+
+        .btn-send {
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Cairo';
+        }
+
+        .back-home {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .contact-card { grid-template-columns: 1fr; padding: 25px; }
+        }
+    </style>
 </head>
 <body>
-<h2>تواصل معنا</h2>
-<p>يمكنك مراسلتنا على البريد: shtoolgsm@gmail.com</p>
+
+<div class="contact-card">
+    <div class="contact-info">
+        <h2>تواصل معنا مباشرة</h2>
+        <p>فريق دعم <b>GSM SHTOOL</b> جاهز للرد على استفساراتكم التقنية بخصوص فك الآيكلاود وصيانة البرمجيات.</p>
+        
+        <div class="social-links">
+            <a href="https://wa.me/967777000000" class="social-btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> واتساب - الدعم الفني
+            </a>
+            <a href="https://t.me/your_telegram" class="social-btn btn-telegram">
+                <i class="fab fa-telegram-plane"></i> تليجرام - القناة الرسمية
+            </a>
+            <a href="mailto:shtoolgsm@gmail.com" class="social-btn btn-email">
+                <i class="far fa-envelope"></i> shtoolgsm@gmail.com
+            </a>
+        </div>
+    </div>
+
+    <div class="contact-form-container">
+        <h3>أرسل لنا رسالة</h3>
+        <form class="contact-form" id="contactForm">
+            <input type="text" id="userName" placeholder="الاسم الكامل" required>
+            <input type="email" id="userEmail" placeholder="بريدك الإلكتروني" required>
+            <textarea id="userMessage" rows="5" placeholder="اكتب استفسارك هنا..." required></textarea>
+            <button type="submit" class="btn-send" id="sendBtn">إرسال الرسالة</button>
+        </form>
+    </div>
+
+    <a href="../index.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة للرئيسية</a>
+</div>
+
+<script type="module">
+    import { db, collection, addDoc, serverTimestamp } from '../firebase-config.js';
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('sendBtn');
+        btn.disabled = true;
+        btn.innerText = "جاري الإرسال...";
+
+        try {
+            await addDoc(collection(db, "inquiries"), {
+                name: document.getElementById('userName').value,
+                email: document.getElementById('userEmail').value,
+                message: document.getElementById('userMessage').value,
+                timestamp: serverTimestamp()
+            });
+            alert("✅ شكرًا لتواصلك! سنرد عليك في أقرب وقت ممكن.");
+            document.getElementById('contactForm').reset();
+        } catch (error) {
+            alert("❌ حدث خطأ، يرجى المحاولة مرة أخرى.");
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "إرسال الرسالة";
+        }
+    });
+</script>
+
 </body>
 </html>
