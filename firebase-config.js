@@ -1,8 +1,7 @@
 // firebase-config.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+// تم إضافة Firestore و Timestamp
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDILFJsscE8s2W9iJKiOXBYqzg5Tv1a93E",
@@ -14,15 +13,22 @@ const firebaseConfig = {
   measurementId: "G-HF7NJTF74R"
 };
 
-// تهيئة Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// منع التهيئة المتكررة
+let app;
+if (!getApps().length) {
+    app = initializeApp(firebaseConfig);
+} else {
+    app = getApps()[0];
+}
+
 const db = getFirestore(app);
-const analytics = getAnalytics(app);
 
-// تصدير الكائنات لتكون متاحة عالمياً في المتصفح
-window.auth = auth;
+// تصدير الكائنات للاستخدام في ملفات JS الأخرى
 window.db = db;
-window.analytics = analytics;
+window.collection = collection;
+window.addDoc = addDoc;
+window.serverTimestamp = serverTimestamp;
 
-console.log("Firebase Initialized Successfully!");
+console.log("%c GSM SHTOOL: Firebase db Ready 💾", "color: #00d2ff; font-weight: bold;");
+
+export { db, collection, addDoc, serverTimestamp };
