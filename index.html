@@ -15,7 +15,6 @@
             --card-bg: rgba(28, 28, 30, 0.8);
             --text-main: #ffffff;
             --text-dim: #a1a1a6;
-            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
         }
 
         body {
@@ -28,7 +27,7 @@
             line-height: 1.6;
         }
 
-        /* --- تصميم الشعار الفخم الجديد --- */
+        /* --- تصميم الشعار الفخم --- */
         .logo-wrapper {
             display: flex;
             flex-direction: column;
@@ -60,10 +59,8 @@
             background: linear-gradient(to bottom, #fff 30%, var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
 
-        /* نقطة الأمان التقنية */
         .tech-dot {
             position: absolute;
             width: 10px;
@@ -72,7 +69,7 @@
             border-radius: 50%;
             top: 15px;
             right: 15px;
-            box-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-color);
             animation: pulse 2s infinite;
         }
 
@@ -86,7 +83,6 @@
             font-family: 'Tajawal', sans-serif;
             font-size: 2.8rem;
             margin: 0;
-            letter-spacing: 2px;
             background: linear-gradient(to right, #ffffff, var(--accent-color), #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -94,35 +90,12 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* الأقسام العامة */
         section { margin-bottom: 80px; text-align: center; }
         
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-            font-weight: 800;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--accent-color);
-            border-radius: 5px;
-        }
+        h2 { font-size: 2rem; margin-bottom: 40px; position: relative; display: inline-block; font-weight: 800; }
+        h2::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--accent-color); border-radius: 5px; }
 
-        /* كروت الخدمات */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 
         .card {
             background: var(--card-bg);
@@ -130,38 +103,12 @@
             border: 1px solid rgba(255,255,255,0.05);
             padding: 45px 25px;
             border-radius: 28px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
         }
 
-        .card i { font-size: 45px; color: var(--accent-color); margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(0,122,255,0.3)); }
+        .card i { font-size: 45px; color: var(--accent-color); margin-bottom: 20px; }
+        .card:hover { transform: translateY(-12px); border-color: var(--accent-color); box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
 
-        .card:hover {
-            transform: translateY(-12px);
-            background: rgba(38, 38, 40, 0.9);
-            border-color: var(--accent-color);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        /* قسم "عننا" */
-        .about-box {
-            display: flex;
-            align-items: center;
-            background: var(--card-bg);
-            border-radius: 35px;
-            overflow: hidden;
-            text-align: right;
-            flex-wrap: wrap;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .about-content { padding: 50px; flex: 1; min-width: 300px; }
-        
-        .about-image {
-            flex: 1; min-width: 300px; height: 400px;
-            background: url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=800') center/cover;
-        }
-
-        /* الأزرار المطورة */
         .btn {
             display: inline-block;
             background: var(--accent-color);
@@ -170,43 +117,13 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            transition: 0.3s all ease;
+            transition: 0.3s;
             margin-top: 20px;
-            border: 2px solid transparent;
-            font-size: 1.1rem;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
-            background: transparent;
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            box-shadow: 0 0 30px rgba(0, 122, 255, 0.4);
-        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 122, 255, 0.4); }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.2);
-            color: #fff;
-        }
-
-        .btn-outline:hover { background: white; color: black; border-color: white; }
-
-        footer {
-            padding: 50px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-dim);
-            font-size: 0.95rem;
-        }
-
-        footer a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8rem; }
-            .premium-badge { width: 90px; height: 90px; }
-            .logo-letters { font-size: 38px; }
-            .about-image { height: 250px; }
-        }
+        footer { padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); text-align: center; }
     </style>
 </head>
 <body>
@@ -244,29 +161,9 @@
       </div>
     </section>
 
-    <section class="shop">
-        <div class="card" style="background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%); border-color: var(--accent-color);">
-            <h2 style="margin-top: 0;">متجر GSM SHTOOL</h2>
-            <p>احصل على أحدث الأدوات والحلول البرمجية الحصرية المتوفرة الآن في متجرنا.</p>
-            <a href="pages/shop.html" class="btn">تصفح المنتجات الآن</a>
-        </div>
-    </section>
-
-    <section class="about">
-        <div class="about-box">
-            <div class="about-image"></div>
-            <div class="about-content">
-                <h2>لماذا نحن؟</h2>
-                <p>نحن في <strong>GSM SHTOOL</strong> نضع الأمان والخصوصية في مقدمة أولوياتنا. متخصصون في حلول أنظمة iOS المستعصية، ونقدم دعماً فنياً مباشراً لضمان نجاح كل عملية فتح أو إصلاح بأعلى دقة.</p>
-                <a href="pages/about.html" class="btn btn-outline">اكتشف المزيد</a>
-            </div>
-        </div>
-    </section>
-
     <section class="order">
       <h2>ابدأ تجربتك الاحترافية</h2>
-      <p style="color: var(--text-dim);">انضم إلى آلاف العملاء الذين وثقوا بخدماتنا السريعة والآمنة.</p>
-      <a href="pages/order.html" class="btn" style="padding: 18px 60px; font-size: 1.2rem; border-radius: 15px;">
+      <a href="services/checkout.html" class="btn" style="padding: 18px 60px; font-size: 1.2rem; border-radius: 15px;">
         <i class="fas fa-bolt" style="margin-left: 10px;"></i> اطلب الخدمة الآن
       </a>
     </section>
@@ -274,11 +171,10 @@
 
 <footer>
   <p>جميع الحقوق محفوظة لـ <strong>GSM SHTOOL</strong> &copy; 2026</p>
-  <p>تواصل معنا: <a href="mailto:shtoolgsm@gmail.com">shtoolgsm@gmail.com</a></p>
+  <p>تواصل معنا: <a href="mailto:shtoolgsm@gmail.com" style="color: var(--accent-color); text-decoration: none;">shtoolgsm@gmail.com</a></p>
 </footer>
 
-<script src="assets/js/app.js"></script>
-<script type="module" src="firebase-config.js"></script>
+<script type="module" src="services/js/firebase-config.js"></script>
 
 </body>
 </html>
