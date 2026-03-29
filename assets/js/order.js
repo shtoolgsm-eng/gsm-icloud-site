@@ -1,39 +1,43 @@
+// assets/js/order.js
+
 async function processOrder() {
     const payBtn = document.getElementById('pay-btn');
     
-    // بيانات تلجرام الخاصة بك
+    // بياناتك المؤكدة
     const telegramToken = "8689063454:AAGx1Bmf4E0X3ElFSEVPf-zSoYBiU0geUAc"; //
-    const chatId = "ضع_هنا_ChatID_الخاص_بك"; // احصل عليه من @userinfobot
+    const chatId = "ضع_هنا_الرقم_الذي_حصلت_عليه_من_userinfobot"; 
+    const btcWallet = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9"; //
 
     payBtn.disabled = true;
     payBtn.innerText = "جاري إرسال الطلب...";
 
     const orderId = "GSM-" + Math.floor(Math.random() * 900000 + 100000); //
-    const amount = "75 USDT"; //
-
-    // صياغة الرسالة
-    const message = `🚀 طلب جديد من موقع GSM\n\n🆔 رقم الطلب: ${orderId}\n💰 المبلغ: ${amount}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+    const message = `🚀 *طلب جديد: GSM SHTOOL*\n\n🆔 رقم الطلب: ${orderId}\n💰 المبلغ: 75$\n📍 المحفظة: BTC Taproot\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
 
     try {
-        // إرسال البيانات لتلجرام
-        const response = await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+        // 1. إرسال الإشعار لتلجرام
+        await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 chat_id: chatId,
-                text: message
+                text: message,
+                parse_mode: "Markdown"
             })
         });
 
-        if (response.ok) {
-            // توجيه العميل لمحفظتك (استبدل العنوان بعنوان محفظتك الحقيقي)
-            window.location.href = "https://link.trustwallet.com/send?asset=c60&address=عنـوان_محفظتـك_هنـا&amount=75";
-        } else {
-            throw new Error("خطأ في الإرسال");
-        }
+        // 2. توجيه العميل لفتح محفظة البيتكوين مباشرة
+        window.location.href = `bitcoin:${btcWallet}?amount=0.0011`; // القيمة تقريبية لـ 75$
 
     } catch (error) {
         console.error("Error:", error);
+        alert("فشل في معالجة الطلب، تأكد من الاتصال.");
+        payBtn.disabled = false;
+        payBtn.innerText = "إتمام الطلب والدفع";
+    }
+}
+
+window.processOrder = processOrder;
         alert("فشل إرسال الطلب، تأكد من الاتصال.");
         payBtn.disabled = false;
         payBtn.innerText = "شراء الخدمة";
