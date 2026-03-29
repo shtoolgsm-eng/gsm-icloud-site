@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الدفع</title>
+<style>
+body {
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+.box {
+    margin-top:50px;
+}
+button {
+    padding:12px;
+    margin:10px;
+    border-radius:10px;
+    border:none;
+    background:#2d6cdf;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>ادفع الآن</h2>
+
+    <p id="order"></p>
+
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9" />
+
+    <p>عنوان الدفع:</p>
+    <p id="addr">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</p>
+
+    <button onclick="copyAddress()">نسخ العنوان</button>
+    <button onclick="openWallet()">فتح المحفظة</button>
+
+    <br>
+
+    <button onclick="confirmPayment()">تم الدفع</button>
+
+    <p id="status"></p>
+</div>
+
+<script>
+const address = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
+const amount = 0.001;
+
+document.getElementById("order").innerText =
+"رقم الطلب: " + localStorage.getItem("orderId");
+
+function copyAddress() {
+    navigator.clipboard.writeText(address);
+    alert("تم النسخ");
+}
+
+function openWallet() {
+    window.location.href = `bitcoin:${address}?amount=${amount}`;
+}
+
+function confirmPayment() {
+
+    const orderId = localStorage.getItem("orderId");
+
+    fetch("https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            chat_id: "YOUR_CHAT_ID",
+            text: `✅ تم الدفع للطلب: ${orderId}`
+        })
+    });
+
+    document.getElementById("status").innerText = "تم إرسال التأكيد ✅";
+}
+</script>
+
+</body>
+</html>
