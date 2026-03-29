@@ -1,36 +1,115 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>تأكيد الدفع | GSM SHTOOL</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<title>تأكيد الدفع | GSM SHTOOL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+body {
+    background: linear-gradient(135deg,#0a0a0a,#111);
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    text-align:center;
+}
+
+.container {
+    margin-top:40px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    padding:25px;
+    border-radius:20px;
+    width:90%;
+    max-width:400px;
+    margin:auto;
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+}
+
+.logo {
+    font-size:22px;
+    font-weight:bold;
+    color:#2d6cdf;
+    margin-bottom:10px;
+}
+
+.btc-box {
+    background:#000;
+    padding:15px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+code {
+    display:block;
+    margin-top:10px;
+    word-break:break-all;
+    color:#0f0;
+}
+
+button {
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:#2d6cdf;
+    color:white;
+    font-size:15px;
+}
+
+button:disabled {
+    background:gray;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="glass-card checkout-card">
-            <div class="logo-icon small">GS</div>
-            <h2>تأكيد عملية الدفع</h2>
-            <div class="order-summary">
-                <p>الجهاز: <span id="disp-name">--</span></p>
-                <p>السعر: <span id="disp-price">--</span></p>
-            </div>
-            
-            <div class="wallet-box">
-                <i class="fab fa-bitcoin"></i>
-                <p>سيتم الدفع عبر عنوان البيتكوين الخاص بالسيرفر</p>
-            </div>
 
-            <button id="pay-btn" class="btn-main" onclick="processOrder()">إرسال الطلب وفتح المحفظة</button>
-            
-            <p class="note">بمجرد الضغط، ستصل بياناتك للفني وسيتم توجيهك للمحفظة.</p>
-        </div>
-    </div>
+<div class="container">
+<div class="card">
 
-    <script src="assets/js/order.js"></script>
-    <script>
-        document.getElementById('disp-name').innerText = localStorage.getItem('selectedServiceName') || "لم يتم التحديد";
-        document.getElementById('disp-price').innerText = "$" + (localStorage.getItem('selectedPrice') || "0");
-    </script>
+<div class="logo">⚡ GSM SHTOOL</div>
+
+<h3>تأكيد الدفع</h3>
+
+<p>الخدمة: <span id="name"></span></p>
+<p>السعر: <span id="price"></span>$</p>
+
+<div class="btc-box">
+<p>عنوان الدفع:</p>
+
+<code id="btc">
+bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
+</code>
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9">
+
+<button onclick="copyBTC()">نسخ العنوان</button>
+<button onclick="openWallet()">فتح المحفظة</button>
+
+</div>
+
+<button id="pay-btn" onclick="processOrder()">إرسال الطلب</button>
+<button onclick="confirmPayment()">تم الدفع</button>
+
+<p id="status"></p>
+
+</div>
+</div>
+
+<script src="assets/js/order.js"></script>
+
+<script>
+document.getElementById("name").innerText =
+localStorage.getItem("selectedServiceName") || "غير محدد";
+
+document.getElementById("price").innerText =
+localStorage.getItem("selectedPrice") || "0";
+</script>
+
 </body>
 </html>
