@@ -1,30 +1,42 @@
-// js/order.js
 async function processOrder() {
     const payBtn = document.getElementById('pay-btn');
-    payBtn.disabled = true;
-    payBtn.innerText = "جاري إنشاء الطلب...";
-
-    const orderId = "GSM-" + Math.floor(Math.random() * 900000 + 100000);
     
+    // بيانات تلجرام الخاصة بك
+    const telegramToken = "8689063454:AAGx1Bmf4E0X3ElFSEVPf-zSoYBiU0geUAc"; //
+    const chatId = "ضع_هنا_ChatID_الخاص_بك"; // احصل عليه من @userinfobot
+
+    payBtn.disabled = true;
+    payBtn.innerText = "جاري إرسال الطلب...";
+
+    const orderId = "GSM-" + Math.floor(Math.random() * 900000 + 100000); //
+    const amount = "75 USDT"; //
+
+    // صياغة الرسالة
+    const message = `🚀 طلب جديد من موقع GSM\n\n🆔 رقم الطلب: ${orderId}\n💰 المبلغ: ${amount}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+
     try {
-        // استخدام الدوال المصدرة من نافذة window
-        await window.setDoc(window.doc(window.db, "orders", orderId), {
-            order_id: orderId,
-            amount: 75,
-            currency: "USDT",
-            status: "Pending",
-            timestamp: window.serverTimestamp()
+        // إرسال البيانات لتلجرام
+        const response = await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message
+            })
         });
 
-        alert("تم إنشاء الطلب بنجاح: " + orderId);
-        window.location.href = "tracking.html?order=" + orderId;
+        if (response.ok) {
+            // توجيه العميل لمحفظتك (استبدل العنوان بعنوان محفظتك الحقيقي)
+            window.location.href = "https://link.trustwallet.com/send?asset=c60&address=عنـوان_محفظتـك_هنـا&amount=75";
+        } else {
+            throw new Error("خطأ في الإرسال");
+        }
 
     } catch (error) {
-        console.error("Error creating order:", error);
-        alert("خطأ في الاتصال بقاعدة البيانات");
+        console.error("Error:", error);
+        alert("فشل إرسال الطلب، تأكد من الاتصال.");
         payBtn.disabled = false;
-        payBtn.innerText = "فتح المحفظة الآن";
+        payBtn.innerText = "شراء الخدمة";
     }
 }
-// جعل الدالة متاحة للزر في HTML
 window.processOrder = processOrder;
