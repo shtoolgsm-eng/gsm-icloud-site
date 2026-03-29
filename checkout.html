@@ -2,40 +2,35 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إتمام الدفع - GSM SHTOOL</title>
+    <title>تأكيد الدفع | GSM SHTOOL</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="card glass-card">
-            <i class="fab fa-bitcoin" style="font-size: 3rem; color: #f7931a;"></i>
-            <h2>تأكيد الطلب والدفع</h2>
-            <div id="orderDetails" style="text-align: right; margin: 20px 0; color: white;">
-                <p>الخدمة المختارة: <strong id="serviceNameDisplay" style="color: var(--accent);">جاري التحميل...</strong></p>
-                <p>المبلغ المطلوب: <span class="price-tag" id="finalPriceDisplay">$0</span></p>
+        <div class="glass-card checkout-card">
+            <div class="logo-icon small">GS</div>
+            <h2>تأكيد عملية الدفع</h2>
+            <div class="order-summary">
+                <p>الجهاز: <span id="disp-name">--</span></p>
+                <p>السعر: <span id="disp-price">--</span></p>
+            </div>
+            
+            <div class="wallet-box">
+                <i class="fab fa-bitcoin"></i>
+                <p>سيتم الدفع عبر عنوان البيتكوين الخاص بالسيرفر</p>
             </div>
 
-            <button id="pay-btn" class="btn btn-premium btn-primary" onclick="processOrder()">إتمام الطلب والدفع</button>
-
-            <div class="delivery-note">
-                <i class="fas fa-clock"></i>
-                <p>سوف يتم معالجة طلبك والرد خلال <strong>30 ساعة</strong> كحد أقصى.</p>
-            </div>
-            <div class="info-note">
-                <p>ملاحظة هامة: سيتم إرسال إشعار في إيميلك عند اكتمال عملية تحويل حالة جهازك من <strong>ON-و LOST</strong> إلى <strong>OFF</strong>.</p>
-            </div>
+            <button id="pay-btn" class="btn-main" onclick="processOrder()">إرسال الطلب وفتح المحفظة</button>
+            
+            <p class="note">بمجرد الضغط، ستصل بياناتك للفني وسيتم توجيهك للمحفظة.</p>
         </div>
     </div>
+
     <script src="assets/js/order.js"></script>
     <script>
-        // جلب البيانات من الصفحة السابقة
-        const selectedPrice = localStorage.getItem('selectedPrice') || "غير معروف";
-        const selectedService = localStorage.getItem('selectedServiceName') || "جهاز غير محدد";
-
-        document.getElementById('serviceNameDisplay').innerText = selectedService;
-        document.getElementById('finalPriceDisplay').innerText = "$" + selectedPrice;
+        document.getElementById('disp-name').innerText = localStorage.getItem('selectedServiceName') || "لم يتم التحديد";
+        document.getElementById('disp-price').innerText = "$" + (localStorage.getItem('selectedPrice') || "0");
     </script>
 </body>
 </html>
