@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>طلب خدمة</title>
+<style>
+body {
+    background:#0d0d0d;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
+.container {
+    margin-top:50px;
+}
+input, button {
+    padding:12px;
+    margin:10px;
+    border-radius:10px;
+    border:none;
+    width:80%;
+}
+button {
+    background:#2d6cdf;
+    color:white;
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>طلب فتح iPhone</h2>
+
+    <input type="text" id="device" value="iPhone 11 Pro" readonly>
+    <input type="text" id="serial" placeholder="أدخل الرقم التسلسلي">
+
+    <button onclick="processOrder()" id="pay-btn">الدفع الآن</button>
+
+    <p id="status"></p>
+</div>
+
+<script>
+function processOrder() {
+
+    const btn = document.getElementById("pay-btn");
+    btn.disabled = true;
+
+    const device = document.getElementById("device").value;
+    const serial = document.getElementById("serial").value || "غير مدخل";
+
+    const price = 55;
+    const amountBTC = 0.001;
+
+    const address = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
+
+    const orderId = "ORD-" + Date.now();
+
+    // حفظ الطلب مؤقتًا
+    localStorage.setItem("orderId", orderId);
+
+    // رسالة تيليجرام
+    const message = `
+📦 طلب جديد
+
+🆔 ${orderId}
+📱 ${device}
+💰 ${price}$
+🔢 ${serial}
+
+💳 ${address}
+`;
+
+    // إرسال تيليجرام
+    fetch("https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            chat_id: "YOUR_CHAT_ID",
+            text: message
+        })
+    });
+
+    // الانتقال لصفحة الدفع
+    window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>
