@@ -2,18 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GSM SHTOOL | إتمام الدفع</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <div class="container">
-        <h2>دفع قيمة الخدمة</h2>
+        <div class="logo-wrapper">
+            <h1>إتمام الطلب</h1>
+        </div>
+
         <div class="card">
-            <p>المبلغ المطلوب: <span style="color: #3b82f6; font-weight: bold;">75 USDT (BTC Equivalent)</span></p>
-            <p style="font-size: 0.8rem; color: #a1a1a6;">سيتم إرسال تفاصيل الطلب لتلجرام وفتح المحفظة</p>
+            <p>المبلغ المطلوب: <span style="color: #3b82f6; font-weight: bold;">75$ (Bitcoin)</span></p>
+            <p style="font-size: 0.85rem; color: #a1a1a6; margin-bottom: 20px;">عند الضغط على الزر، سيتم إرسال طلبك وفتح المحفظة تلقائياً.</p>
             
             <button id="pay-btn" onclick="processOrder()">إتمام الطلب والدفع</button>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 25px 0;">
+
+            <div class="support-section">
+                <p style="font-size: 0.8rem; color: #a1a1a6; margin-bottom: 12px;">تحتاج مساعدة؟ تواصل معنا عبر تلجرام</p>
+                <a href="https://t.me/gsmshtool" target="_blank" class="support-btn">
+                    <i class="fab fa-telegram"></i> الدعم الفني المباشر
+                </a>
+            </div>
         </div>
     </div>
 
