@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>الدفع</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>GSM SHTOOL | الدفع</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<h2>دفع الخدمة</h2>
-<p>السعر: 75 USDT</p>
+    <div class="container">
+        <h2>دفع قيمة الخدمة</h2>
+        <div class="card">
+            <p>السعر المطلوب: <span style="color: #3b82f6; font-weight: bold;">75 USDT</span></p>
+            
+            <button id="pay-btn" onclick="processOrder()">إتمام الطلب والدفع</button>
+        </div>
+    </div>
 
-<button id="pay-btn" onclick="processOrder()">فتح المحفظة الآن</button>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-
-<script src="js/firebase.js"></script>
-<script src="js/order.js"></script>
+    <script src="assets/js/order.js"></script>
 
 </body>
 </html>
