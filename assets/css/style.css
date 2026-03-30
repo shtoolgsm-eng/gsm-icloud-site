@@ -1,24 +1,40 @@
-/* GSM SHTOOL - FULL INTEGRATED STYLESHEET 
-   تطوير: المهندس شمسان شعبان
-   النسخة: 2.0 (دعم الموبايل + المختبر الذكي)
+/* GSM SHTOOL PRO - GLOBAL INTEGRATED STYLESHEET 
+   Developed by: Engineer Shamsan Shaaban
+   Version: 2.5 (English - Mobile Optimized - AI Lab Support)
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@700&display=swap');
 
 :root {
     --primary: #3b82f6;
+    --primary-glow: rgba(59, 130, 246, 0.3);
     --dark: #0a0a0a;
     --card-bg: rgba(30, 30, 30, 0.6);
     --border: rgba(255, 255, 255, 0.08);
+    --text-main: #ffffff;
+    --text-muted: #888888;
 }
 
-* { box-sizing: border-box; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
 body {
     background: var(--dark);
-    color: white;
-    font-family: 'Cairo', sans-serif;
-    margin: 0;
-    direction: rtl;
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    direction: ltr; /* Left-to-Right for English */
+    line-height: 1.6;
+    overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, .logo-area h1 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .container {
@@ -27,35 +43,73 @@ body {
     padding: 20px;
 }
 
-/* --- الهيدر والقائمة --- */
+/* --- Header & Navigation --- */
 .main-header {
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--border);
     padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-.header-flex { display: flex; justify-content: space-between; align-items: center; }
-.logo-area { display: flex; align-items: center; gap: 10px; }
-.logo-icon {
-    width: 45px; height: 45px; background: var(--primary);
-    border-radius: 12px; display: flex; align-items: center;
-    justify-content: center; font-weight: 900; font-size: 1.2rem;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+
+.header-flex { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
 }
+
+.logo-area { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+}
+
+.logo-icon {
+    width: 45px; 
+    height: 45px; 
+    background: var(--primary);
+    border-radius: 12px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    font-weight: 800; 
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
 .highlight { color: var(--primary); }
-.nav-links a { color: #aaa; text-decoration: none; margin-right: 20px; font-size: 0.9rem; transition: 0.3s; }
+
+.nav-links a { 
+    color: var(--text-muted); 
+    text-decoration: none; 
+    margin-left: 20px; 
+    font-size: 0.9rem; 
+    font-weight: 600;
+    transition: 0.3s ease; 
+}
+
 .nav-links a:hover { color: white; }
-.telegram-btn { color: var(--primary) !important; font-weight: bold; }
 
-/* --- قسم الواجهة (Hero) --- */
-.hero-text { text-align: center; margin: 50px 0; }
-.hero-text h2 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 900; }
-.hero-text p { color: #888; }
+.telegram-btn { 
+    color: var(--primary) !important; 
+    border: 1px solid var(--primary);
+    padding: 8px 15px;
+    border-radius: 8px;
+}
 
-/* --- شبكة الخدمات والبطاقات --- */
+.telegram-btn:hover {
+    background: var(--primary);
+    color: white !important;
+}
+
+/* --- Hero Section --- */
+.hero-text { text-align: center; margin: 60px 0; }
+.hero-text h2 { font-size: 2.8rem; margin-bottom: 10px; }
+.hero-text p { color: var(--text-muted); font-size: 1.1rem; }
+
+/* --- Services Grid & Cards --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -65,110 +119,170 @@ body {
 .service-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 25px;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 24px;
+    padding: 30px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-align: center;
     backdrop-filter: blur(10px);
 }
-.service-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-.card-image { font-size: 3rem; color: var(--primary); margin-bottom: 20px; opacity: 0.8; }
-.card-body h3 { margin: 0 0 10px; font-size: 1.3rem; }
-.card-body p { color: #aaa; font-size: 0.9rem; margin-bottom: 20px; }
 
-.card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
-.price { font-size: 1.5rem; font-weight: 900; color: white; }
+.service-card:hover { 
+    border-color: var(--primary); 
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.service-card.highlight {
+    border: 1.5px solid var(--primary);
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.1), var(--card-bg));
+}
+
+.card-image { font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; }
+.card-body h3 { margin-bottom: 10px; font-size: 1.4rem; }
+.card-body p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+
+.card-footer { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+.price { font-size: 1.6rem; font-weight: 800; color: white; }
 
 .buy-btn {
-    background: transparent; border: 2px solid var(--primary);
-    color: var(--primary); padding: 8px 20px; border-radius: 12px;
-    cursor: pointer; font-weight: bold; transition: 0.3s; font-family: 'Cairo';
+    background: transparent; 
+    border: 2px solid var(--primary);
+    color: var(--primary); 
+    padding: 10px 22px; 
+    border-radius: 12px;
+    cursor: pointer; 
+    font-weight: 700; 
+    font-family: 'Inter', sans-serif;
+    transition: 0.3s;
 }
-.buy-btn:hover { background: var(--primary); color: white; }
 
-/* --- قسم المختبر الذكي (DeepSeek & NanoBanana) --- */
-.ai-lab-section { 
-    padding: 60px 0; 
-    background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.05)); 
+.buy-btn:hover { 
+    background: var(--primary); 
+    color: white; 
 }
+
+/* --- AI Laboratory Section --- */
+.ai-lab-section { 
+    padding: 80px 0; 
+    background: radial-gradient(circle at bottom, rgba(59, 130, 246, 0.05) 0%, transparent 70%); 
+}
+
+.section-title { 
+    text-align: center; 
+    margin-bottom: 40px; 
+    font-size: 2rem; 
+}
+
 .ai-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 25px; 
+    gap: 30px; 
 }
+
 .ai-card { 
-    text-align: center; 
-    transition: 0.3s; 
-    border: 1px solid rgba(59, 130, 246, 0.2); 
     background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 25px;
-    padding: 30px;
+    border: 1px solid rgba(59, 130, 246, 0.2); 
+    border-radius: 28px;
+    padding: 35px;
+    text-align: center; 
+    transition: 0.3s ease; 
 }
+
 .ai-card:hover { 
     border-color: var(--primary); 
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); 
+    box-shadow: 0 10px 40px var(--primary-glow); 
 }
-.ai-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
-.ai-input-group { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
 
-/* تحسين تجربة الكتابة على الموبايل ومنع زووم الآيفون */
+.ai-icon { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+.ai-input-group { margin-top: 25px; display: flex; flex-direction: column; gap: 15px; }
+
 .ai-input-group input { 
     background: rgba(255, 255, 255, 0.05); 
     border: 1px solid var(--border); 
-    padding: 14px; 
-    border-radius: 12px; 
+    padding: 16px; 
+    border-radius: 14px; 
     color: white; 
-    font-family: 'Cairo';
-    font-size: 16px; 
-    transition: 0.3s;
+    font-size: 16px; /* Prevents iOS auto-zoom */
     outline: none;
-    width: 100%;
+    transition: 0.3s;
 }
+
 .ai-input-group input:focus {
-    background: rgba(255, 255, 255, 0.1);
     border-color: var(--primary);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .ai-btn { 
     background: var(--primary); 
     color: white; 
     border: none; 
-    padding: 12px; 
-    border-radius: 12px; 
+    padding: 15px; 
+    border-radius: 14px; 
     cursor: pointer; 
-    font-weight: bold; 
-    font-family: 'Cairo'; 
+    font-weight: 700; 
+    font-size: 1rem;
     transition: 0.3s;
 }
-.ai-btn:hover { opacity: 0.9; }
 
-/* تحسين شكل الأزرار عند الضغط (Active State) للموبايل */
-.ai-btn:active, .buy-btn:active, .btn-main:active {
-    transform: scale(0.95);
-    opacity: 0.8;
+/* --- Global Action Elements --- */
+.btn-main {
+    background: var(--primary); 
+    color: white; 
+    border: none; 
+    padding: 18px;
+    width: 100%; 
+    border-radius: 16px; 
+    font-weight: 700; 
+    font-size: 1.1rem;
+    cursor: pointer; 
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    transition: 0.3s;
 }
 
-/* --- صفحة الدفع --- */
+.btn-main:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px var(--primary-glow); 
+}
+
+.btn-main:active { transform: scale(0.97); }
+
+/* --- Checkout & Form Specifics --- */
 .checkout-box { 
-    text-align: center; 
     max-width: 500px; 
     margin: 80px auto; 
-    padding: 40px; 
-    border-radius: 30px; 
+    padding: 45px; 
+    border-radius: 32px; 
     background: var(--card-bg);
-    backdrop-filter: blur(10px);
     border: 1px solid var(--border);
-}
-.highlight-price { color: var(--primary); font-size: 1.8rem; font-weight: 900; }
-.bitcoin-info { margin: 30px 0; color: #f7931a; font-size: 1.2rem; }
-
-.btn-main {
-    background: var(--primary); color: white; border: none; padding: 15px;
-    width: 100%; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 1.1rem;
-    font-family: 'Cairo'; display: block; text-decoration: none;
+    text-align: center;
 }
 
-/* --- التذييل --- */
-footer { text-align: center; padding: 50px; color: #444; font-size: 0.8rem; border-top: 1px solid var(--border); }
+.highlight-price { color: var(--primary); font-size: 2rem; font-weight: 800; margin: 15px 0; }
+.bitcoin-info { margin: 25px 0; color: #f7931a; font-weight: 600; }
+
+/* --- Footer --- */
+footer { 
+    text-align: center; 
+    padding: 60px 20px; 
+    color: #555; 
+    font-size: 0.85rem; 
+    border-top: 1px solid var(--border); 
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .header-flex { flex-direction: column; gap: 15px; }
+    .nav-links a { margin: 0 10px; }
+    .hero-text h2 { font-size: 2rem; }
+    .ai-grid { grid-template-columns: 1fr; }
+}
