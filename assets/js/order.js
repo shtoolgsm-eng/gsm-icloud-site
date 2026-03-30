@@ -1,109 +1,141 @@
 /**
- * GSM SHTOOL PRO - النسخة الشاملة والمدمجة
- * يشمل: نظام الطلبات + مختبر الذكاء الاصطناعي + الربط مع التلجرام
- * تطوير: المهندس شمسان شعبان
+ * GSM SHTOOL PRO - Integrated Final Version
+ * Features: Order System, AI Lab (DeepSeek/NanoBanana), & Payment Proof Upload
+ * Developed by: Engineer Shamsan Shaaban
  */
 
-// 1. إعدادات الربط الثابتة (تأكد من صحة البيانات)
+// 1. Connection Settings
 const BOT_TOKEN = "8689063454:AAGx1Bmf4E0X3ElFSEVPf-zSoYBiU0geUAc";
-const CHAT_ID = "8025084849";
+const CHAT_ID = "-1003811162767"; // Group ID with negative prefix for successful connection
 const WALLET_ADDR = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
 
-// --- القسم الأول: وظائف مختبر الذكاء الاصطناعي (DeepSeek & NanoBanana) ---
+// --- Section 1: AI Laboratory Functions ---
 
-// وظيفة إرسال استشارات الذكاء الاصطناعي
+// Send technical AI inquiries
 async function askAI() {
     const queryInput = document.getElementById('ai-query');
     const query = queryInput?.value;
     
-    if(!query) return alert("فضلاً، صف المشكلة التقنية أولاً");
+    if(!query) return alert("Please describe the technical issue first.");
 
-    const msg = `🤖 *استشارة تقنية (DeepSeek)*\n\n` +
-                `🆔 *رقم الهوية:* \`${localStorage.getItem('currentOrderId') || 'عميل جديد'}\`\n` +
-                `❓ *السؤال:* ${query}\n\n` +
-                `⚠️ يرجى الرد على العميل عبر البوت فوراً.`;
+    const msg = `🤖 *AI Technical Inquiry (DeepSeek)*\n\n` +
+                `🆔 *ID:* \`${localStorage.getItem('currentOrderId') || 'New Client'}\`\n` +
+                `❓ *Question:* ${query}\n\n` +
+                `⚠️ Please respond to the client via the group immediately.`;
     
     const sent = await sendToTelegram(msg);
     if(sent) {
-        alert("تم إرسال استفسارك للمهندس شمسان شعبان، سيتم الرد عليك عبر البوت فوراً.");
+        alert("Your inquiry has been sent to Engineer Shamsan Shaaban. You will receive a response shortly.");
         queryInput.value = "";
     }
 }
 
-// وظيفة طلب تصميم شعار (NanoBanana)
+// Request logo design
 async function generateLogo() {
     const promptInput = document.getElementById('img-prompt');
     const prompt = promptInput?.value;
     
-    if(!prompt) return alert("يرجى وصف الشعار المطلوب تصميمه");
+    if(!prompt) return alert("Please describe the logo design you need.");
 
-    const msg = `🎨 *طلب تصميم شعار (NanoBanana)*\n\n` +
-                `📝 *الوصف:* ${prompt}\n\n` +
-                `⚠️ يرجى توليد الصورة وإرسالها للعميل عبر التلجرام.`;
+    const msg = `🎨 *Logo Design Request (NanoBanana)*\n\n` +
+                `📝 *Description:* ${prompt}\n\n` +
+                `⚠️ Please generate the image and send it to the client.`;
     
     const sent = await sendToTelegram(msg);
     if(sent) {
-        alert("تم استلام طلب التصميم بنجاح، جارٍ المعالجة بواسطة خوارزميات NanoBanana...");
+        alert("Design request received. Processing via NanoBanana algorithms...");
         promptInput.value = "";
     }
 }
 
-// --- القسم الثاني: وظائف نظام الطلبات والدفع (Bitcoin) ---
+// --- Section 2: Order & Payment System ---
 
-// وظيفة معالجة الطلب وفتح المحفظة
+// Process order and trigger wallet
 async function processOrder() {
     const btn = document.getElementById('pay-btn');
     if (!btn) return;
 
-    const sName = localStorage.getItem('selectedServiceName') || "خدمة غير محددة";
+    const sName = localStorage.getItem('selectedServiceName') || "Undefined Service";
     const sPrice = localStorage.getItem('selectedPrice') || "0";
     const orderId = "GSM-" + Date.now().toString().slice(-6);
     localStorage.setItem("currentOrderId", orderId);
 
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري فتح المحفظة...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening Wallet...';
 
-    const msg = `🚀 *طلب جديد: GSM SHTOOL*\n\n` +
-                `🆔 *رقم الطلب:* \`${orderId}\`\n` +
-                `🛠 *الخدمة:* ${sName}\n` +
-                `💰 *السعر:* ${sPrice}$\n` +
-                `⚠️ العميل يقوم بفتح المحفظة الآن لإتمام الدفع.`;
+    const msg = `🚀 *New Order: GSM SHTOOL*\n\n` +
+                `🆔 *Order ID:* \`${orderId}\`\n` +
+                `🛠 *Service:* ${sName}\n` +
+                `💰 *Price:* ${sPrice}$\n` +
+                `⚠️ Client is opening the wallet for payment.`;
 
-    // توجيه العميل لمحفظة البيتكوين
+    // Redirect to Bitcoin wallet
     window.location.href = `bitcoin:${WALLET_ADDR}?amount=0.0011`;
 
-    // إرسال الإشعار
     await sendToTelegram(msg);
 
     setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-check-circle"></i> تم توجيهك للمحفظة';
+        btn.innerHTML = '<i class="fas fa-check-circle"></i> Redirected to Wallet';
     }, 2000);
 }
 
-// وظيفة تأكيد الدفع يدوياً
+// Manual payment confirmation text
 async function confirmPayment() {
     const orderId = localStorage.getItem("currentOrderId") || "Unknown";
     const statusLabel = document.getElementById("status");
 
-    const confirmMsg = `✅ *تأكيد دفع جديد*\n\n` +
-                       `🆔 *رقم الطلب:* \`${orderId}\`\n` +
-                       `👤 العميل يؤكد أنه قام بالتحويل البنكي/الرقمي.`;
+    const confirmMsg = `✅ *Payment Confirmation*\n\n` +
+                       `🆔 *Order ID:* \`${orderId}\`\n` +
+                       `👤 Client claims the transfer is completed.`;
 
     const sent = await sendToTelegram(confirmMsg);
     if (sent) {
         if (statusLabel) {
-            statusLabel.innerText = "تم إرسال تأكيدك للفني بنجاح ✅";
+            statusLabel.innerText = "Confirmation sent successfully! ✅";
             statusLabel.style.color = "#22c55e";
         }
-        alert("تم إرسال التأكيد بنجاح، سيتم تفعيل الخدمة بعد التحقق من الشبكة.");
-    } else {
-        alert("حدث خطأ في الإرسال، يرجى المحاولة لاحقاً أو التواصل مع الدعم.");
+        alert("Confirmation sent. Service will be activated after verification.");
     }
 }
 
-// --- القسم الثالث: الأدوات المساعدة (Utilities) ---
+// Upload payment proof image
+async function sendPaymentScreenshot() {
+    const fileInput = document.getElementById('payment-screenshot');
+    const file = fileInput?.files[0];
+    const orderId = localStorage.getItem("currentOrderId") || "Unknown";
 
-// دالة الإرسال الموحدة للتلجرام (Async/Await لضمان الدقة)
+    if (!file) return alert("Please select the invoice image first.");
+
+    const btn = document.querySelector('.btn-upload');
+    if(btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+
+    const formData = new FormData();
+    formData.append('chat_id', CHAT_ID);
+    formData.append('photo', file);
+    formData.append('caption', `📸 *New Payment Proof*\n\n🆔 *Order ID:* \`${orderId}\`\n👤 Client uploaded a payment screenshot.`);
+    formData.append('parse_mode', 'Markdown');
+
+    try {
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            alert("Payment proof uploaded successfully! ✅");
+            if(btn) btn.innerHTML = 'Uploaded Successfully';
+        } else {
+            alert("Upload failed. Check image size or connection.");
+        }
+    } catch (e) {
+        console.error("Upload Error:", e);
+        alert("An error occurred while connecting to the server.");
+    }
+}
+
+// --- Section 3: Helper Utilities ---
+
+// Generic Telegram message sender
 async function sendToTelegram(text) {
     try {
         const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -122,24 +154,21 @@ async function sendToTelegram(text) {
     }
 }
 
-// نسخ عنوان المحفظة
 function copyBTC() {
-    navigator.clipboard.writeText(WALLET_ADDR).then(() => {
-        alert("✅ تم نسخ عنوان المحفظة بنجاح");
-    });
+    navigator.clipboard.writeText(WALLET_ADDR).then(() => alert("✅ Address Copied"));
 }
 
-// فتح المحفظة يدوياً
 function openWallet() {
     window.location.href = `bitcoin:${WALLET_ADDR}`;
 }
 
-// تصدير الوظائف للمتصفح (Global Scope)
+// Export functions to Global Scope
 window.askAI = askAI;
 window.generateLogo = generateLogo;
 window.processOrder = processOrder;
 window.confirmPayment = confirmPayment;
+window.sendPaymentScreenshot = sendPaymentScreenshot;
 window.copyBTC = copyBTC;
 window.openWallet = openWallet;
 
-console.log("GSM SHTOOL PRO - FULLY INTEGRATED & READY ✅");
+console.log("GSM SHTOOL PRO - ENGLISH VERSION LOADED ✅");
