@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL | السيرفر الاحترافي لفك التشفير</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>GSM SHTOOL | Professional Unlocking Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+        
+        /* Section styling for the new upload feature */
+        .upload-section {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px dashed var(--primary);
+            border-radius: 15px;
+            background: rgba(59, 130, 246, 0.05);
+            text-align: center;
+        }
+        .btn-upload {
+            background: #22c55e !important;
+            transition: 0.3s;
+        }
+        .btn-upload:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+        }
+        .ai-card { min-height: 320px; display: flex; flex-direction: column; justify-content: space-between; }
+    </style>
 </head>
 <body>
 
@@ -14,24 +37,24 @@
     <div class="container header-flex">
         <div class="logo-area">
             <div class="logo-icon">GS</div>
-            <h1>GSM <span class="highlight">SHTOOL</span></h1>
+            <a href="index.html" style="text-decoration: none; color: white;"><h1>GSM <span class="highlight">SHTOOL</span></h1></a>
         </div>
         <nav class="nav-links">
-            <a href="about.html">من نحن</a>
-            <a href="https://t.me/gsmshtool_bot" class="telegram-btn" target="_blank"><i class="fab fa-telegram"></i> الدعم الفني</a>
+            <a href="about.html">About Us</a>
+            <a href="https://t.me/gsmshtool_bot" class="telegram-btn" target="_blank"><i class="fab fa-telegram"></i> Live Support</a>
         </nav>
     </div>
 </header>
 
 <div class="container">
     <section class="glass-card about-section" style="margin-top: 40px;">
-        <h2><i class="fas fa-info-circle"></i> من نحن</h2>
-        <p>نحن في <strong>GSM SHTOOL</strong> المنصة الأولى والاحترافية لتقديم حلول برمجية متقدمة لأجهزة iPhone و iPad و Apple Watch. نعتمد على سيرفرات استجابة سريعة لضمان فك تشفير أجهزتكم وتخطي الحسابات رسمياً بأمان تام وبسرعة قياسية تحت إشراف <strong>المهندس شمسان شعبان</strong>.</p>
+        <h2><i class="fas fa-info-circle"></i> Who We Are</h2>
+        <p><strong>GSM SHTOOL</strong> is the premier professional platform providing advanced software solutions for iPhone, iPad, and Apple Watch. We utilize high-speed response servers to ensure secure, official bypasses and unlocking at record speeds, supervised by <strong>Eng. Shamsan Shaaban</strong>.</p>
     </section>
 
     <div class="hero-text">
-        <h2>خدمات فك الآيكلاود والشبكات</h2>
-        <p>اختر الموديل المناسب لجهازك وابدأ الطلب فوراً بسعر السيرفر الرسمي.</p>
+        <h2>iCloud & Network Unlocking Services</h2>
+        <p>Select your device model and start your order at official server rates.</p>
     </div>
 
     <div class="services-grid">
@@ -39,10 +62,10 @@
             <div class="card-image"><i class="fas fa-mobile-alt"></i></div>
             <div class="card-body">
                 <h3>iPhone 11 Series</h3>
-                <p>فك آيكلاود رسمي Clean 100%</p>
+                <p>Official iCloud Unlock (100% Clean)</p>
                 <div class="card-footer">
                     <span class="price">$75</span>
-                    <button class="buy-btn" onclick="order('iPhone 11 Series', 75)">اطلب الآن</button>
+                    <button class="buy-btn" onclick="order('iPhone 11 Series', 75)">Order Now</button>
                 </div>
             </div>
         </div>
@@ -51,10 +74,10 @@
             <div class="card-image"><i class="fas fa-bolt"></i></div>
             <div class="card-body">
                 <h3>iPhone 12 Series</h3>
-                <p>دعم كامل لجميع موديلات 12</p>
+                <p>Full support for all 12 models</p>
                 <div class="card-footer">
                     <span class="price">$95</span>
-                    <button class="buy-btn" onclick="order('iPhone 12 Series', 95)">اطلب الآن</button>
+                    <button class="buy-btn" onclick="order('iPhone 12 Series', 95)">Order Now</button>
                 </div>
             </div>
         </div>
@@ -63,10 +86,10 @@
             <div class="card-image"><i class="fas fa-lock-open"></i></div>
             <div class="card-body">
                 <h3>iPhone 13 Series</h3>
-                <p>أسرع تنفيذ على السيرفر</p>
+                <p>Fastest execution on the server</p>
                 <div class="card-footer">
                     <span class="price">$135</span>
-                    <button class="buy-btn" onclick="order('iPhone 13 Series', 135)">اطلب الآن</button>
+                    <button class="buy-btn" onclick="order('iPhone 13 Series', 135)">Order Now</button>
                 </div>
             </div>
         </div>
@@ -75,36 +98,54 @@
             <div class="card-image"><i class="fas fa-tablet-alt"></i></div>
             <div class="card-body">
                 <h3>iPad All Models</h3>
-                <p>فك آيكلاود أجهزة الآيباد</p>
+                <p>iPad iCloud Unlocking Services</p>
                 <div class="card-footer">
                     <span class="price">$50</span>
-                    <button class="buy-btn" onclick="order('iPad Series', 50)">اطلب الآن</button>
+                    <button class="buy-btn" onclick="order('iPad Series', 50)">Order Now</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <section class="glass-card" style="margin-top: 40px; border: 1px solid var(--primary);">
+        <h2 style="text-align: center;"><i class="fas fa-file-invoice-dollar"></i> Fast Activation</h2>
+        <div class="upload-section">
+            <p style="font-size: 1rem; margin-bottom: 15px; color: #ccc;">📸 Upload your payment screenshot for instant activation:</p>
+            <input type="file" id="payment-screenshot" accept="image/*" style="display: none;">
+            
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="document.getElementById('payment-screenshot').click()" class="buy-btn" style="width: 250px;">
+                    <i class="fas fa-image"></i> Select Screenshot
+                </button>
+                
+                <button onclick="sendPaymentScreenshot()" class="btn-main btn-upload" style="width: 250px;">
+                    <i class="fas fa-cloud-upload-alt"></i> Send to Technician
+                </button>
+            </div>
+        </div>
+    </section>
+
     <section class="ai-lab-section" style="margin-top: 40px;">
-        <h2 class="section-title"><i class="fas fa-microchip"></i> مختبر GSM SHTOOL الذكي</h2>
+        <h2 class="section-title"><i class="fas fa-microchip"></i> GSM SHTOOL SMART LAB</h2>
         <div class="ai-grid">
             
             <div class="glass-card ai-card">
                 <div class="ai-icon"><i class="fas fa-brain"></i></div>
-                <h3>استعلام تقني ذكي</h3>
-                <p>احصل على حلول فورية لمشاكل البرمجة وتخطي الحسابات عبر DeepSeek.</p>
+                <h3>Smart Tech Inquiry</h3>
+                <p>Get instant solutions for programming and bypass issues via DeepSeek AI.</p>
                 <div class="ai-input-group">
-                    <input type="text" id="ai-query" placeholder="اكتب مشكلتك التقنية هنا...">
-                    <button class="ai-btn" onclick="askAI()">استشارة <i class="fas fa-paper-plane"></i></button>
+                    <input type="text" id="ai-query" placeholder="Describe your technical issue...">
+                    <button class="ai-btn" onclick="askAI()">Consult <i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
 
             <div class="glass-card ai-card">
                 <div class="ai-icon" style="color: #f1c40f;"><i class="fas fa-paint-brush"></i></div>
-                <h3>مصمم الشعارات الذكي</h3>
-                <p>صمم لوجو احترافي لمركزك (NanoBanana 2) بمجرد وصفه بالكلمات.</p>
+                <h3>AI Logo Designer</h3>
+                <p>Create a professional logo for your center (NanoBanana 2) with simple words.</p>
                 <div class="ai-input-group">
-                    <input type="text" id="img-prompt" placeholder="صف اللوجو: درع تقني بلون ذهبي...">
-                    <button class="ai-btn" style="background: #f1c40f; color: #000;" onclick="generateLogo()">تصميم <i class="fas fa-magic"></i></button>
+                    <input type="text" id="img-prompt" placeholder="E.g., Golden shield with tech chip...">
+                    <button class="ai-btn" style="background: #f1c40f; color: #000;" onclick="generateLogo()">Design <i class="fas fa-magic"></i></button>
                 </div>
             </div>
 
@@ -112,23 +153,17 @@
     </section>
 
     <section class="pricing-area" style="margin-top: 60px;">
-        <h2 class="section-title"><i class="fas fa-list-ul"></i> قائمة الأسعار التفصيلية لكافة الموديلات</h2>
+        <h2 class="section-title"><i class="fas fa-list-ul"></i> Detailed Price List</h2>
         <div class="accordion">
             <div class="accordion-item">
                 <button class="accordion-header"><i class="fab fa-apple"></i> iPhone Models (6 to 17)</button>
                 <div class="accordion-content">
                     <div class="price-grid">
                         <div class="p-item"><span>iPhone 6 / 6S Series</span> <strong>$25</strong></div>
-                        <div class="p-item"><span>iPhone SE / 7 / 7 Plus</span> <strong>$30</strong></div>
                         <div class="p-item"><span>iPhone 8 / 8 Plus / X</span> <strong>$35</strong></div>
-                        <div class="p-item"><span>iPhone XR / XS</span> <strong>$40</strong></div>
-                        <div class="p-item"><span>iPhone XS Max / 11</span> <strong>$45</strong></div>
                         <div class="p-item"><span>iPhone 11 Pro / Max</span> <strong>$55-$75</strong></div>
-                        <div class="p-item"><span>iPhone 12 Series</span> <strong>$90-$100</strong></div>
                         <div class="p-item"><span>iPhone 13 Series</span> <strong>$115-$150</strong></div>
-                        <div class="p-item"><span>iPhone 14 Series</span> <strong>$160-$175</strong></div>
                         <div class="p-item"><span>iPhone 15 Series</span> <strong>$165-$190</strong></div>
-                        <div class="p-item"><span>iPhone 16 Series</span> <strong>$190-$205</strong></div>
                         <div class="p-item"><span>iPhone 17 Series</span> <strong>$195-$210</strong></div>
                     </div>
                 </div>
@@ -138,10 +173,7 @@
                 <button class="accordion-header"><i class="fas fa-tablet-alt"></i> iPad & Watch Models</button>
                 <div class="accordion-content">
                     <div class="price-grid">
-                        <div class="p-item"><span>iPad 8 / 9 / 10</span> <strong>$50-$65</strong></div>
-                        <div class="p-item"><span>iPad Air 4 / 5</span> <strong>$80-$85</strong></div>
                         <div class="p-item"><span>iPad Pro All Models</span> <strong>$140-$150</strong></div>
-                        <div class="p-item"><span>Watch Series 4-6</span> <strong>$60</strong></div>
                         <div class="p-item"><span>Watch Series 7-9</span> <strong>$75-$80</strong></div>
                         <div class="p-item"><span>Watch Ultra 1 / 2 / 3</span> <strong>$100-$140</strong></div>
                     </div>
@@ -151,17 +183,17 @@
     </section>
 
     <div class="action-bar" style="text-align: center; margin-top: 40px;">
-        <a href="order.html" class="btn-main" style="display: inline-block; width: auto; padding: 15px 60px;">ابدأ طلب جديد الآن <i class="fas fa-arrow-left"></i></a>
+        <a href="order.html" class="btn-main" style="display: inline-block; width: auto; padding: 15px 60px;">Place a New Order <i class="fas fa-arrow-right"></i></a>
     </div>
 </div>
 
-<footer style="margin-top: 80px; border-top: 1px solid var(--border); padding: 30px; text-align: center;">
-    <p>&copy; 2026 GSM SHTOOL - تم التطوير بواسطة المهندس شمسان شعبان</p>
+<footer style="margin-top: 80px; border-top: 1px solid var(--border); padding: 30px; text-align: center; color: #888;">
+    <p>&copy; 2026 GSM SHTOOL - Developed by Eng. Shamsan Shaaban</p>
 </footer>
 
 <script src="assets/js/order.js"></script>
 <script>
-    // التحكم في القائمة المنسدلة للأسعار
+    // Accordion Control
     document.querySelectorAll('.accordion-header').forEach(btn => {
         btn.addEventListener('click', () => {
             btn.classList.toggle('active');
@@ -169,7 +201,7 @@
         });
     });
 
-    // دالة الطلب السريع
+    // Quick Order Function
     function order(name, price) {
         localStorage.setItem('selectedServiceName', name);
         localStorage.setItem('selectedPrice', price);
