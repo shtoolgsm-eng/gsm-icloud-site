@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL | السيرفر الاحترافي</title>
+    <title>GSM SHTOOL | السيرفر الاحترافي لفك التشفير</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -11,23 +11,81 @@
 <body>
 
 <header class="main-header">
-    <div class="container">
+    <div class="container header-flex">
         <div class="logo-area">
             <div class="logo-icon">GS</div>
             <h1>GSM <span class="highlight">SHTOOL</span></h1>
         </div>
-        <p class="hero-subtitle">المنصة الأولى لفك تشفير أجهزة Apple وتخطي الحسابات رسمياً</p>
+        <nav class="nav-links">
+            <a href="about.html">من نحن</a>
+            <a href="https://t.me/gsmshtool_bot" class="telegram-btn" target="_blank"><i class="fab fa-telegram"></i> الدعم الفني</a>
+        </nav>
     </div>
 </header>
 
 <div class="container">
-    <section class="glass-card about-section">
+    <section class="glass-card about-section" style="margin-top: 40px;">
         <h2><i class="fas fa-info-circle"></i> من نحن</h2>
-        <p>نحن في <strong>GSM SHTOOL</strong> نقدم حلولاً برمجية متقدمة لأجهزة iPhone و iPad و Apple Watch. نعتمد على سيرفرات استجابة سريعة لضمان تحويل حالة جهازك بأمان تلم وبسرعة قياسية.</p>
+        <p>نحن في <strong>GSM SHTOOL</strong> المنصة الأولى والاحترافية لتقديم حلول برمجية متقدمة لأجهزة iPhone و iPad و Apple Watch. نعتمد على سيرفرات استجابة سريعة لضمان فك تشفير أجهزتكم وتخطي الحسابات رسمياً بأمان تام وبسرعة قياسية تحت إشراف <strong>المهندس شمسان شعبان</strong>.</p>
     </section>
 
-    <section class="pricing-area">
-        <h2 class="section-title">قائمة الموديلات والأسعار</h2>
+    <div class="hero-text">
+        <h2>خدمات فك الآيكلاود والشبكات</h2>
+        <p>اختر الموديل المناسب لجهازك وابدأ الطلب فوراً بسعر السيرفر الرسمي.</p>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="card-image"><i class="fas fa-mobile-alt"></i></div>
+            <div class="card-body">
+                <h3>iPhone 11 Series</h3>
+                <p>فك آيكلاود رسمي Clean 100%</p>
+                <div class="card-footer">
+                    <span class="price">$75</span>
+                    <button class="buy-btn" onclick="order('iPhone 11 Series', 75)">اطلب الآن</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card highlight">
+            <div class="card-image"><i class="fas fa-bolt"></i></div>
+            <div class="card-body">
+                <h3>iPhone 12 Series</h3>
+                <p>دعم كامل لجميع موديلات 12</p>
+                <div class="card-footer">
+                    <span class="price">$95</span>
+                    <button class="buy-btn" onclick="order('iPhone 12 Series', 95)">اطلب الآن</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-image"><i class="fas fa-lock-open"></i></div>
+            <div class="card-body">
+                <h3>iPhone 13 Series</h3>
+                <p>أسرع تنفيذ على السيرفر</p>
+                <div class="card-footer">
+                    <span class="price">$135</span>
+                    <button class="buy-btn" onclick="order('iPhone 13 Series', 135)">اطلب الآن</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-image"><i class="fas fa-tablet-alt"></i></div>
+            <div class="card-body">
+                <h3>iPad All Models</h3>
+                <p>فك آيكلاود أجهزة الآيباد</p>
+                <div class="card-footer">
+                    <span class="price">$50</span>
+                    <button class="buy-btn" onclick="order('iPad Series', 50)">اطلب الآن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="pricing-area" style="margin-top: 60px;">
+        <h2 class="section-title"><i class="fas fa-list-ul"></i> قائمة الأسعار التفصيلية لكافة الموديلات</h2>
         <div class="accordion">
             <div class="accordion-item">
                 <button class="accordion-header"><i class="fab fa-apple"></i> iPhone Models (6 to 17)</button>
@@ -65,22 +123,30 @@
         </div>
     </section>
 
-    <div class="action-bar">
-        <a href="order.html" class="btn-main">ابدأ طلب جديد الآن <i class="fas fa-arrow-left"></i></a>
+    <div class="action-bar" style="text-align: center; margin-top: 40px;">
+        <a href="order.html" class="btn-main" style="display: inline-block; width: auto; padding: 15px 60px;">ابدأ طلب جديد الآن <i class="fas fa-arrow-left"></i></a>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 GSM SHTOOL - جميع الحقوق محفوظة</p>
+<footer style="margin-top: 80px; border-top: 1px solid var(--border); padding: 30px;">
+    <p>&copy; 2026 GSM SHTOOL - تم التطوير بواسطة المهندس شمسان شعبان</p>
 </footer>
 
 <script>
+    // التحكم في القائمة المنسدلة للأسعار
     document.querySelectorAll('.accordion-header').forEach(btn => {
         btn.addEventListener('click', () => {
             btn.classList.toggle('active');
             btn.nextElementSibling.classList.toggle('open');
         });
     });
+
+    // دالة الطلب السريع
+    function order(name, price) {
+        localStorage.setItem('selectedServiceName', name);
+        localStorage.setItem('selectedPrice', price);
+        window.location.href = 'order.html';
+    }
 </script>
 </body>
 </html>
