@@ -1,114 +1,132 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>تأكيد الدفع | GSM SHTOOL</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الدفع | GSM SHTOOL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-body {
-    background: linear-gradient(135deg,#0a0a0a,#111);
-    color: white;
-    font-family: 'Cairo', sans-serif;
-    text-align:center;
-}
-
-.container {
-    margin-top:40px;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    padding:25px;
-    border-radius:20px;
-    width:90%;
-    max-width:400px;
-    margin:auto;
-    box-shadow:0 0 25px rgba(0,0,0,0.5);
-}
-
-.logo {
-    font-size:22px;
-    font-weight:bold;
-    color:#2d6cdf;
-    margin-bottom:10px;
-}
-
-.btc-box {
-    background:#000;
-    padding:15px;
-    border-radius:15px;
-    margin-top:15px;
-}
-
-code {
-    display:block;
-    margin-top:10px;
-    word-break:break-all;
-    color:#0f0;
-}
-
-button {
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:10px;
-    background:#2d6cdf;
-    color:white;
-    font-size:15px;
-}
-
-button:disabled {
-    background:gray;
-}
-</style>
+    <style>
+        .checkout-container {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .btc-qr-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .qr-code {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 15px auto;
+            width: 150px;
+            height: 150px;
+        }
+        .wallet-address {
+            background: #000;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            word-break: break-all;
+            display: block;
+            margin: 10px 0;
+            border: 1px dashed #333;
+        }
+        .action-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Cairo';
+            transition: 0.3s;
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.2); }
+        .highlight-price { font-size: 1.8rem; color: var(--primary); font-weight: 900; }
+        .status-msg { margin-top: 15px; font-size: 0.9rem; font-weight: bold; }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-<div class="card">
+<div class="container checkout-container">
+    <div class="glass-card checkout-box" style="max-width: 450px; width: 100%;">
+        <div class="logo-icon small" style="margin: 0 auto 15px;">GS</div>
+        <h2>تأكيد الطلب والدفع</h2>
+        
+        <div class="order-details" style="margin: 20px 0;">
+            <p>الخدمة: <strong id="disp-name">--</strong></p>
+            <p>السعر المطلوب: <span class="highlight-price" id="disp-price">--</span></p>
+        </div>
 
-<div class="logo">⚡ GSM SHTOOL</div>
+        <div class="btc-qr-section">
+            <p style="color: #f7931a;"><i class="fab fa-bitcoin"></i> عنوان دفع البيتكوين (BTC):</p>
+            <code class="wallet-address" id="btc-addr">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</code>
+            
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9" alt="QR Code" style="width: 100%;">
+            </div>
 
-<h3>تأكيد الدفع</h3>
+            <div class="action-btns">
+                <button class="btn-secondary" onclick="copyBTC()"><i class="fas fa-copy"></i> نسخ العنوان</button>
+                <button class="btn-secondary" onclick="processOrder()"><i class="fas fa-wallet"></i> فتح المحفظة</button>
+            </div>
+        </div>
 
-<p>الخدمة: <span id="name"></span></p>
-<p>السعر: <span id="price"></span>$</p>
+        <button id="pay-btn" class="btn-main" onclick="processOrder()">
+            <i class="fas fa-paper-plane"></i> إرسال الطلب الآن
+        </button>
 
-<div class="btc-box">
-<p>عنوان الدفع:</p>
+        <button class="btn-secondary" style="width: 100%; margin-top: 10px; border-color: #22c55e; color: #22c55e;" onclick="confirmPayment()">
+            <i class="fas fa-check-circle"></i> تم الدفع بالفعل
+        </button>
 
-<code id="btc">
-bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
-</code>
-
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9">
-
-<button onclick="copyBTC()">نسخ العنوان</button>
-<button onclick="openWallet()">فتح المحفظة</button>
-
-</div>
-
-<button id="pay-btn" onclick="processOrder()">إرسال الطلب</button>
-<button onclick="confirmPayment()">تم الدفع</button>
-
-<p id="status"></p>
-
-</div>
+        <p id="status" class="status-msg"></p>
+    </div>
 </div>
 
 <script src="assets/js/order.js"></script>
-
 <script>
-document.getElementById("name").innerText =
-localStorage.getItem("selectedServiceName") || "غير محدد";
+    // جلب البيانات المخزنة
+    const sName = localStorage.getItem('selectedServiceName') || "خدمة غير محددة";
+    const sPrice = localStorage.getItem('selectedPrice') || "0";
 
-document.getElementById("price").innerText =
-localStorage.getItem("selectedPrice") || "0";
+    document.getElementById('disp-name').innerText = sName;
+    document.getElementById('disp-price').innerText = "$" + sPrice;
+
+    // دالة نسخ العنوان
+    function copyBTC() {
+        const addr = document.getElementById('btc-addr').innerText;
+        navigator.clipboard.writeText(addr).then(() => {
+            const status = document.getElementById('status');
+            status.innerText = "✅ تم نسخ عنوان المحفظة بنجاح";
+            status.style.color = "#22c55e";
+            setTimeout(() => status.innerText = "", 3000);
+        });
+    }
+
+    // دالة تأكيد الدفع اليدوية
+    function confirmPayment() {
+        alert("شكرًا لك! سيتم التحقق من عملية الدفع من قبل المهندس شمسان شعبان وتفعيل الخدمة فور التأكيد.");
+        window.location.href = "index.html";
+    }
 </script>
 
 </body>
