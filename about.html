@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن | GSM SHTOOL - القوة والاحترافية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* تنسيقات مخصصة لصفحة من نحن لزيادة الإغراء البصري */
+        .hero-about {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+        }
+        .hero-about h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .about-image { position: relative; }
+        .about-image img {
+            width: 100%;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transition: 0.5s;
+        }
+        .about-image:hover img { transform: scale(1.02); border-color: var(--primary); }
+
+        .stat-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .stat-item:hover { background: rgba(59, 130, 246, 0.05); transform: translateY(-5px); }
+        .stat-item h4 { font-size: 2.2rem; color: var(--primary); margin: 0; font-weight: 900; }
+        .stat-item p { margin: 5px 0 0; color: #888; font-size: 0.9rem; }
+
+        .feature-list { margin-top: 30px; padding: 0; }
+        .feature-list li {
+            list-style: none;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+        .feature-list i { color: var(--primary); font-size: 1.3rem; }
+
+        /* قسم آراء العملاء */
+        .testimonials-section { padding: 80px 0; margin: 60px 0; border-radius: 40px; background: rgba(255,255,255,0.01); }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .testi-card { 
+            background: var(--card-bg); padding: 35px; border-radius: 25px; 
+            border: 1px solid var(--border); position: relative; transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .testi-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .testi-card i.quote { position: absolute; top: 25px; left: 25px; font-size: 2.5rem; color: rgba(59, 130, 246, 0.1); }
+        .stars { color: #f1c40f; margin-bottom: 15px; font-size: 0.9rem; }
+        
+        .user-info { display: flex; align-items: center; gap: 15px; margin-top: 25px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .user-info img { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--primary); }
+        .user-info h4 { margin: 0; font-size: 1.1rem; color: white; }
+        .user-info span { color: #666; font-size: 0.85rem; }
+
+        @media (max-width: 992px) {
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .feature-list li { justify-content: center; }
+            .hero-about { padding: 80px 0 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container header-flex">
+        <div class="logo-area">
+            <div class="logo-icon">GS</div>
+            <a href="index.html" style="text-decoration: none; color: white;"><h1>GSM <span class="highlight">SHTOOL</span></h1></a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="https://t.me/gsmshtool_bot" class="telegram-btn" target="_blank"><i class="fab fa-telegram"></i> الدعم الفني</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero-about">
+    <div class="container">
+        <h1>نحن لسنا مجرد سيرفر.. <br><span class="highlight">نحن شركاء نجاحك</span></h1>
+        <p style="font-size: 1.25rem; color: #aaa; max-width: 800px; margin: 20px auto; line-height: 1.6;">
+            اكتشف القوة الكامنة خلف <strong>GSM SHTOOL</strong>، حيث تلتقي الخبرة البرمجية العميقة مع أحدث تقنيات فك التشفير العالمية.
+        </p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="about-grid">
+        <div class="about-text">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">رؤية المهندس <span class="highlight">شمسان شعبان</span></h2>
+            <p style="line-height: 1.9; color: #ccc; font-size: 1.1rem;">
+                انطلقت <strong>GSM SHTOOL</strong> لسد الفجوة في عالم خدمات السوفتوير الاحترافية. نحن نقدم حلولاً تتجاوز مجرد فك الأجهزة؛ نحن نقدم الأمان، السرعة، والمصداقية التي يبحث عنها كل فني صيانة في الوطن العربي. تحت إشراف المهندس شمسان، نضمن لك الوصول لأفضل خوارزميات التخطي الرسمية.
+            </p>
+            
+            <ul class="feature-list">
+                <li><i class="fas fa-shield-check"></i> ضمان استعادة الرصيد فوراً في حال فشل العملية.</li>
+                <li><i class="fas fa-bolt"></i> ربط API مباشر مع السيرفرات العالمية لضمان السرعة.</li>
+                <li><i class="fas fa-fingerprint"></i> حماية تامة لبيانات الأجهزة المرفوعة على السيرفر.</li>
+            </ul>
+
+            <div class="stat-box">
+                <div class="stat-item"><h4>+5K</h4><p>جهاز ناجح</p></div>
+                <div class="stat-item"><h4>100%</h4><p>خدمة رسمية</p></div>
+                <div class="stat-item"><h4>24/7</h4><p>دعم تقني</p></div>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="GSM Tech">
+        </div>
+    </div>
+
+    <section class="testimonials-section">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 10px;"><i class="fas fa-stars"></i> شركاء النجاح</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">ثقة المئات من فنيي الصيانة هي دافعنا للاستمرار</p>
+        
+        <div class="testimonial-grid">
+            <div class="testi-card">
+                <i class="fas fa-quote-left quote"></i>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"المصداقية هي أهم شيء في هذا العمل، وGSM SHTOOL أثبتوا أنهم أهل للثقة خاصة في موديلات الأيفون الحديثة."</p>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=A+L&background=3b82f6&color=fff" alt="User">
+                    <div>
+                        <h4>المهندس أحمد علي</h4>
+                        <span>صاحب مركز برمجيات</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testi-card">
+                <i class="fas fa-quote-left quote"></i>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"سرعة تنفيذ الطلبات مذهلة، لم أكن أتوقع فك جهاز 15 Pro Max في هذا الوقت القياسي. شكراً مهندس شمسان."</p>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=S+M&background=059669&color=fff" alt="User">
+                    <div>
+                        <h4>م. صالح محمد</h4>
+                        <span>خبير سوفتوير</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testi-card">
+                <i class="fas fa-quote-left quote"></i>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"المختبر الذكي ساعدني كثيراً في تجاوز ثغرات الحماية الجديدة. البوت والموقع يعملان بتناغم رهيب."</p>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=H+I&background=f1c40f&color=000" alt="User">
+                    <div>
+                        <h4>هاشم إسماعيل</h4>
+                        <span>فني اتصالات</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-area" style="text-align: center; margin: 100px 0; padding: 60px; background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), transparent); border-radius: 40px; border: 1px solid var(--border);">
+        <h2 style="font-size: 2.8rem; margin-bottom: 20px; font-weight: 900;">ابدأ رحلتك الاحترافية معنا</h2>
+        <p style="color: #888; margin-bottom: 40px; font-size: 1.2rem;">انضم إلى آلاف الفنيين الذين يعتمدون على GSM SHTOOL كخيارهم الأول.</p>
+        <a href="index.html" class="btn-main" style="display: inline-block; width: auto; padding: 20px 100px; font-size: 1.3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);">توجّه للمتجر الآن <i class="fas fa-arrow-left" style="margin-right: 10px;"></i></a>
+    </div>
+</div>
+
+<footer style="padding: 40px; border-top: 1px solid var(--border); text-align: center; color: #555; font-size: 0.9rem;">
+    <p>&copy; 2026 GSM SHTOOL - تم التطوير بحب بواسطة المهندس شمسان شعبان</p>
+</footer>
+
+</body>
+</html>
