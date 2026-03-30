@@ -84,6 +84,33 @@
         </div>
     </div>
 
+    <section class="ai-lab-section" style="margin-top: 40px;">
+        <h2 class="section-title"><i class="fas fa-microchip"></i> مختبر GSM SHTOOL الذكي</h2>
+        <div class="ai-grid">
+            
+            <div class="glass-card ai-card">
+                <div class="ai-icon"><i class="fas fa-brain"></i></div>
+                <h3>استعلام تقني ذكي</h3>
+                <p>احصل على حلول فورية لمشاكل البرمجة وتخطي الحسابات عبر DeepSeek.</p>
+                <div class="ai-input-group">
+                    <input type="text" id="ai-query" placeholder="اكتب مشكلتك التقنية هنا...">
+                    <button class="ai-btn" onclick="askAI()">استشارة <i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <div class="glass-card ai-card">
+                <div class="ai-icon" style="color: #f1c40f;"><i class="fas fa-paint-brush"></i></div>
+                <h3>مصمم الشعارات الذكي</h3>
+                <p>صمم لوجو احترافي لمركزك (NanoBanana 2) بمجرد وصفه بالكلمات.</p>
+                <div class="ai-input-group">
+                    <input type="text" id="img-prompt" placeholder="صف اللوجو: درع تقني بلون ذهبي...">
+                    <button class="ai-btn" style="background: #f1c40f; color: #000;" onclick="generateLogo()">تصميم <i class="fas fa-magic"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section class="pricing-area" style="margin-top: 60px;">
         <h2 class="section-title"><i class="fas fa-list-ul"></i> قائمة الأسعار التفصيلية لكافة الموديلات</h2>
         <div class="accordion">
@@ -128,10 +155,11 @@
     </div>
 </div>
 
-<footer style="margin-top: 80px; border-top: 1px solid var(--border); padding: 30px;">
+<footer style="margin-top: 80px; border-top: 1px solid var(--border); padding: 30px; text-align: center;">
     <p>&copy; 2026 GSM SHTOOL - تم التطوير بواسطة المهندس شمسان شعبان</p>
 </footer>
 
+<script src="assets/js/order.js"></script>
 <script>
     // التحكم في القائمة المنسدلة للأسعار
     document.querySelectorAll('.accordion-header').forEach(btn => {
