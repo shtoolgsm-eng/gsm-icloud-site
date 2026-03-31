@@ -7,52 +7,96 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary: #3b82f6; }
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; padding: 20px; }
-        .glass-card { max-width: 650px; margin: 40px auto; padding: 35px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        :root { --primary: #3b82f6; --btc: #f7931a; --success: #22c55e; }
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; padding: 20px; line-height: 1.6; }
+        .glass-card { max-width: 650px; margin: 20px auto; padding: 35px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .input-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 10px; color: #94a3b8; font-size: 0.9rem; }
-        .premium-input { width: 100%; padding: 14px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; color: white; outline: none; transition: 0.3s; box-sizing: border-box; }
+        label { display: block; margin-bottom: 10px; color: #94a3b8; font-size: 0.9rem; font-weight: 600; }
+        .premium-input { width: 100%; padding: 14px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; color: white; outline: none; transition: 0.3s; box-sizing: border-box; font-size: 1rem; }
         .premium-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(59,130,246,0.3); }
-        .buy-btn { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59,130,246,0.4); }
-        .price-badge { background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 5px 15px; border-radius: 20px; font-weight: bold; float: right; }
+        
+        /* BTC Box Styling */
+        .btc-section { background: rgba(247, 147, 26, 0.05); border: 1px solid rgba(247, 147, 26, 0.3); padding: 20px; border-radius: 15px; margin-top: 25px; }
+        .btc-address-container { background: #000; padding: 12px; border-radius: 8px; border: 1px solid #333; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+        .btc-address { font-family: monospace; color: var(--btc); font-size: 0.85rem; word-break: break-all; overflow-wrap: break-word; }
+        .copy-btn { background: var(--btc); color: black; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.8rem; margin-left: 10px; transition: 0.2s; flex-shrink: 0; }
+        .copy-btn:active { transform: scale(0.95); }
+
+        .price-badge { background: rgba(34, 197, 94, 0.15); color: var(--success); padding: 5px 15px; border-radius: 20px; font-weight: 900; float: right; font-size: 0.9rem; }
+        .buy-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; margin-top: 30px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .buy-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59,130,246,0.3); }
+        
+        .footer-note { text-align: center; color: #64748b; font-size: 0.8rem; margin-top: 20px; }
     </style>
 </head>
 <body>
 
 <div class="glass-card">
-    <h2 style="text-align: center; color: var(--primary);"><i class="fas fa-shopping-cart"></i> Submit Order</h2>
+    <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">
+        <i class="fas fa-shield-alt"></i> SECURE CHECKOUT
+    </h2>
     
     <form id="orderForm" onsubmit="handleOrder(event)">
         <div class="input-group">
             <label>Select Device & Service <span id="priceDisplay" class="price-badge">Price: $0</span></label>
             <select id="serviceSelect" class="premium-input" onchange="updateUI()" required>
-                <option value="" disabled selected>Click to choose model...</option>
+                <option value="" disabled selected>Choose your model...</option>
                 <optgroup label="iPhone Models">
                     <option value="25" data-name="iPhone 6/6S Series">iPhone 6 / 6S Series - $25</option>
-                    <option value="35" data-name="iPhone 8/X">iPhone 8 / 8 Plus / X - $35</option>
+                    <option value="30" data-name="iPhone SE / 7 / 7 Plus">iPhone SE / 7 / 7 Plus - $30</option>
+                    <option value="35" data-name="iPhone 8 / 8 Plus / X">iPhone 8 / 8 Plus / X - $35</option>
+                    <option value="40" data-name="iPhone XR / XS">iPhone XR / XS - $40</option>
+                    <option value="45" data-name="iPhone XS Max / 11">iPhone XS Max / 11 - $45</option>
+                    <option value="55" data-name="iPhone 11 Pro">iPhone 11 Pro - $55</option>
                     <option value="75" data-name="iPhone 11 Pro Max">iPhone 11 Pro Max - $75</option>
+                    <option value="90" data-name="iPhone 12 / 12 mini">iPhone 12 / 12 mini - $90</option>
+                    <option value="95" data-name="iPhone 12 Pro">iPhone 12 Pro - $95</option>
+                    <option value="100" data-name="iPhone 12 Pro Max">iPhone 12 Pro Max - $100</option>
+                    <option value="115" data-name="iPhone 13">iPhone 13 - $115</option>
+                    <option value="135" data-name="iPhone 13 Pro">iPhone 13 Pro - $135</option>
                     <option value="150" data-name="iPhone 13 Pro Max">iPhone 13 Pro Max - $150</option>
+                    <option value="165" data-name="iPhone 14 Pro / 15">iPhone 14 Pro / 15 - $165</option>
                     <option value="190" data-name="iPhone 15 Pro Max / 16">iPhone 15 Pro Max / 16 - $190</option>
+                    <option value="210" data-name="iPhone 17 Pro Max">iPhone 17 Pro Max - $210</option>
                 </optgroup>
-                <optgroup label="General Services">
-                    <option value="15" data-name="FRP Bypass (All Android)">Android FRP Bypass - $15</option>
+                <optgroup label="iPad & Watch">
+                    <option value="50" data-name="iPad 8/9/10">iPad 8 / 9 / 10 - $50</option>
+                    <option value="140" data-name="iPad Pro Series">iPad Pro Series - $140</option>
+                    <option value="60" data-name="Watch Series 4/5/6">Apple Watch Series 4/5/6 - $60</option>
+                    <option value="100" data-name="Watch Ultra 1">Watch Ultra 1 - $100</option>
+                </optgroup>
+                <optgroup label="Android FRP">
+                    <option value="15" data-name="Android FRP Bypass">Android FRP Bypass (All Models) - $15</option>
                 </optgroup>
             </select>
         </div>
 
         <div class="input-group">
-            <label>Device IMEI / Serial Number (Required)</label>
-            <input type="text" id="imeiInput" class="premium-input" placeholder="Enter SN or IMEI" required>
+            <label>Device IMEI / Serial Number (SN)</label>
+            <input type="text" id="imeiInput" class="premium-input" placeholder="Enter Serial or IMEI" required>
         </div>
 
-        <div style="background: rgba(59,130,246,0.05); border: 1px dashed var(--primary); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px;">
-            <p style="font-size: 0.85rem; margin: 0; color: #888;">After clicking below, send the <strong>Payment Receipt</strong> screenshot to @gsmshtool on Telegram for activation.</p>
+        <div class="btc-section">
+            <p style="margin: 0; font-weight: bold; font-size: 0.9rem; color: var(--btc);">
+                <i class="fab fa-bitcoin"></i> Official BTC Payment Address
+            </p>
+            <div class="btc-address-container">
+                <span class="btc-address" id="btcAddress">Bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</span>
+                <button type="button" class="copy-btn" onclick="copyBTC()">COPY</button>
+            </div>
+            <p style="font-size: 0.75rem; color: #888; margin-top: 10px; text-align: center;">
+                <i class="fas fa-info-circle"></i> Send exactly the service amount to this address.
+            </p>
         </div>
 
-        <button type="submit" class="buy-btn">Submit Order to Telegram <i class="fab fa-telegram-plane"></i></button>
+        <button type="submit" class="buy-btn">
+            SUBMIT ORDER TO TELEGRAM <i class="fab fa-telegram-plane"></i>
+        </button>
     </form>
+    
+    <div class="footer-note">
+        After submitting, please send the transaction screenshot to <strong>@gsmshtool</strong>
+    </div>
 </div>
 
 <script>
@@ -62,6 +106,13 @@
         document.getElementById('priceDisplay').innerText = `Price: $${price}`;
     }
 
+    function copyBTC() {
+        const addr = document.getElementById('btcAddress').innerText;
+        navigator.clipboard.writeText(addr).then(() => {
+            alert("BTC Address Copied to Clipboard!");
+        });
+    }
+
     function handleOrder(e) {
         e.preventDefault();
         const select = document.getElementById('serviceSelect');
@@ -69,9 +120,9 @@
         const price = select.value;
         const imei = document.getElementById('imeiInput').value;
 
-        const message = `🚀 NEW ORDER\n--------------\n📦 Model: ${model}\n💰 Price: $${price}\n🆔 SN/IMEI: ${imei}\n--------------\nWaiting for receipt...`;
+        // Message formatted for @gsmshtool
+        const message = `🚀 *NEW ORDER RECEIVED*\n\n📦 *Service:* ${model}\n💰 *Amount:* $${price}\n🆔 *SN/IMEI:* ${imei}\n💳 *Method:* Bitcoin\n\n_Waiting for payment proof..._`;
         
-        // التوجيه المباشر لحسابك الشخصي
         window.location.href = `https://t.me/gsmshtool?text=${encodeURIComponent(message)}`;
     }
 </script>
