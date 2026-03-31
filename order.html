@@ -5,158 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Order - GSM SHTOOL</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; }
-        .glass-card {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-        }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; color: #aaa; font-size: 0.9rem; }
-        .premium-input, input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #333;
-            border-radius: 10px;
-            color: white;
-            outline: none;
-            transition: 0.3s;
-        }
-        .premium-input:focus, input[type="text"]:focus { border-color: var(--primary); }
-        
-        .upload-section {
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px dashed #3b82f6;
-            border-radius: 15px;
-            background: rgba(59, 130, 246, 0.05);
-        }
-        .btn-upload {
-            background: #22c55e !important;
-            color: white;
-            cursor: pointer;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .buy-btn {
-            background: #3b82f6;
-            color: white;
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
+        :root { --primary: #3b82f6; }
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; padding: 20px; }
+        .glass-card { max-width: 650px; margin: 40px auto; padding: 35px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .input-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 10px; color: #94a3b8; font-size: 0.9rem; }
+        .premium-input { width: 100%; padding: 14px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; color: white; outline: none; transition: 0.3s; box-sizing: border-box; }
+        .premium-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(59,130,246,0.3); }
+        .buy-btn { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+        .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59,130,246,0.4); }
+        .price-badge { background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 5px 15px; border-radius: 20px; font-weight: bold; float: right; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="glass-card">
-            <h2 style="text-align: center; margin-bottom: 25px;"><i class="fas fa-mobile-alt"></i> Device Information</h2>
-            
-            <form id="orderForm" onsubmit="event.preventDefault(); goToCheckout();">
-                <div class="input-group">
-                    <label>Select Device Model & Service</label>
-                    <select id="serviceSelect" class="premium-input" onchange="updatePrice()" required>
-                        <option value="" disabled selected>Choose your model</option>
-                        <optgroup label="iPhone Models">
-                            <option value="25" data-name="iPhone 6 / 6S Series">iPhone 6 / 6S Series - $25</option>
-                            <option value="30" data-name="iPhone SE / 7 / 7 Plus">iPhone SE / 7 / 7 Plus - $30</option>
-                            <option value="35" data-name="iPhone 8 / 8 Plus / X">iPhone 8 / 8 Plus / X - $35</option>
-                            <option value="40" data-name="iPhone XR / XS">iPhone XR / XS - $40</option>
-                            <option value="45" data-name="iPhone XS Max / 11">iPhone XS Max / 11 - $45</option>
-                            <option value="55" data-name="iPhone 11 Pro">iPhone 11 Pro - $55</option>
-                            <option value="75" data-name="iPhone 11 Pro Max">iPhone 11 Pro Max - $75</option>
-                            <option value="90" data-name="iPhone 12 / 12 mini">iPhone 12 / 12 mini - $90</option>
-                            <option value="95" data-name="iPhone 12 Pro">iPhone 12 Pro - $95</option>
-                            <option value="100" data-name="iPhone 12 Pro Max">iPhone 12 Pro Max - $100</option>
-                            <option value="115" data-name="iPhone 13">iPhone 13 - $115</option>
-                            <option value="135" data-name="iPhone 13 Pro">iPhone 13 Pro - $135</option>
-                            <option value="150" data-name="iPhone 13 Pro Max">iPhone 13 Pro Max - $150</option>
-                            <option value="165" data-name="iPhone 14 Pro / 15">iPhone 14 Pro / 15 - $165</option>
-                            <option value="190" data-name="iPhone 15 Pro Max / 16">iPhone 15 Pro Max / 16 - $190</option>
-                            <option value="210" data-name="iPhone 17 Pro Max">iPhone 17 Pro Max - $210</option>
-                        </optgroup>
-                        <optgroup label="iPad Models">
-                            <option value="50" data-name="iPad 8/9/10">iPad Series - $50</option>
-                            <option value="140" data-name="iPad Pro 11">iPad Pro 11" - $140</option>
-                            <option value="150" data-name="iPad Pro 12.9">iPad Pro 12.9" - $150</option>
-                        </optgroup>
-                        <optgroup label="Apple Watch Models">
-                            <option value="60" data-name="Watch Series 4/5/6">Watch Series 4/5/6 - $60</option>
-                            <option value="100" data-name="Watch Ultra 1">Watch Ultra 1 - $100</option>
-                            <option value="140" data-name="Watch Ultra 3">Watch Ultra 3 - $140</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label>IMEI / Serial Number</label>
-                    <input type="text" id="imeiInput" placeholder="Enter 15-digit IMEI or Serial" required>
-                </div>
-
-                <hr style="border: 0; border-top: 1px solid #333; margin: 30px 0;">
-
-                <div class="upload-section">
-                    <h3 style="font-size: 1rem; margin-bottom: 15px;"><i class="fas fa-camera"></i> Payment Verification</h3>
-                    <p style="font-size: 0.85rem; margin-bottom: 15px; color: #888;">Upload your transfer screenshot for faster activation:</p>
-                    
-                    <input type="file" id="payment-screenshot" accept="image/*" style="display: none;">
-                    
-                    <button type="button" onclick="document.getElementById('payment-screenshot').click()" class="buy-btn">
-                        <i class="fas fa-image"></i> Select Image
-                    </button>
-                    
-                    <button type="button" onclick="sendPaymentScreenshot()" class="btn-upload">
-                        <i class="fas fa-cloud-upload-alt"></i> Upload Proof to Tech
-                    </button>
-                </div>
-
-                <button type="submit" class="btn-main" style="width: 100%; margin-top: 25px; padding: 15px; font-size: 1.1rem;">
-                    Continue to Payment <i class="fas fa-arrow-right"></i>
-                </button>
-            </form>
+<div class="glass-card">
+    <h2 style="text-align: center; color: var(--primary);"><i class="fas fa-shopping-cart"></i> Submit Order</h2>
+    
+    <form id="orderForm" onsubmit="handleOrder(event)">
+        <div class="input-group">
+            <label>Select Device & Service <span id="priceDisplay" class="price-badge">Price: $0</span></label>
+            <select id="serviceSelect" class="premium-input" onchange="updateUI()" required>
+                <option value="" disabled selected>Click to choose model...</option>
+                <optgroup label="iPhone Models">
+                    <option value="25" data-name="iPhone 6/6S Series">iPhone 6 / 6S Series - $25</option>
+                    <option value="35" data-name="iPhone 8/X">iPhone 8 / 8 Plus / X - $35</option>
+                    <option value="75" data-name="iPhone 11 Pro Max">iPhone 11 Pro Max - $75</option>
+                    <option value="150" data-name="iPhone 13 Pro Max">iPhone 13 Pro Max - $150</option>
+                    <option value="190" data-name="iPhone 15 Pro Max / 16">iPhone 15 Pro Max / 16 - $190</option>
+                </optgroup>
+                <optgroup label="General Services">
+                    <option value="15" data-name="FRP Bypass (All Android)">Android FRP Bypass - $15</option>
+                </optgroup>
+            </select>
         </div>
-    </div>
 
-    <script src="assets/js/order.js"></script>
-    <script>
-        function updatePrice() {
-            const select = document.getElementById('serviceSelect');
-            const selectedOption = select.options[select.selectedIndex];
-            if (selectedOption.value) {
-                localStorage.setItem('selectedPrice', selectedOption.value);
-                localStorage.setItem('selectedServiceName', selectedOption.getAttribute('data-name'));
-            }
-        }
+        <div class="input-group">
+            <label>Device IMEI / Serial Number (Required)</label>
+            <input type="text" id="imeiInput" class="premium-input" placeholder="Enter SN or IMEI" required>
+        </div>
 
-        function goToCheckout() {
-            const imei = document.getElementById('imeiInput').value;
-            if(imei) {
-                localStorage.setItem('deviceIMEI', imei);
-                updatePrice();
-                window.location.href = 'checkout.html';
-            } else {
-                alert("Please enter the IMEI/Serial number.");
-            }
-        }
-    </script>
+        <div style="background: rgba(59,130,246,0.05); border: 1px dashed var(--primary); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px;">
+            <p style="font-size: 0.85rem; margin: 0; color: #888;">After clicking below, send the <strong>Payment Receipt</strong> screenshot to @gsmshtool on Telegram for activation.</p>
+        </div>
+
+        <button type="submit" class="buy-btn">Submit Order to Telegram <i class="fab fa-telegram-plane"></i></button>
+    </form>
+</div>
+
+<script>
+    function updateUI() {
+        const select = document.getElementById('serviceSelect');
+        const price = select.value;
+        document.getElementById('priceDisplay').innerText = `Price: $${price}`;
+    }
+
+    function handleOrder(e) {
+        e.preventDefault();
+        const select = document.getElementById('serviceSelect');
+        const model = select.options[select.selectedIndex].getAttribute('data-name');
+        const price = select.value;
+        const imei = document.getElementById('imeiInput').value;
+
+        const message = `🚀 NEW ORDER\n--------------\n📦 Model: ${model}\n💰 Price: $${price}\n🆔 SN/IMEI: ${imei}\n--------------\nWaiting for receipt...`;
+        
+        // التوجيه المباشر لحسابك الشخصي
+        window.location.href = `https://t.me/gsmshtool?text=${encodeURIComponent(message)}`;
+    }
+</script>
+
 </body>
 </html>
