@@ -78,7 +78,7 @@
         <div class="input-group">
             <label>2. Choose Device Service</label>
             <select id="serviceSelect" class="premium-select" onchange="updateUI()" required>
-                </select>
+            </select>
             <span class="service-note"><i class="fas fa-info-circle"></i> NOTE: BTC payment must be made manually before submitting.</span>
         </div>
 
@@ -156,10 +156,27 @@
         const model = sel.options[sel.selectedIndex].text;
         const imei = document.getElementById('imeiInput').value;
         const price = sel.value;
+        const orderId = "#GSM" + Math.floor(Math.random() * 10000);
 
-        const msg = `👑 *VIP ORDER CONFIRMATION*\n\n🔹 *Service:* ${model}\n💰 *Amount:* $${price}\n🆔 *IMEI/SN:* ${imei}\n💳 *Payment:* Manual Bitcoin\n\n⚠️ _Please attach the receipt screenshot in the chat below._`;
-        
-        window.location.href = `https://t.me/gsmshtool?text=${encodeURIComponent(msg)}`;
+        // 1. حفظ الطلب في ذاكرة المتصفح ليظهر في الداشبورد
+        const newOrder = { id: orderId, service: model, imei: imei, price: price };
+        let orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
+        orders.push(newOrder);
+        localStorage.setItem('gsm_orders', JSON.stringify(orders));
+
+        // 2. تجهيز الرسالة لتليجرام
+        const user = localStorage.getItem('gsm_user') || 'Unknown User';
+        const msg = `👑 *NEW VIP ORDER*%0A%0A` +
+                    `🆔 *Order:* ${orderId}%0A` +
+                    `👤 *Client:* ${user}%0A` +
+                    `🔹 *Service:* ${model}%0A` +
+                    `🆔 *IMEI:* ${imei}%0A` +
+                    `💰 *Price:* $${price}%0A%0A` +
+                    `💳 *Payment:* Manual Bitcoin%0A%0A` +
+                    `⚠️ _Please send your payment receipt image now!_`;
+
+        // 3. التوجه لتليجرام
+        window.location.href = `https://t.me/gsmshtool?text=${msg}`;
     }
 
     switchCat('apple');
