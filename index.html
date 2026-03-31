@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSM SHTOOL - VIP Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --gold: #c5a059; --bg: #05070a; --card: rgba(255,255,255,0.02); }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* Login Section Style */
+        #loginSection { height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-card { width: 100%; max-width: 400px; padding: 40px; background: var(--card); backdrop-filter: blur(20px); border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        .premium-input { width: 100%; padding: 15px; background: #111; border: 1px solid #333; border-radius: 12px; color: white; outline: none; margin-bottom: 20px; box-sizing: border-box; }
+        .gold-btn { width: 100%; padding: 15px; background: var(--gold); color: black; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+
+        /* Dashboard Section Style */
+        #dashSection { padding: 20px; display: none; }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: var(--card); border-radius: 20px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .stat-card { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .stat-card i { font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card); border-radius: 20px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #111; font-size: 0.85rem; }
+        .status-badge { background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 4px 8px; border-radius: 5px; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <div id="loginSection">
+        <div class="login-card">
+            <i class="fas fa-user-shield" style="font-size: 3rem; color: var(--gold); margin-bottom: 20px;"></i>
+            <h2 style="color: var(--gold); letter-spacing: 2px;">VIP LOGIN</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" id="userField" class="premium-input" placeholder="Username" required>
+                <input type="password" class="premium-input" placeholder="Password" required>
+                <button type="submit" class="gold-btn">Enter Panel</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashSection">
+        <div class="top-nav">
+            <h2 style="color: var(--gold); margin:0; font-size: 1.2rem;">Welcome, <span id="userName">Guest</span></h2>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="logout()" style="background:none; border:1px solid #333; color:#666; padding:8px 15px; border-radius:10px; cursor:pointer;">Logout</button>
+                <button onclick="window.location.href='order.html'" class="gold-btn" style="padding:8px 20px; width:auto;">+ New Order</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card"><i class="fas fa-wallet"></i><h3 style="margin:5px 0;">$0.00</h3><p style="font-size:0.7rem; color:#666; margin:0;">Balance</p></div>
+            <div class="stat-card"><i class="fas fa-box"></i><h3 id="totalOrders" style="margin:5px 0;">0</h3><p style="font-size:0.7rem; color:#666; margin:0;">Orders</p></div>
+            <div class="stat-card"><i class="fas fa-check-double"></i><h3 style="margin:5px 0;">Active</h3><p style="font-size:0.7rem; color:#666; margin:0;">Account</p></div>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <h3>My Recent Orders</h3>
+            <table>
+                <thead>
+                    <tr><th>Order ID</th><th>Service</th><th>IMEI/SN</th><th>Status</th></tr>
+                </thead>
+                <tbody id="ordersTable">
+                    <tr><td colspan="4" style="text-align: center; color: #444; padding: 30px;">No orders history found.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // التحقق من حالة المستخدم عند فتح الصفحة
+        window.onload = function() {
+            checkAuth();
+        };
+
+        function checkAuth() {
+            const user = localStorage.getItem('gsm_user');
+            if (user) {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashSection').style.display = 'block';
+                document.getElementById('userName').innerText = user;
+                loadOrders();
+            } else {
+                document.getElementById('loginSection').style.display = 'flex';
+                document.getElementById('dashSection').style.display = 'none';
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('userField').value;
+            localStorage.setItem('gsm_user', user);
+            checkAuth();
+        }
+
+        function logout() {
+            localStorage.removeItem('gsm_user');
+            location.reload();
+        }
+
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
+            document.getElementById('totalOrders').innerText = orders.length;
+            if(orders.length > 0) {
+                document.getElementById('ordersTable').innerHTML = orders.reverse().map(o => `
+                    <tr>
+                        <td>${o.id}</td>
+                        <td>${o.service}</td>
+                        <td>${o.imei}</td>
+                        <td><span class="status-badge">Processing</span></td>
+                    </tr>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>
