@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - GSM SHTOOL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --gold: #c5a059; --bg: #05070a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; margin: 0; padding: 20px; }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 20px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
+        .stat-card { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #111; }
+        .status-badge { background: rgba(255, 193, 7, 0.1); color: #ffc107; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <h2 style="color: var(--gold);">Welcome, <span id="userNameDisplay">Guest</span></h2>
+        <button onclick="window.location.href='order.html'" style="background: var(--gold); border:none; padding:10px 20px; border-radius:10px; cursor:pointer; font-weight:bold;">+ New Order</button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <div class="stat-card"><h3>$0.00</h3><p>Balance</p></div>
+        <div class="stat-card"><h3 id="totalOrders">0</h3><p>Total Orders</p></div>
+        <div class="stat-card"><h3>Active</h3><p>Status</p></div>
+    </div>
+
+    <div style="margin-top: 40px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 20px;">
+        <h3>My Recent Orders</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th><th>Service</th><th>IMEI/SN</th><th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTable">
+                <tr><td colspan="4" style="text-align: center; color: #444;">No orders yet.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const user = localStorage.getItem('gsm_user');
+            if(!user) window.location.href = 'login.html';
+            document.getElementById('userNameDisplay').innerText = user;
+
+            const orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
+            document.getElementById('totalOrders').innerText = orders.length;
+            
+            if(orders.length > 0) {
+                document.getElementById('ordersTable').innerHTML = orders.reverse().map(o => `
+                    <tr>
+                        <td>${o.id}</td>
+                        <td>${o.service}</td>
+                        <td>${o.imei}</td>
+                        <td><span class="status-badge">Pending</span></td>
+                    </tr>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>
