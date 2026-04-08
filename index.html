@@ -5,42 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GSM SHTOOL VIP</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
 <style>
-body{background:#020406;color:#fff;font-family:Inter}
+body{background:#020406;color:#fff;font-family:Inter;margin:0}
 .font-orbitron{font-family:Orbitron}
-.glass{background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05)}
-.btn{background:linear-gradient(45deg,#1e40af,#3b82f6);box-shadow:0 0 25px rgba(59,130,246,.4);transition:.3s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 0 40px rgba(59,130,246,.7)}
-.support-btn{background:linear-gradient(45deg,#06b6d4,#3b82f6);box-shadow:0 0 20px rgba(6,182,212,.5)}
-.copy-btn{background:#111;border:1px solid #333;padding:6px 12px;border-radius:8px;margin-left:10px}
-.notice{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3)}
+.container{max-width:1100px;margin:auto;padding:20px}
+.glass{background:rgba(255,255,255,0.03);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:25px}
+.btn{background:linear-gradient(45deg,#1e40af,#3b82f6);box-shadow:0 0 20px rgba(59,130,246,.4);border:none;color:#fff;padding:12px;border-radius:10px;cursor:pointer}
+.btn:hover{transform:translateY(-3px)}
+.support-btn{position:fixed;bottom:20px;right:20px;background:#229ED9;padding:15px 20px;border-radius:50px;text-decoration:none;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:30px}
+.card{background:#111827;border-radius:15px;padding:20px;text-align:center;border:1px solid #1f2937;transition:.3s}
+.card:hover{transform:translateY(-5px);border-color:#3b82f6}
+img{width:100%;border-radius:10px}
+.notice{background:rgba(239,68,68,0.1);border:1px solid #ef4444;padding:15px;border-radius:10px;margin-top:20px;font-size:13px}
+.copy-btn{margin-left:10px;padding:5px 10px;background:#111;border:1px solid #333;border-radius:6px}
 </style>
 </head>
 
-<body class="p-6">
+<body>
 
-<!-- 👑 HEADER -->
-<header class="text-center mb-16">
-<h1 class="text-4xl font-orbitron text-blue-500">GSM SHTOOL VIP</h1>
-<p class="text-xs text-gray-500 mt-2">Free Unlock Without Format</p>
-</header>
+<div class="container">
 
-<!-- 🔥 ORDER -->
-<div class="max-w-xl mx-auto glass p-8 rounded-3xl">
+<!-- HEADER -->
+<h1 class="font-orbitron" style="text-align:center;color:#3b82f6">
+GSM SHTOOL VIP
+</h1>
+<p style="text-align:center;color:#888">Free Unlock Without Format</p>
 
-<select id="service" class="w-full p-4 bg-black mb-4">
+<!-- ORDER -->
+<div class="glass">
+
+<select id="service" style="width:100%;padding:12px;margin-bottom:10px;background:#000;color:#fff">
+
 <option value="">Select Service</option>
 
-<optgroup label="⚡ iCloud Services">
+<optgroup label="⚡ iCloud">
 <option value="icloud">iCloud Official Unlock (OOF)</option>
-<option value="icloud">iCloud Premium Unlock</option>
 </optgroup>
 
-<optgroup label="📱 iPhone Official">
-<option value="55">iPhone 11 Pro - $55</option>
+<optgroup label="📱 iPhone">
 <option value="100">iPhone 12 Pro Max - $100</option>
 <option value="150">iPhone 13 Pro Max - $150</option>
 <option value="180">iPhone 15 Pro - $180</option>
@@ -48,168 +53,114 @@ body{background:#020406;color:#fff;font-family:Inter}
 <option value="210">iPhone 17 Pro Max - $210</option>
 </optgroup>
 
-<optgroup label="🤖 Android">
-<option value="20">Samsung FRP - $20</option>
-<option value="20">Xiaomi FRP - $20</option>
-</optgroup>
 </select>
 
-<input id="imei" placeholder="ENTER IMEI (15 DIGITS)" class="w-full p-4 bg-black mb-4 text-center">
+<input id="imei" placeholder="ENTER IMEI" style="width:100%;padding:12px;margin-bottom:10px;background:#000;color:#fff;text-align:center">
 
-<button onclick="handleAction()" class="btn w-full py-4 rounded-xl font-bold">
-Continue
-</button>
+<button class="btn" style="width:100%" onclick="handleAction()">Continue</button>
 
 </div>
 
-<!-- ⚠️ NOTICE -->
-<div class="max-w-xl mx-auto mt-6 notice p-4 rounded-xl text-xs text-red-300">
-<strong>Official iCloud Unlock (OOF)</strong><br>
-All models supported. Time: 1 - 24 hours.<br><br>
+<!-- NOTICE -->
+<div class="notice">
+<strong>Official iCloud Unlock</strong><br>
+All models supported.<br>
+Time: 1 - 24 hours.<br><br>
 Send payment proof + IMEI to support.<br>
-Do NOT share service publicly or you will be banned.
+Do NOT share service publicly.
 </div>
 
-<!-- 💰 BTC -->
-<div class="max-w-xl mx-auto mt-6 glass p-4 rounded-xl text-center">
-<p class="text-sm text-gray-400 mb-2">Bitcoin Payment Wallet</p>
-<div class="text-xs break-all">
+<!-- BTC -->
+<div class="glass" style="margin-top:20px;text-align:center">
+Bitcoin Wallet:<br>
 <span id="btc">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</span>
-<button onclick="copyBTC()" class="copy-btn">Copy</button>
-</div>
-</div>
-
-<!-- 🤖 SUPPORT -->
-<div class="text-center mt-10">
-<button onclick="openSupport()" class="support-btn px-6 py-3 rounded-xl font-bold">
-💬 Contact Support (Telegram)
-</button>
+<button class="copy-btn" onclick="copyBTC()">Copy</button>
 </div>
 
-<!-- 🔥 TOOLS (ULTRA INTERACTIVE) -->
-<div class="max-w-6xl mx-auto mt-24">
+<!-- TOOLS -->
+<h2 style="text-align:center;margin-top:40px">FORENSIC TOOLS</h2>
 
-<h2 class="text-center text-3xl font-orbitron text-blue-500 mb-12">
-FORENSIC TOOLKIT PRO
-</h2>
+<div class="grid">
 
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-<!-- Magnet -->
-<div class="glass p-6 rounded-2xl group hover:scale-105 transition cursor-pointer" onclick="openImage(this)">
-<img src="https://www.magnetforensics.com/wp-content/uploads/2021/06/magnet-axiom-product.png" class="rounded-xl mb-4">
-<h3 class="text-blue-400 font-bold">Magnet Axiom V7.80</h3>
-<div class="text-yellow-400 text-sm">★★★★★</div>
-<p class="text-xs text-gray-400 mt-2">Professional forensic tool for extracting digital evidence.</p>
-<p class="text-yellow-400 text-xs mt-2">Password: @arbad9000</p>
-<a href="https://www.mediafire.com/folder/5176t9glfsafd/Magnet+Axiom" target="_blank" class="btn block mt-3 text-center py-2 rounded">Download</a>
+<div class="card">
+<img src="https://www.magnetforensics.com/wp-content/uploads/2021/06/magnet-axiom-product.png">
+<h3>Magnet Axiom</h3>
+<p>Forensic data extraction</p>
+<p>Password: @arbad9000</p>
+<a href="https://www.mediafire.com/folder/5176t9glfsafd/Magnet+Axiom" target="_blank">
+<button class="btn">Download</button>
+</a>
 </div>
 
-<!-- Physical -->
-<div class="glass p-6 rounded-2xl group hover:scale-105 transition cursor-pointer" onclick="openImage(this)">
-<img src="https://www.cellebrite.com/wp-content/uploads/2020/08/physical-analyzer.png" class="rounded-xl mb-4">
-<h3 class="text-blue-400 font-bold">Physical Analyzer 7.65</h3>
-<div class="text-yellow-400 text-sm">★★★★★</div>
-<p class="text-xs text-gray-400 mt-2">Advanced password extraction tool.</p>
-<a href="https://www.mediafire.com/folder/e3uyfto9oc8tm/Physical_Analyzer+7.65" target="_blank" class="btn block mt-3 text-center py-2 rounded">Download</a>
+<div class="card">
+<img src="https://www.cellebrite.com/wp-content/uploads/2020/08/physical-analyzer.png">
+<h3>Physical Analyzer</h3>
+<p>Password extraction tool</p>
+<a href="https://www.mediafire.com/folder/e3uyfto9oc8tm/Physical_Analyzer+7.65" target="_blank">
+<button class="btn">Download</button>
+</a>
 </div>
 
-<!-- MD NEXT -->
-<div class="glass p-6 rounded-2xl group hover:scale-105 transition cursor-pointer" onclick="openImage(this)">
-<img src="https://gsmxt.com/wp-content/uploads/2023/08/md-next-tool.png" class="rounded-xl mb-4">
-<h3 class="text-blue-400 font-bold">MD-NEXT 2.0.3</h3>
-<div class="text-yellow-400 text-sm">★★★★☆</div>
-<p class="text-xs text-gray-400 mt-2">Full forensic extraction without formatting.</p>
-<p class="text-yellow-400 text-xs mt-2">Password: @gaddtech</p>
-<a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" target="_blank" class="btn block mt-3 text-center py-2 rounded">Download</a>
+<div class="card">
+<img src="https://gsmxt.com/wp-content/uploads/2023/08/md-next-tool.png">
+<h3>MD-NEXT</h3>
+<p>Password: @gaddtech</p>
+<a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" target="_blank">
+<button class="btn">Download</button>
+</a>
 </div>
 
-<!-- UFED -->
-<div class="glass p-6 rounded-2xl group hover:scale-105 transition cursor-pointer" onclick="openImage(this)">
-<img src="https://www.cellebrite.com/wp-content/uploads/2020/08/ufed-touch2.png" class="rounded-xl mb-4">
-<h3 class="text-blue-400 font-bold">UFED 7.71</h3>
-<div class="text-yellow-400 text-sm">★★★★★</div>
-<p class="text-xs text-gray-400 mt-2">Mobile forensic solution.</p>
-<p class="text-yellow-400 text-xs mt-2">Password: @gaddtech</p>
-<a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" target="_blank" class="btn block mt-3 text-center py-2 rounded">Download</a>
+<div class="card">
+<img src="https://www.cellebrite.com/wp-content/uploads/2020/08/ufed-touch2.png">
+<h3>UFED</h3>
+<p>Password: @gaddtech</p>
+<a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" target="_blank">
+<button class="btn">Download</button>
+</a>
 </div>
 
-<!-- Oxygen -->
-<div class="glass p-6 rounded-2xl group hover:scale-105 transition cursor-pointer" onclick="openImage(this)">
-<img src="https://oxygen-forensic.com/wp-content/uploads/2022/01/oxygen-detective.png" class="rounded-xl mb-4">
-<h3 class="text-blue-400 font-bold">Oxygen Forensic</h3>
-<div class="text-yellow-400 text-sm">★★★★★</div>
-<p class="text-xs text-gray-400 mt-2">Complete mobile forensic analysis suite.</p>
-<a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" target="_blank" class="btn block mt-3 text-center py-2 rounded">Download</a>
+<div class="card">
+<img src="https://oxygen-forensic.com/wp-content/uploads/2022/01/oxygen-detective.png">
+<h3>Oxygen Forensic</h3>
+<a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" target="_blank">
+<button class="btn">Download</button>
+</a>
 </div>
 
 </div>
-</div>
 
-<!-- 🔍 IMAGE MODAL -->
-<div id="imgModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
-<img id="modalImg" class="max-w-3xl rounded-xl shadow-2xl">
-</div>
-
-<!-- 👑 FOOTER -->
-<footer class="text-center mt-20 text-xs text-gray-600">
+<!-- FOOTER -->
+<p style="text-align:center;margin-top:40px;color:#666">
 Team iRemove Tool | Eng. Ahmed Burhan
-</footer>
+</p>
+
+</div>
+
+<!-- SUPPORT -->
+<a href="https://t.me/gsmshtool" class="support-btn">Telegram Support</a>
 
 <script>
 
-// 🔥 ORDER
 function handleAction(){
 const s=document.getElementById("service");
 const imei=document.getElementById("imei").value;
 
-if(!s.value || imei.length!==15){
+if(!s.value || imei.length<10){
 alert("Invalid Data");return;
 }
 
 if(s.value==="icloud"){
-openSupport();
+window.open("https://t.me/gsmshtool","_blank");
 return;
 }
 
-fetch("http://localhost:3000/order",{
-method:"POST",
-headers:{ "Content-Type":"application/json" },
-body: JSON.stringify({
-service: s.options[s.selectedIndex].text,
-price: s.value,
-imei
-})
-})
-.then(()=>{
-alert("Order Sent ✅");
-openSupport();
-});
+alert("Order Sent ✅ Contact Support");
+window.open("https://t.me/gsmshtool","_blank");
 }
 
-// 📋 COPY BTC
 function copyBTC(){
 navigator.clipboard.writeText(document.getElementById("btc").innerText);
 alert("Copied");
-}
-
-// 🤖 TELEGRAM
-function openSupport(){
-window.location.href="tg://resolve?domain=gsmshtool";
-setTimeout(()=>{
-window.location.href="https://t.me/gsmshtool";
-},1000);
-}
-
-// 🔍 IMAGE MODAL
-function openImage(card){
-const img = card.querySelector("img").src;
-document.getElementById("modalImg").src = img;
-document.getElementById("imgModal").classList.remove("hidden");
-}
-
-document.getElementById("imgModal").onclick = function(){
-this.classList.add("hidden");
 }
 
 </script>
