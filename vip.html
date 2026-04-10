@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iRmove VIP - GSM SHTOOL Control Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --vip-gold: #c5a059; --primary: #3b82f6; --btc: #f7931a; --success: #22c55e; --dark-bg: #05070a; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; padding: 20px; line-height: 1.6; }
+        
+        .glass-card { max-width: 850px; margin: 20px auto; padding: 35px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); position: relative; }
+        
+        .header-vip { text-align: center; margin-bottom: 30px; }
+        .header-vip h1 { font-family: 'Oswald', sans-serif; color: var(--vip-gold); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .live-dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 20px; border-left: 4px solid var(--vip-gold); }
+        .stat-box { text-align: center; }
+        .stat-label { font-size: 0.7rem; color: #666; text-transform: uppercase; display: block; }
+        .stat-value { font-weight: 900; font-size: 1.1rem; color: var(--success); }
+
+        .category-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        .tab-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 12px; color: #888; cursor: pointer; font-weight: bold; transition: 0.3s; text-align: center; }
+        .tab-btn.active { background: rgba(197, 160, 89, 0.1); border-color: var(--vip-gold); color: var(--vip-gold); }
+
+        .input-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 10px; color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+        
+        .premium-select, .premium-input { width: 100%; padding: 16px; background: #111; border: 1px solid #333; border-radius: 15px; color: white; outline: none; transition: 0.3s; box-sizing: border-box; font-size: 1rem; }
+        .premium-select:focus, .premium-input:focus { border-color: var(--vip-gold); box-shadow: 0 0 15px rgba(197, 160, 89, 0.2); }
+
+        .btc-section { background: rgba(247, 147, 26, 0.05); border: 1px solid rgba(247, 147, 26, 0.2); padding: 20px; border-radius: 20px; margin-top: 25px; }
+        .btc-addr-container { background: #000; padding: 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; border: 1px dashed #444; }
+        .btc-address { font-family: monospace; color: var(--btc); font-size: 0.75rem; word-break: break-all; }
+        .copy-btn { background: var(--btc); color: black; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        .buy-btn { width: 100%; padding: 20px; background: linear-gradient(90deg, #c5a059, #8e6d31); color: black; border: none; border-radius: 15px; font-weight: 900; font-size: 1.2rem; cursor: pointer; margin-top: 30px; text-transform: uppercase; }
+        .service-note { font-size: 0.75rem; color: #f87171; margin-top: 8px; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="glass-card">
+    <div class="header-vip">
+        <h1><i class="fas fa-crown"></i> iRmove VIP</h1>
+        <p style="color: #666; font-size: 0.8rem;">OFFICIAL APPLE UNLOCKING SERVER</p>
+    </div>
+
+    <div class="live-dashboard">
+        <div class="stat-box"><span class="stat-label">Server</span><span class="stat-value">ONLINE</span></div>
+        <div class="stat-box"><span class="stat-label">Selected Price</span><span class="stat-value" id="dashPrice">$0</span></div>
+        <div class="stat-box"><span class="stat-label">Processing</span><span class="stat-value">1-24h</span></div>
+    </div>
+
+    <form onsubmit="handleOrder(event)">
+        <label>1. Select Category</label>
+        <div class="category-tabs">
+            <div id="tabApple" class="tab-btn active" onclick="switchCat('apple')"><i class="fab fa-apple"></i> Apple Devices</div>
+            <div id="tabAndroid" class="tab-btn" onclick="switchCat('android')"><i class="fab fa-android"></i> Android / FRP</div>
+        </div>
+
+        <div class="input-group">
+            <label>2. Choose Service & Model</label>
+            <select id="serviceSelect" class="premium-select" onchange="updateUI()" required></select>
+        </div>
+
+        <div class="input-group">
+            <label>3. Device IMEI / Serial Number</label>
+            <input type="text" id="imeiInput" class="premium-input" placeholder="Enter IMEI or Serial" required>
+        </div>
+
+        <div class="btc-section">
+            <label style="color: var(--btc);"><i class="fab fa-bitcoin"></i> BITCOIN PAYMENT ADDR</label>
+            <div class="btc-addr-container">
+                <span class="btc-address" id="btcAddress">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</span>
+                <button type="button" class="copy-btn" onclick="copyBTC()">COPY</button>
+            </div>
+            <span class="service-note">⚠️ Method: Official OOF | Payment: BTC Only</span>
+        </div>
+
+        <button type="submit" class="buy-btn">Confirm & Submit Order <i class="fas fa-bolt"></i></button>
+    </form>
+</div>
+
+<script>
+    const data = {
+        apple: [
+            // iPhones
+            { n: "iPhone 6 / 6 Plus / 6s / 6s Plus", p: 25 },
+            { n: "iPhone SE", p: 30 },
+            { n: "iPhone 7 / 7 Plus", p: 30 },
+            { n: "iPhone 8 / 8 Plus / X", p: 35 },
+            { n: "iPhone XR / XS", p: 40 },
+            { n: "iPhone XS Max / 11", p: 45 },
+            { n: "iPhone 11 Pro", p: 55 },
+            { n: "iPhone 11 Pro Max", p: 75 },
+            { n: "iPhone 12 / 12 mini", p: 90 },
+            { n: "iPhone 12 Pro", p: 95 },
+            { n: "iPhone 12 Pro Max", p: 100 },
+            { n: "iPhone 13 / 13 mini", p: 115 },
+            { n: "iPhone 13 Pro", p: 135 },
+            { n: "iPhone 13 Pro Max", p: 150 },
+            { n: "iPhone 14 / 14 Plus", p: 160 },
+            { n: "iPhone 14 Pro", p: 165 },
+            { n: "iPhone 14 Pro Max", p: 175 },
+            { n: "iPhone 15 / 15 Plus", p: 165 },
+            { n: "iPhone 15 Pro", p: 180 },
+            { n: "iPhone 15 Pro Max", p: 190 },
+            { n: "iPhone 16 / 16e / 16 Plus", p: 195 },
+            { n: "iPhone 16 Pro", p: 195 },
+            { n: "iPhone 16 Pro Max", p: 205 },
+            { n: "iPhone 17 / 17 Air", p: 200 },
+            { n: "iPhone 17 Pro", p: 200 },
+            { n: "iPhone 17 Pro Max", p: 210 },
+            // iPads
+            { n: "iPad 8", p: 50 }, { n: "iPad 9", p: 55 }, { n: "iPad 10", p: 65 },
+            { n: "iPad Air 4", p: 80 }, { n: "iPad Air 5", p: 85 },
+            { n: "iPad Pro 9.7 / 10.5", p: 140 }, { n: "iPad Pro 11 (1-4)", p: 140 }, { n: "iPad Pro 12.9 (1-6)", p: 150 },
+            // Watches
+            { n: "Apple Watch S4", p: 60 }, { n: "Apple Watch S5", p: 65 }, { n: "Apple Watch S6", p: 70 },
+            { n: "Apple Watch S7", p: 90 }, { n: "Apple Watch S8 / S9", p: 100 }, { n: "Apple Watch S10 / S11", p: 110 },
+            { n: "Apple Watch Ultra 1", p: 120 }, { n: "Apple Watch Ultra 2 / 3", p: 130 }
+        ],
+        android: [
+            { n: "Samsung FRP All Models", p: 15 },
+            { n: "Xiaomi Mi Account Remove", p: 30 },
+            { n: "Huawei ID Server Unlock", p: 40 }
+        ]
+    };
+
+    function switchCat(cat) {
+        document.getElementById('tabApple').classList.toggle('active', cat === 'apple');
+        document.getElementById('tabAndroid').classList.toggle('active', cat === 'android');
+        const select = document.getElementById('serviceSelect');
+        select.innerHTML = data[cat].map(item => `<option value="${item.p}">${item.n} - $${item.p}</option>`).join('');
+        updateUI();
+    }
+
+    function updateUI() {
+        document.getElementById('dashPrice').innerText = '$' + document.getElementById('serviceSelect').value;
+    }
+
+    function copyBTC() {
+        navigator.clipboard.writeText(document.getElementById('btcAddress').innerText);
+        alert("Wallet Address Copied!");
+    }
+
+    function handleOrder(e) {
+        e.preventDefault();
+        const sel = document.getElementById('serviceSelect');
+        const model = sel.options[sel.selectedIndex].text;
+        const imei = document.getElementById('imeiInput').value;
+        const msg = `👑 *iRmove VIP ORDER*%0A%0A🔹 *Service:* ${model}%0A🆔 *IMEI:* ${imei}%0A💰 *Price:* $${sel.value}%0A💳 *Payment:* BTC`;
+        window.location.href = `https://t.me/gsmshtool?text=${msg}`;
+    }
+
+    switchCat('apple');
+</script>
+</body>
+</html>
