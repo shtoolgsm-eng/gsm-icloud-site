@@ -110,13 +110,112 @@
 <script>
     const data = {
         apple: [
-            { n: "iPhone 6/6P/6s/6sP", p: 25 }, { n: "iPhone SE", p: 30 }, { n: "iPhone 7/7 Plus", p: 30 },
-            { n: "iPhone 8/8 Plus/X", p: 35 }, { n: "iPhone XR / XS", p: 40 }, { n: "iPhone XS Max/11", p: 45 },
-            { n: "iPhone 11 Pro/Max", p: 65 }, { n: "iPhone 12 Series", p: 90 }, { n: "iPhone 12 Pro/Max", p: 100 },
-            { n: "iPhone 13 Series", p: 120 }, { n: "iPhone 13 Pro/Max", p: 140 }, { n: "iPhone 14 Series", p: 160 },
-            { n: "iPhone 14 Pro/Max", p: 170 }, { n: "iPhone 15 Series", p: 170 }, { n: "iPhone 15 Pro/Max", p: 190 },
-            { n: "iPhone 16 Series", p: 195 }, { n: "iPhone 16 Pro/Max", p: 205 }, { n: "iPhone 17 Series VIP", p: 210 },
-            { n: "iPad All Series Bypass", p: 140 }, { n: "iPad Pro Full Server", p: 150 }, { n: "Apple Watch Ultra 1/2/3", p: 130 }
+            // iPhone Models
+            { n: "iPhone 6 / 6 Plus / 6s / 6s Plus", p: 25 },
+            { n: "iPhone SE", p: 30 },
+            { n: "iPhone 7 / 7 Plus", p: 30 },
+            { n: "iPhone 8 / 8 Plus / X", p: 35 },
+            { n: "iPhone XR / XS", p: 40 },
+            { n: "iPhone XS Max / 11", p: 45 },
+            { n: "iPhone 11 Pro", p: 55 },
+            { n: "iPhone 11 Pro Max", p: 75 },
+            { n: "iPhone 12 / 12 mini", p: 90 },
+            { n: "iPhone 12 Pro", p: 95 },
+            { n: "iPhone 12 Pro Max", p: 100 },
+            { n: "iPhone 13 / 13 mini", p: 115 },
+            { n: "iPhone 13 Pro", p: 135 },
+            { n: "iPhone 13 Pro Max", p: 150 },
+            { n: "iPhone 14 / 14 Plus", p: 160 },
+            { n: "iPhone 14 Pro", p: 165 },
+            { n: "iPhone 14 Pro Max", p: 175 },
+            { n: "iPhone 15 / 15 Plus", p: 165 },
+            { n: "iPhone 15 Pro", p: 180 },
+            { n: "iPhone 15 Pro Max", p: 190 },
+            { n: "iPhone 16 / 16e", p: 195 },
+            { n: "iPhone 16 Plus", p: 195 },
+            { n: "iPhone 16 Pro", p: 195 },
+            { n: "iPhone 16 Pro Max", p: 205 },
+            { n: "iPhone 17 / 17 Air", p: 200 },
+            { n: "iPhone 17 Pro", p: 200 },
+            { n: "iPhone 17 Pro Max", p: 210 },
+            
+            // iPad Models
+            { n: "iPad 8", p: 50 },
+            { n: "iPad 9", p: 55 },
+            { n: "iPad 10", p: 65 },
+            { n: "iPad Air 4", p: 80 },
+            { n: "iPad Air 5", p: 85 },
+            { n: "iPad Pro 9.7 / 10.5", p: 140 },
+            { n: "iPad Pro 11 (Gen 1-4)", p: 140 },
+            { n: "iPad Pro 12.9 (Gen 1-6)", p: 150 },
+
+            // Apple Watch
+            { n: "Apple Watch Series 4", p: 60 },
+            { n: "Apple Watch Series 5", p: 65 },
+            { n: "Apple Watch Series 6", p: 70 },
+            { n: "Apple Watch Series 7", p: 90 },
+            { n: "Apple Watch Series 8 / 9", p: 100 },
+            { n: "Apple Watch Series 10 / 11", p: 110 },
+            { n: "Apple Watch Ultra 1", p: 120 },
+            { n: "Apple Watch Ultra 2 / 3", p: 130 }
+        ],
+        android: [
+            { n: "Samsung FRP All Models (Instant)", p: 15 },
+            { n: "Samsung S24/S23 Ultra FRP", p: 25 },
+            { n: "Xiaomi Mi Account Remove", p: 30 },
+            { n: "Huawei ID Removal (Server)", p: 45 },
+            { n: "Oppo / Realme FRP Bypass", p: 20 },
+            { n: "Android Network Unlock VIP", p: 45 }
+        ]
+    };
+
+    function switchCat(cat) {
+        document.getElementById('tabApple').classList.toggle('active', cat === 'apple');
+        document.getElementById('tabAndroid').classList.toggle('active', cat === 'android');
+        const select = document.getElementById('serviceSelect');
+        select.innerHTML = data[cat].map(item => `<option value="${item.p}">${item.n} - $${item.p}</option>`).join('');
+        updateUI();
+    }
+
+    function updateUI() {
+        const select = document.getElementById('serviceSelect');
+        if (select.value) {
+            document.getElementById('dashPrice').innerText = '$' + select.value;
+        }
+    }
+
+    function copyBTC() {
+        navigator.clipboard.writeText(document.getElementById('btcAddress').innerText);
+        alert("BTC Wallet Copied!");
+    }
+
+    function showFileName() {
+        const file = document.getElementById('fileInput').files[0];
+        document.getElementById('fileName').innerText = file ? file.name : "No file selected";
+    }
+
+    function handleOrder(e) {
+        e.preventDefault();
+        const sel = document.getElementById('serviceSelect');
+        const model = sel.options[sel.selectedIndex].text;
+        const imei = document.getElementById('imeiInput').value;
+        const price = sel.value;
+        const orderId = "#GSM" + Math.floor(Math.random() * 10000);
+
+        const msg = `👑 *NEW VIP ORDER*%0A%0A` +
+                    `🆔 *Order:* ${orderId}%0A` +
+                    `🔹 *Service:* ${model}%0A` +
+                    `🆔 *IMEI:* ${imei}%0A` +
+                    `💰 *Price:* $${price}%0A%0A` +
+                    `💳 *Payment:* Manual Bitcoin%0A%0A` +
+                    `⚠️ _Please send your payment receipt image now!_`;
+
+        window.location.href = `https://t.me/gsmshtool?text=${msg}`;
+    }
+
+    // تشغيل القائمة عند التحميل
+    switchCat('apple');
+</script>
         ],
         android: [
             { n: "Samsung FRP All Models (Instant)", p: 15 },
