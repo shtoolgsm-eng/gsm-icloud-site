@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Processing Order - GSM SHTOOL</title>
+    <style>
+        body { background: #05070a; color: white; font-family: sans-serif; text-align: center; padding-top: 100px; }
+        .loader { border: 4px solid #111; border-top: 4px solid #c5a059; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .btn { padding: 15px 30px; background: #c5a059; border: none; color: black; border-radius: 10px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    <h1>Processing Your Request</h1>
+    <p>Please wait while we verify your payment and link it to your IMEI...</p>
+    <div id="orderInfo"></div>
+    <a href="track.html" class="btn">Track My Order</a>
+    
+    <script>
+        const order = JSON.parse(localStorage.getItem('currentOrder'));
+        if(order) {
+            document.getElementById('orderInfo').innerHTML = `<p>Order ID: ${order.id} | Device: ${order.imei}</p>`;
+        }
+    </script>
+</body>
+</html>
