@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Order - GSM SHTOOL</title>
+    <style>
+        body { background: #05070a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; width: 400px; border: 1px solid #c5a059; }
+        .status-badge { background: #f7931a; color: black; padding: 5px 15px; border-radius: 50px; font-weight: bold; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Order Tracking</h2>
+        <div id="trackResult">No active orders found.</div>
+        <hr style="opacity: 0.1; margin: 20px 0;">
+        <p style="font-size: 0.8rem; color: #666;">Note: Official unlocking takes 1-24 hours.</p>
+    </div>
+
+    <script>
+        const order = JSON.parse(localStorage.getItem('currentOrder'));
+        if(order) {
+            document.getElementById('trackResult').innerHTML = `
+                <p><strong>Order ID:</strong> ${order.id}</p>
+                <p><strong>Device IMEI:</strong> ${order.imei}</p>
+                <p><strong>Service:</strong> ${order.service}</p>
+                <p><strong>Status:</strong> <span class="status-badge">${order.status}</span></p>
+            `;
+        }
+    </script>
+</body>
+</html>
