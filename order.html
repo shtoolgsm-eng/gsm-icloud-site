@@ -7,229 +7,79 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --vip-gold: #c5a059; --primary: #3b82f6; --btc: #f7931a; --success: #22c55e; --dark-bg: #05070a; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; padding: 20px; line-height: 1.6; }
-        
-        .glass-card { max-width: 850px; margin: 20px auto; padding: 35px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); position: relative; }
-        
+        :root { --vip-gold: #c5a059; --primary: #3b82f6; --success: #22c55e; --dark-bg: #05070a; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; padding: 20px; }
+        .glass-card { max-width: 850px; margin: 20px auto; padding: 35px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
         .header-vip { text-align: center; margin-bottom: 30px; }
-        .header-vip h1 { font-family: 'Oswald', sans-serif; color: var(--vip-gold); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        
+        .header-vip h1 { font-family: 'Oswald', sans-serif; color: var(--vip-gold); font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
         .live-dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 20px; border-left: 4px solid var(--vip-gold); }
-        .stat-box { text-align: center; }
         .stat-label { font-size: 0.7rem; color: #666; text-transform: uppercase; display: block; }
         .stat-value { font-weight: 900; font-size: 1.1rem; color: var(--success); }
-
-        .input-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 10px; color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        
-        .premium-input, .premium-select { width: 100%; padding: 16px; background: #111; border: 1px solid #333; border-radius: 15px; color: white; outline: none; transition: 0.3s; box-sizing: border-box; font-size: 1rem; }
-        .premium-input:focus, .premium-select:focus { border-color: var(--vip-gold); box-shadow: 0 0 15px rgba(197, 160, 89, 0.2); }
-
-        .service-note { font-size: 0.75rem; color: #f87171; margin-top: 8px; display: block; font-weight: bold; }
-
-        .category-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
-        .tab-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 12px; color: #888; cursor: pointer; font-weight: bold; transition: 0.3s; text-align: center; }
-        .tab-btn.active { background: rgba(197, 160, 89, 0.1); border-color: var(--vip-gold); color: var(--vip-gold); }
-
-        .btc-section { background: rgba(247, 147, 26, 0.05); border: 1px solid rgba(247, 147, 26, 0.2); padding: 20px; border-radius: 20px; margin-top: 25px; }
-        .btc-addr-container { background: #000; padding: 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; border: 1px dashed #444; }
-        .btc-address { font-family: monospace; color: var(--btc); font-size: 0.75rem; word-break: break-all; }
-        .copy-btn { background: var(--btc); color: black; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.8rem; flex-shrink: 0; }
-
-        .upload-section { margin-top: 20px; border: 2px dashed #333; padding: 20px; text-align: center; border-radius: 15px; cursor: pointer; transition: 0.3s; }
-        .upload-section:hover { border-color: var(--vip-gold); }
-        .file-info { font-size: 0.8rem; color: #94a3b8; margin-top: 5px; }
-
-        .buy-btn { width: 100%; padding: 20px; background: linear-gradient(90deg, #c5a059, #8e6d31); color: black; border: none; border-radius: 15px; font-weight: 900; font-size: 1.2rem; cursor: pointer; margin-top: 30px; text-transform: uppercase; transition: 0.3s; }
-        .buy-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4); }
+        .category-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        .tab-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 12px; color: #888; cursor: pointer; text-align: center; font-weight: bold; font-size: 0.8rem; }
+        .tab-btn.active { border-color: var(--vip-gold); color: var(--vip-gold); background: rgba(197, 160, 89, 0.1); }
+        .premium-select, .premium-input { width: 100%; padding: 16px; background: #111; border: 1px solid #333; border-radius: 15px; color: white; margin-bottom: 20px; outline: none; }
+        .buy-btn { width: 100%; padding: 20px; background: linear-gradient(90deg, #c5a059, #8e6d31); border: none; border-radius: 15px; font-weight: 900; cursor: pointer; text-transform: uppercase; color: #000; font-size: 1.1rem; }
     </style>
 </head>
 <body>
 
 <div class="glass-card">
     <div class="header-vip">
-        <h1><i class="fas fa-crown"></i> VIP CONTROL PANEL</h1>
-        <p style="color: #666; font-size: 0.8rem;">GSM SHTOOL OFFICIAL APPLE & ANDROID SERVER</p>
+        <h1>VIP CONTROL PANEL</h1>
+        <p style="color: #666;">GSM SHTOOL OFFICIAL APPLE & ANDROID SERVER</p>
     </div>
 
     <div class="live-dashboard">
-        <div class="stat-box">
-            <span class="stat-label">Server Status</span>
-            <span class="stat-value" style="color: var(--primary);">ACTIVE</span>
-        </div>
-        <div class="stat-box">
-            <span class="stat-label">Total Price</span>
-            <span class="stat-value" id="dashPrice">$0</span>
-        </div>
-        <div class="stat-box">
-            <span class="stat-label">Security</span>
-            <span class="stat-value">SSL-256</span>
-        </div>
+        <div class="stat-box"><span class="stat-label">Server Status</span><span class="stat-value">ACTIVE</span></div>
+        <div class="stat-box"><span class="stat-label">Price</span><span class="stat-value" id="dashPrice">$0</span></div>
+        <div class="stat-box"><span class="stat-label">Time</span><span class="stat-value">1-24H</span></div>
     </div>
 
-    <form id="vipForm" onsubmit="handleOrder(event)">
-        <label>1. Select Brand Category</label>
+    <form onsubmit="handleOrder(event)">
+        <label style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 10px; display: block;">SELECT CATEGORY</label>
         <div class="category-tabs">
-            <div id="tabApple" class="tab-btn active" onclick="switchCat('apple')"><i class="fab fa-apple"></i> Apple (iPhone/iPad)</div>
-            <div id="tabAndroid" class="tab-btn" onclick="switchCat('android')"><i class="fab fa-android"></i> Android / FRP / Unlock</div>
+            <div id="tabIphone" class="tab-btn active" onclick="switchCat('iphone')">iPhone</div>
+            <div id="tabIpad" class="tab-btn" onclick="switchCat('ipad')">iPad/Watch</div>
+            <div id="tabAndroid" class="tab-btn" onclick="switchCat('android')">Android</div>
         </div>
 
-        <div class="input-group">
-            <label>2. Choose Device Service</label>
-            <select id="serviceSelect" class="premium-select" onchange="updateUI()" required>
-            </select>
-            <span class="service-note"><i class="fas fa-info-circle"></i> NOTE: BTC payment must be made manually before submitting.</span>
-        </div>
+        <select id="serviceSelect" class="premium-select" onchange="updateUI()" required></select>
+        <input type="text" id="imeiInput" class="premium-input" placeholder="Enter IMEI / Serial Number" required>
 
-        <div class="input-group">
-            <label>3. Device IMEI / Serial Number</label>
-            <input type="text" id="imeiInput" class="premium-input" placeholder="Enter IMEI or Serial Number" required>
-        </div>
-
-        <div class="btc-section">
-            <label style="color: var(--btc); font-weight: bold;"><i class="fab fa-bitcoin"></i> MANUAL BITCOIN PAYMENT</label>
-            <div class="btc-addr-container">
-                <span class="btc-address" id="btcAddress">Bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</span>
-                <button type="button" class="copy-btn" onclick="copyBTC()">COPY ADDR</button>
-            </div>
-            
-            <div class="upload-section" onclick="document.getElementById('fileInput').click()">
-                <i class="fas fa-file-invoice-dollar" style="font-size: 1.5rem; color: var(--vip-gold);"></i>
-                <p style="margin: 5px 0 0 0; font-weight: bold; font-size: 0.9rem;">Click to Upload Payment Receipt</p>
-                <span id="fileName" class="file-info">No file selected (Optional)</span>
-                <input type="file" id="fileInput" hidden onchange="showFileName()">
-            </div>
-        </div>
-
-        <button type="submit" class="buy-btn">Confirm Order & Send to Support <i class="fas fa-bolt"></i></button>
-        <p style="text-align: center; color: #666; font-size: 0.7rem; margin-top: 15px;">Your request will be processed immediately after verification.</p>
+        <button type="submit" class="buy-btn">Confirm Order & Payment <i class="fas fa-bolt"></i></button>
     </form>
 </div>
 
 <script>
     const data = {
-        apple: [
-            // iPhone Models
-            { n: "iPhone 6 / 6 Plus / 6s / 6s Plus", p: 25 },
-            { n: "iPhone SE", p: 30 },
-            { n: "iPhone 7 / 7 Plus", p: 30 },
-            { n: "iPhone 8 / 8 Plus / X", p: 35 },
-            { n: "iPhone XR / XS", p: 40 },
-            { n: "iPhone XS Max / 11", p: 45 },
-            { n: "iPhone 11 Pro", p: 55 },
-            { n: "iPhone 11 Pro Max", p: 75 },
-            { n: "iPhone 12 / 12 mini", p: 90 },
-            { n: "iPhone 12 Pro", p: 95 },
-            { n: "iPhone 12 Pro Max", p: 100 },
-            { n: "iPhone 13 / 13 mini", p: 115 },
-            { n: "iPhone 13 Pro", p: 135 },
-            { n: "iPhone 13 Pro Max", p: 150 },
-            { n: "iPhone 14 / 14 Plus", p: 160 },
-            { n: "iPhone 14 Pro", p: 165 },
-            { n: "iPhone 14 Pro Max", p: 175 },
-            { n: "iPhone 15 / 15 Plus", p: 165 },
-            { n: "iPhone 15 Pro", p: 180 },
-            { n: "iPhone 15 Pro Max", p: 190 },
-            { n: "iPhone 16 / 16e", p: 195 },
-            { n: "iPhone 16 Plus", p: 195 },
-            { n: "iPhone 16 Pro", p: 195 },
-            { n: "iPhone 16 Pro Max", p: 205 },
-            { n: "iPhone 17 / 17 Air", p: 200 },
-            { n: "iPhone 17 Pro", p: 200 },
-            { n: "iPhone 17 Pro Max", p: 210 },
-            
-            // iPad Models
-            { n: "iPad 8", p: 50 },
-            { n: "iPad 9", p: 55 },
-            { n: "iPad 10", p: 65 },
-            { n: "iPad Air 4", p: 80 },
-            { n: "iPad Air 5", p: 85 },
-            { n: "iPad Pro 9.7 / 10.5", p: 140 },
-            { n: "iPad Pro 11 (Gen 1-4)", p: 140 },
-            { n: "iPad Pro 12.9 (Gen 1-6)", p: 150 },
-
-            // Apple Watch
-            { n: "Apple Watch Series 4", p: 60 },
-            { n: "Apple Watch Series 5", p: 65 },
-            { n: "Apple Watch Series 6", p: 70 },
-            { n: "Apple Watch Series 7", p: 90 },
-            { n: "Apple Watch Series 8 / 9", p: 100 },
-            { n: "Apple Watch Series 10 / 11", p: 110 },
-            { n: "Apple Watch Ultra 1", p: 120 },
-            { n: "Apple Watch Ultra 2 / 3", p: 130 }
+        iphone: [
+            {n:"iPhone 6/6+/6s/6s+", p:25}, {n:"iPhone SE", p:30}, {n:"iPhone 7/7+", p:30},
+            {n:"iPhone 8/8+/X", p:35}, {n:"iPhone XR/XS", p:40}, {n:"iPhone XS Max/11", p:45},
+            {n:"iPhone 11 Pro", p:55}, {n:"iPhone 11 Pro Max", p:75}, {n:"iPhone 12/12 mini", p:90},
+            {n:"iPhone 12 Pro", p:95}, {n:"iPhone 12 Pro Max", p:100}, {n:"iPhone 13/13 mini", p:115},
+            {n:"iPhone 13 Pro", p:135}, {n:"iPhone 13 Pro Max", p:150}, {n:"iPhone 14/14+", p:160},
+            {n:"iPhone 14 Pro", p:165}, {n:"iPhone 14 Pro Max", p:175}, {n:"iPhone 15/15+", p:165},
+            {n:"iPhone 15 Pro", p:180}, {n:"iPhone 15 Pro Max", p:190}, {n:"iPhone 16/16e/16+", p:195},
+            {n:"iPhone 16 Pro", p:195}, {n:"iPhone 16 Pro Max", p:205}, {n:"iPhone 17/17 Air", p:200},
+            {n:"iPhone 17 Pro", p:200}, {n:"iPhone 17 Pro Max", p:210}
+        ],
+        ipad: [
+            {n:"iPad 8", p:50}, {n:"iPad 9", p:55}, {n:"iPad 10", p:65}, {n:"iPad Air 4", p:80},
+            {n:"iPad Air 5", p:85}, {n:"iPad Pro 9.7/10.5", p:140}, {n:"iPad Pro 11 (1-4)", p:140},
+            {n:"iPad Pro 12.9 (1-6)", p:150}, {n:"Watch S4", p:70}, {n:"Watch S5", p:75},
+            {n:"Watch S6", p:80}, {n:"Watch S7", p:90}, {n:"Watch S8", p:100}, {n:"Watch S9", p:105},
+            {n:"Watch S10/11", p:110}, {n:"Watch Ultra 1", p:130}, {n:"Watch Ultra 2", p:140}, {n:"Watch Ultra 3", p:145}
         ],
         android: [
-            { n: "Samsung FRP All Models (Instant)", p: 15 },
-            { n: "Samsung S24/S23 Ultra FRP", p: 25 },
-            { n: "Xiaomi Mi Account Remove", p: 30 },
-            { n: "Huawei ID Removal (Server)", p: 45 },
-            { n: "Oppo / Realme FRP Bypass", p: 20 },
-            { n: "Android Network Unlock VIP", p: 45 }
+            {n:"Samsung All FRP", p:15}, {n:"Xiaomi Mi Account", p:30}, {n:"Huawei ID Remove", p:45},
+            {n:"Oppo/Realme Unlock", p:25}, {n:"Network Unlock VIP", p:40}
         ]
     };
 
     function switchCat(cat) {
-        document.getElementById('tabApple').classList.toggle('active', cat === 'apple');
-        document.getElementById('tabAndroid').classList.toggle('active', cat === 'android');
-        const select = document.getElementById('serviceSelect');
-        select.innerHTML = data[cat].map(item => `<option value="${item.p}">${item.n} - $${item.p}</option>`).join('');
-        updateUI();
-    }
-
-    function updateUI() {
-        const select = document.getElementById('serviceSelect');
-        if (select.value) {
-            document.getElementById('dashPrice').innerText = '$' + select.value;
-        }
-    }
-
-    function copyBTC() {
-        navigator.clipboard.writeText(document.getElementById('btcAddress').innerText);
-        alert("BTC Wallet Copied!");
-    }
-
-    function showFileName() {
-        const file = document.getElementById('fileInput').files[0];
-        document.getElementById('fileName').innerText = file ? file.name : "No file selected";
-    }
-
-    function handleOrder(e) {
-        e.preventDefault();
-        const sel = document.getElementById('serviceSelect');
-        const model = sel.options[sel.selectedIndex].text;
-        const imei = document.getElementById('imeiInput').value;
-        const price = sel.value;
-        const orderId = "#GSM" + Math.floor(Math.random() * 10000);
-
-        const msg = `👑 *NEW VIP ORDER*%0A%0A` +
-                    `🆔 *Order:* ${orderId}%0A` +
-                    `🔹 *Service:* ${model}%0A` +
-                    `🆔 *IMEI:* ${imei}%0A` +
-                    `💰 *Price:* $${price}%0A%0A` +
-                    `💳 *Payment:* Manual Bitcoin%0A%0A` +
-                    `⚠️ _Please send your payment receipt image now!_`;
-
-        window.location.href = `https://t.me/gsmshtool?text=${msg}`;
-    }
-
-    // تشغيل القائمة عند التحميل
-    switchCat('apple');
-</script>
-        ],
-        android: [
-            { n: "Samsung FRP All Models (Instant)", p: 15 },
-            { n: "Samsung S24/S23 Ultra FRP", p: 25 },
-            { n: "Xiaomi Mi Account Remove", p: 30 },
-            { n: "Huawei ID Removal (Server)", p: 45 },
-            { n: "Oppo / Realme FRP Bypass", p: 20 },
-            { n: "Android Network Unlock VIP", p: 45 }
-        ]
-    };
-
-    function switchCat(cat) {
-        document.getElementById('tabApple').classList.toggle('active', cat === 'apple');
-        document.getElementById('tabAndroid').classList.toggle('active', cat === 'android');
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('tab' + cat.charAt(0).toUpperCase() + cat.slice(1)).classList.add('active');
         const select = document.getElementById('serviceSelect');
         select.innerHTML = data[cat].map(item => `<option value="${item.p}">${item.n} - $${item.p}</option>`).join('');
         updateUI();
@@ -239,46 +89,20 @@
         document.getElementById('dashPrice').innerText = '$' + document.getElementById('serviceSelect').value;
     }
 
-    function copyBTC() {
-        navigator.clipboard.writeText(document.getElementById('btcAddress').innerText);
-        alert("BTC Wallet Copied!");
-    }
-
-    function showFileName() {
-        const file = document.getElementById('fileInput').files[0];
-        document.getElementById('fileName').innerText = file ? file.name : "No file selected";
-    }
-
     function handleOrder(e) {
         e.preventDefault();
         const sel = document.getElementById('serviceSelect');
-        const model = sel.options[sel.selectedIndex].text;
-        const imei = document.getElementById('imeiInput').value;
-        const price = sel.value;
-        const orderId = "#GSM" + Math.floor(Math.random() * 10000);
-
-        // 1. حفظ الطلب في ذاكرة المتصفح ليظهر في الداشبورد
-        const newOrder = { id: orderId, service: model, imei: imei, price: price };
-        let orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
-        orders.push(newOrder);
-        localStorage.setItem('gsm_orders', JSON.stringify(orders));
-
-        // 2. تجهيز الرسالة لتليجرام
-        const user = localStorage.getItem('gsm_user') || 'Unknown User';
-        const msg = `👑 *NEW VIP ORDER*%0A%0A` +
-                    `🆔 *Order:* ${orderId}%0A` +
-                    `👤 *Client:* ${user}%0A` +
-                    `🔹 *Service:* ${model}%0A` +
-                    `🆔 *IMEI:* ${imei}%0A` +
-                    `💰 *Price:* $${price}%0A%0A` +
-                    `💳 *Payment:* Manual Bitcoin%0A%0A` +
-                    `⚠️ _Please send your payment receipt image now!_`;
-
-        // 3. التوجه لتليجرام
-        window.location.href = `https://t.me/gsmshtool?text=${msg}`;
+        const orderData = {
+            id: "#GSM" + Math.floor(Math.random() * 10000),
+            service: sel.options[sel.selectedIndex].text,
+            imei: document.getElementById('imeiInput').value,
+            price: sel.value,
+            status: "Waiting Payment"
+        };
+        localStorage.setItem('currentOrder', JSON.stringify(orderData));
+        window.location.href = "checkout.html";
     }
-
-    switchCat('apple');
+    switchCat('iphone');
 </script>
 </body>
 </html>
