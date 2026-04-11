@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --vip-gold: #c5a059; --primary: #3b82f6; --success: #22c55e; --dark-bg: #05070a; }
+        :root { --vip-gold: #c5a059; --primary: #3b82f6; --btc: #f7931a; --success: #22c55e; --dark-bg: #05070a; }
         body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; padding: 20px; }
         .glass-card { max-width: 850px; margin: 20px auto; padding: 35px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
         .header-vip { text-align: center; margin-bottom: 30px; }
@@ -15,11 +15,12 @@
         .live-dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 20px; border-left: 4px solid var(--vip-gold); }
         .stat-label { font-size: 0.7rem; color: #666; text-transform: uppercase; display: block; }
         .stat-value { font-weight: 900; font-size: 1.1rem; color: var(--success); }
-        .category-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
-        .tab-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 12px; color: #888; cursor: pointer; text-align: center; font-weight: bold; font-size: 0.8rem; }
+        .category-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        .tab-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 12px; color: #888; cursor: pointer; text-align: center; font-weight: bold; }
         .tab-btn.active { border-color: var(--vip-gold); color: var(--vip-gold); background: rgba(197, 160, 89, 0.1); }
-        .premium-select, .premium-input { width: 100%; padding: 16px; background: #111; border: 1px solid #333; border-radius: 15px; color: white; margin-bottom: 20px; outline: none; }
-        .buy-btn { width: 100%; padding: 20px; background: linear-gradient(90deg, #c5a059, #8e6d31); border: none; border-radius: 15px; font-weight: 900; cursor: pointer; text-transform: uppercase; color: #000; font-size: 1.1rem; }
+        .premium-select, .premium-input { width: 100%; padding: 16px; background: #111; border: 1px solid #333; border-radius: 15px; color: white; margin-bottom: 20px; }
+        .btc-section { background: rgba(247, 147, 26, 0.05); padding: 20px; border-radius: 20px; border: 1px solid rgba(247, 147, 26, 0.2); }
+        .buy-btn { width: 100%; padding: 20px; background: linear-gradient(90deg, #c5a059, #8e6d31); border: none; border-radius: 15px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -27,59 +28,48 @@
 <div class="glass-card">
     <div class="header-vip">
         <h1>VIP CONTROL PANEL</h1>
-        <p style="color: #666;">GSM SHTOOL OFFICIAL APPLE & ANDROID SERVER</p>
+        <p style="color: #666;">GSM SHTOOL OFFICIAL SERVER</p>
     </div>
 
     <div class="live-dashboard">
         <div class="stat-box"><span class="stat-label">Server Status</span><span class="stat-value">ACTIVE</span></div>
-        <div class="stat-box"><span class="stat-label">Price</span><span class="stat-value" id="dashPrice">$0</span></div>
-        <div class="stat-box"><span class="stat-label">Time</span><span class="stat-value">1-24H</span></div>
+        <div class="stat-box"><span class="stat-label">Total Price</span><span class="stat-value" id="dashPrice">$0</span></div>
+        <div class="stat-box"><span class="stat-label">Security</span><span class="stat-value">SSL-256</span></div>
     </div>
 
     <form onsubmit="handleOrder(event)">
-        <label style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 10px; display: block;">SELECT CATEGORY</label>
         <div class="category-tabs">
-            <div id="tabIphone" class="tab-btn active" onclick="switchCat('iphone')">iPhone</div>
-            <div id="tabIpad" class="tab-btn" onclick="switchCat('ipad')">iPad/Watch</div>
+            <div id="tabApple" class="tab-btn active" onclick="switchCat('apple')">Apple</div>
             <div id="tabAndroid" class="tab-btn" onclick="switchCat('android')">Android</div>
         </div>
 
         <select id="serviceSelect" class="premium-select" onchange="updateUI()" required></select>
-        <input type="text" id="imeiInput" class="premium-input" placeholder="Enter IMEI / Serial Number" required>
+        <input type="text" id="imeiInput" class="premium-input" placeholder="Enter IMEI or Serial Number" required>
 
-        <button type="submit" class="buy-btn">Confirm Order & Payment <i class="fas fa-bolt"></i></button>
+        <div class="btc-section">
+            <p style="color: var(--btc); font-weight: bold;">Manual BTC Payment: <br><small>bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</small></p>
+        </div>
+
+        <button type="submit" class="buy-btn">Confirm Order & Proceed <i class="fas fa-bolt"></i></button>
     </form>
 </div>
 
 <script>
     const data = {
-        iphone: [
-            {n:"iPhone 6/6+/6s/6s+", p:25}, {n:"iPhone SE", p:30}, {n:"iPhone 7/7+", p:30},
-            {n:"iPhone 8/8+/X", p:35}, {n:"iPhone XR/XS", p:40}, {n:"iPhone XS Max/11", p:45},
-            {n:"iPhone 11 Pro", p:55}, {n:"iPhone 11 Pro Max", p:75}, {n:"iPhone 12/12 mini", p:90},
-            {n:"iPhone 12 Pro", p:95}, {n:"iPhone 12 Pro Max", p:100}, {n:"iPhone 13/13 mini", p:115},
-            {n:"iPhone 13 Pro", p:135}, {n:"iPhone 13 Pro Max", p:150}, {n:"iPhone 14/14+", p:160},
-            {n:"iPhone 14 Pro", p:165}, {n:"iPhone 14 Pro Max", p:175}, {n:"iPhone 15/15+", p:165},
-            {n:"iPhone 15 Pro", p:180}, {n:"iPhone 15 Pro Max", p:190}, {n:"iPhone 16/16e/16+", p:195},
-            {n:"iPhone 16 Pro", p:195}, {n:"iPhone 16 Pro Max", p:205}, {n:"iPhone 17/17 Air", p:200},
-            {n:"iPhone 17 Pro", p:200}, {n:"iPhone 17 Pro Max", p:210}
-        ],
-        ipad: [
-            {n:"iPad 8", p:50}, {n:"iPad 9", p:55}, {n:"iPad 10", p:65}, {n:"iPad Air 4", p:80},
-            {n:"iPad Air 5", p:85}, {n:"iPad Pro 9.7/10.5", p:140}, {n:"iPad Pro 11 (1-4)", p:140},
-            {n:"iPad Pro 12.9 (1-6)", p:150}, {n:"Watch S4", p:70}, {n:"Watch S5", p:75},
-            {n:"Watch S6", p:80}, {n:"Watch S7", p:90}, {n:"Watch S8", p:100}, {n:"Watch S9", p:105},
-            {n:"Watch S10/11", p:110}, {n:"Watch Ultra 1", p:130}, {n:"Watch Ultra 2", p:140}, {n:"Watch Ultra 3", p:145}
+        apple: [
+            { n: "iPhone 6/6s Series", p: 25 }, { n: "iPhone 7/7 Plus", p: 30 }, { n: "iPhone 8/X", p: 35 },
+            { n: "iPhone XR/XS", p: 40 }, { n: "iPhone 11 Series", p: 45 }, { n: "iPhone 12 Series", p: 90 },
+            { n: "iPhone 13 Series", p: 120 }, { n: "iPhone 14 Series", p: 160 }, { n: "iPhone 15 Series", p: 175 },
+            { n: "iPhone 16 Series", p: 195 }, { n: "iPhone 17 Series", p: 210 }, { n: "iPad All Series", p: 140 }
         ],
         android: [
-            {n:"Samsung All FRP", p:15}, {n:"Xiaomi Mi Account", p:30}, {n:"Huawei ID Remove", p:45},
-            {n:"Oppo/Realme Unlock", p:25}, {n:"Network Unlock VIP", p:40}
+            { n: "Samsung FRP All", p: 15 }, { n: "Xiaomi Mi Account", p: 30 }, { n: "Huawei ID Server", p: 45 }
         ]
     };
 
     function switchCat(cat) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('tab' + cat.charAt(0).toUpperCase() + cat.slice(1)).classList.add('active');
+        document.getElementById('tabApple').classList.toggle('active', cat === 'apple');
+        document.getElementById('tabAndroid').classList.toggle('active', cat === 'android');
         const select = document.getElementById('serviceSelect');
         select.innerHTML = data[cat].map(item => `<option value="${item.p}">${item.n} - $${item.p}</option>`).join('');
         updateUI();
@@ -97,12 +87,12 @@
             service: sel.options[sel.selectedIndex].text,
             imei: document.getElementById('imeiInput').value,
             price: sel.value,
-            status: "Waiting Payment"
+            status: "Processing"
         };
         localStorage.setItem('currentOrder', JSON.stringify(orderData));
-        window.location.href = "checkout.html";
+        window.location.href = "processing.html"; // سينقلنا لصفحة المعالجة
     }
-    switchCat('iphone');
+    switchCat('apple');
 </script>
 </body>
 </html>
