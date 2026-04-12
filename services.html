@@ -1,91 +1,97 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>طلب خدمة</title>
-<style>
-body {
-    background:#0d0d0d;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-}
-.container {
-    margin-top:50px;
-}
-input, button {
-    padding:12px;
-    margin:10px;
-    border-radius:10px;
-    border:none;
-    width:80%;
-}
-button {
-    background:#2d6cdf;
-    color:white;
-    font-size:16px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prices & Models - GSM SHTOOL</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
+    <nav>
+        <div class="logo">GSM <span>SHTOOL</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="order.html">Place Order</a>
+            <a href="tools.html">Free Tools</a>
+        </div>
+    </nav>
 
-<div class="container">
-    <h2>طلب فتح iPhone</h2>
+    <div class="container">
+        <h1 style="text-align: center; margin: 30px 0; color: var(--primary);">Full Price List</h1>
 
-    <input type="text" id="device" value="iPhone 11 Pro" readonly>
-    <input type="text" id="serial" placeholder="أدخل الرقم التسلسلي">
+        <div class="price-list">
+            <h2 style="color: var(--secondary); border-bottom: 2px solid var(--secondary); padding-bottom: 10px;">
+                <i class="fab fa-apple"></i> iPhone Official iCloud Unlock
+            </h2>
+            <div class="services-grid">
+                <div class="price-column">
+                    <div class="price-item"><span>iPhone 6 / 6s Series</span> <span>$25</span></div>
+                    <div class="price-item"><span>iPhone 7 / 7 Plus</span> <span>$30</span></div>
+                    <div class="price-item"><span>iPhone 8 / 8 Plus / X</span> <span>$35</span></div>
+                    <div class="price-item"><span>iPhone XR / XS</span> <span>$40</span></div>
+                    <div class="price-item"><span>iPhone 11</span> <span>$45</span></div>
+                    <div class="price-item"><span>iPhone 11 Pro Max</span> <span>$75</span></div>
+                    <div class="price-item"><span>iPhone 12 / 12 mini</span> <span>$90</span></div>
+                    <div class="price-item"><span>iPhone 12 Pro Max</span> <span>$100</span></div>
+                </div>
+                <div class="price-column">
+                    <div class="price-item"><span>iPhone 13 Series</span> <span>$115 - $150</span></div>
+                    <div class="price-item"><span>iPhone 14 Series</span> <span>$160 - $175</span></div>
+                    <div class="price-item"><span>iPhone 15 Series</span> <span>$165 - $190</span></div>
+                    <div class="price-item"><span>iPhone 16 Series</span> <span>$190 - $205</span></div>
+                    <div class="price-item"><span>iPhone 17 Series</span> <span>$195 - $210</span></div>
+                </div>
+            </div>
+        </div>
 
-    <button onclick="processOrder()" id="pay-btn">الدفع الآن</button>
+        <div class="price-list">
+            <h2 style="color: #00ff88; border-bottom: 2px solid #00ff88; padding-bottom: 10px;">
+                <i class="fas fa-tablet-alt"></i> iPad Unlock
+            </h2>
+            <div class="services-grid">
+                <div class="price-column">
+                    <div class="price-item"><span>iPad 8 / 9 / 10</span> <span>$50 - $65</span></div>
+                    <div class="price-item"><span>iPad Air 4 / 5</span> <span>$80 - $85</span></div>
+                </div>
+                <div class="price-column">
+                    <div class="price-item"><span>iPad Pro 11 (1-4)</span> <span>$140</span></div>
+                    <div class="price-item"><span>iPad Pro 12.9 (1-6)</span> <span>$150</span></div>
+                </div>
+            </div>
+        </div>
 
-    <p id="status"></p>
-</div>
+        <div class="price-list">
+            <h2 style="color: #ffcc00; border-bottom: 2px solid #ffcc00; padding-bottom: 10px;">
+                <i class="fas fa-clock"></i> Apple Watch
+            </h2>
+            <div class="services-grid">
+                <div class="price-column">
+                    <div class="price-item"><span>Series 4 / 5</span> <span>$50 - $60</span></div>
+                    <div class="price-item"><span>Series 6 / 7 / 8</span> <span>$80 - $90</span></div>
+                </div>
+                <div class="price-column">
+                    <div class="price-item"><span>Ultra 1 / 2 / 3</span> <span>$110 - $120</span></div>
+                    <div class="price-item"><span>Series 10 / 11</span> <span>$100</span></div>
+                </div>
+            </div>
+        </div>
 
-<script>
-function processOrder() {
-
-    const btn = document.getElementById("pay-btn");
-    btn.disabled = true;
-
-    const device = document.getElementById("device").value;
-    const serial = document.getElementById("serial").value || "غير مدخل";
-
-    const price = 55;
-    const amountBTC = 0.001;
-
-    const address = "bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9";
-
-    const orderId = "ORD-" + Date.now();
-
-    // حفظ الطلب مؤقتًا
-    localStorage.setItem("orderId", orderId);
-
-    // رسالة تيليجرام
-    const message = `
-📦 طلب جديد
-
-🆔 ${orderId}
-📱 ${device}
-💰 ${price}$
-🔢 ${serial}
-
-💳 ${address}
-`;
-
-    // إرسال تيليجرام
-    fetch("https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            chat_id: "YOUR_CHAT_ID",
-            text: message
-        })
-    });
-
-    // الانتقال لصفحة الدفع
-    window.location.href = "payment.html";
-}
-</script>
-
+        <div class="price-list" style="margin-bottom: 50px;">
+            <h2 style="color: #3ddc84; border-bottom: 2px solid #3ddc84; padding-bottom: 10px;">
+                <i class="fab fa-android"></i> Android Services
+            </h2>
+            <div class="services-grid">
+                <div class="price-item" style="width: 100%;"><span>FRP Bypass</span> <span>$15</span></div>
+                <div class="price-item" style="width: 100%;"><span>Screen Lock Removal</span> <span>$20</span></div>
+                <div class="price-item" style="width: 100%;"><span>MI Account Unlock</span> <span>$25</span></div>
+                <div class="price-item" style="width: 100%;"><span>Huawei ID Unlock</span> <span>$30</span></div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 50px;">
+            <a href="order.html" class="btn btn-primary">Go to Order Form</a>
+        </div>
+    </div>
 </body>
 </html>
