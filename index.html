@@ -1,297 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL | Professional Software Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #3b82f6;
-            --accent: #60a5fa;
-            --dark-bg: #070b14;
-            --card-bg: rgba(15, 23, 42, 0.8);
-            --gold: #fbbf24;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at top, #1e293b 0%, #070b14 100%);
-            color: #f8fafc;
-            margin: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        header {
-            background: rgba(7, 11, 20, 0.8);
-            backdrop-filter: blur(15px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 15px 0;
-        }
-
-        .header-flex { display: flex; justify-content: space-between; align-items: center; }
-        
-        .logo h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            margin: 0;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 0 60px;
-        }
-
-        .hero h2 { 
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem; 
-            margin-bottom: 20px; 
-            font-weight: 900; 
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-        .hero p { color: #94a3b8; font-size: 1.25rem; max-width: 750px; margin: 0 auto; font-weight: 300; }
-
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .security-alert {
-            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), transparent);
-            border-left: 4px solid var(--primary);
-            padding: 12px 25px;
-            border-radius: 50px;
-            margin-bottom: 40px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .service-card {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            padding: 50px 35px;
-            border-radius: 24px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.25);
-        }
-
-        .service-card i { font-size: 3.5rem; margin-bottom: 25px; display: block; }
-
-        .buy-btn {
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            color: white;
-            border: none;
-            padding: 18px 30px;
-            border-radius: 12px;
-            font-weight: 900;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Orbitron', sans-serif;
-            margin-top: 20px;
-        }
-
-        .buy-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
-
-        .info-section { margin-top: 100px; }
-        .section-title {
-            border-left: 5px solid var(--primary);
-            padding-left: 20px;
-            margin-bottom: 40px;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .article-content h3 { color: var(--primary); margin-top: 30px; }
-
-        .free-tool-tag {
-            background: var(--gold);
-            color: black;
-            padding: 3px 12px;
-            border-radius: 5px;
-            font-size: 0.75rem;
-            font-weight: 900;
-            margin-right: 12px;
-            text-transform: uppercase;
-            vertical-align: middle;
-        }
-
-        footer {
-            margin-top: 120px;
-            padding: 80px 0;
-            background: #030712;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .floating-support {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #229ED9;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 900;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .floating-support:hover { transform: translateY(-5px); background: #29b6f6; }
-
-        @media (max-width: 768px) {
-            .hero h2 { font-size: 2.2rem; }
-            .header-flex { flex-direction: column; gap: 20px; }
-            .floating-support { width: 80%; justify-content: center; left: 10%; right: auto; }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>GSM SHTOOL | Unlock Services</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <div class="container header-flex">
-        <div class="logo">
-            <h1>GSM <span style="color: #fff;">SHTOOL</span></h1>
-        </div>
-        <nav>
-            <a href="#" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-right: 25px;">HOME</a>
-            <a href="https://t.me/gsmshtool" style="color: #fff; text-decoration: none;">SUPPORT</a>
-        </nav>
-    </div>
-</header>
-
 <div class="container">
-    
-    <section class="hero">
-        <div class="security-alert">
-            <i class="fas fa-shield-alt"></i> Active Protection: 100% Secure Servers
-        </div>
-        <h2>The New Gen of Software Services</h2>
-        <p>Providing advanced technical solutions for account unlocking and system bypassing with global standards of security and speed.</p>
-    </section>
 
-    <div class="services-grid">
-        <div class="service-card">
-            <i class="fab fa-apple" style="color: #fff;"></i>
-            <h3>Official iCloud Unlock</h3>
-            <p>Premium support for iPhone, iPad, and Mac. Competitive pricing with rapid turnaround times.</p>
-            <button class="buy-btn">Price List</button>
-        </div>
+<h1>GSM SHTOOL</h1>
+<p>Professional Unlock Services Without Data Loss</p>
 
-        <div class="service-card">
-            <i class="fab fa-android" style="color: #22c55e;"></i>
-            <h3>FRP Google Bypass</h3>
-            <p>Full support for Samsung, Xiaomi, and Huawei. Instant processing starting at just $15.</p>
-            <button class="buy-btn">Order Now</button>
-        </div>
+<h2>🔓 Our Services</h2>
 
-        <div class="service-card">
-            <i class="fas fa-laptop-code" style="color: var(--gold);"></i>
-            <h3>MDM Lock Removal</h3>
-            <p>Final solution for corporate restrictions on iOS devices without any data loss.</p>
-            <button class="buy-btn">View Details</button>
-        </div>
-    </div>
+<a href="order.html">Order Now</a> |
+<a href="tools.html">Free Tools</a>
 
-    <section class="info-section">
-        <div class="glass-card">
-            <h2 class="section-title"><i class="fas fa-book-open"></i> Service Guide & Free Resources</h2>
-            
-            <div class="article-content">
-                <h3>Why Choose GSM SHTOOL?</h3>
-                <p>In a world full of software challenges, we stand out as your trusted tech partner. We don't just provide a service; we offer stability for your devices under the supervision of elite programmers.</p>
-                
-                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+<hr>
 
-                <h3><span class="free-tool-tag">FREE</span> Expert Toolbox</h3>
-                <p>We believe in sharing knowledge, which is why we provide a dedicated section for tools every software technician needs:</p>
-                <ul style="list-style: none; padding: 0; margin-top: 20px;">
-                    <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Free Serial & IMEI Check Tools.</li>
-                    <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Direct links for Official & Modified Firmwares.</li>
-                    <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i> Exclusive Video Tutorials for our Telegram members.</li>
-                </ul>
+<h2>📱 iPhone Unlock (Official iCloud)</h2>
 
-                <h3 style="margin-top: 40px;">Global Integration</h3>
-                <p>Our platform supports Crypto payments to ensure seamless international transactions, featuring a real-time live tracking system for your order status.</p>
-            </div>
-        </div>
-    </section>
+<ul>
+<li>iPhone 6 → $25</li>
+<li>iPhone 6 Plus → $25</li>
+<li>iPhone 6s → $25</li>
+<li>iPhone 6s Plus → $25</li>
+<li>iPhone SE → $30</li>
+<li>iPhone 7 → $30</li>
+<li>iPhone 7 Plus → $30</li>
+<li>iPhone 8 → $35</li>
+<li>iPhone 8 Plus → $35</li>
+<li>iPhone X → $35</li>
+<li>iPhone XR → $40</li>
+<li>iPhone XS → $40</li>
+<li>iPhone XS Max → $45</li>
+<li>iPhone 11 → $45</li>
+<li>iPhone 11 Pro → $55</li>
+<li>iPhone 11 Pro Max → $75</li>
+<li>iPhone 12 → $90</li>
+<li>iPhone 12 mini → $90</li>
+<li>iPhone 12 Pro → $95</li>
+<li>iPhone 12 Pro Max → $100</li>
+<li>iPhone 13 → $115</li>
+<li>iPhone 13 mini → $120</li>
+<li>iPhone 13 Pro → $135</li>
+<li>iPhone 13 Pro Max → $150</li>
+<li>iPhone 14 → $160</li>
+<li>iPhone 14 Plus → $160</li>
+<li>iPhone 14 Pro → $165</li>
+<li>iPhone 14 Pro Max → $175</li>
+<li>iPhone 15 → $165</li>
+<li>iPhone 15 Plus → $175</li>
+<li>iPhone 15 Pro → $180</li>
+<li>iPhone 15 Pro Max → $190</li>
+<li>iPhone 16 → $190</li>
+<li>iPhone 16 Plus → $195</li>
+<li>iPhone 16 Pro → $195</li>
+<li>iPhone 16 Pro Max → $205</li>
+<li>iPhone 16e → $195</li>
+<li>iPhone 17 → $195</li>
+<li>iPhone 17 Pro → $200</li>
+<li>iPhone 17 Pro Max → $210</li>
+<li>iPhone 17 Air → $200</li>
+</ul>
+
+<h2>📱 iPad Unlock</h2>
+
+<ul>
+<li>iPad 8 → $50</li>
+<li>iPad 9 → $55</li>
+<li>iPad 10 → $65</li>
+<li>Air 4 → $80</li>
+<li>Air 5 → $85</li>
+<li>Pro 9.7 → $140</li>
+<li>Pro 10.5 → $140</li>
+<li>Pro 11 (1-4) → $140</li>
+<li>Pro 12.9 (1-6) → $150</li>
+</ul>
+
+<h2>⌚ Apple Watch</h2>
+
+<ul>
+<li>Series 4 → $50</li>
+<li>Series 5 → $60</li>
+<li>Series 6 → $80</li>
+<li>Series 7 → $80</li>
+<li>Series 8 → $90</li>
+<li>Series 9 → $100</li>
+<li>Series 10/11 → $100</li>
+<li>Ultra 1 → $110</li>
+<li>Ultra 2 → $120</li>
+<li>Ultra 3 → $120</li>
+</ul>
+
+<h2>🤖 Android Services</h2>
+
+<ul>
+<li>FRP Bypass → $15</li>
+<li>Screen Lock Removal → $20</li>
+<li>MI Account Unlock → $25</li>
+<li>Huawei ID Unlock → $30</li>
+</ul>
 
 </div>
-
-<footer>
-    <div class="container">
-        <p style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 15px;">GSM <span style="color: var(--primary);">SHTOOL</span></p>
-        <p style="color: #64748b; font-size: 0.9rem;">Copyright © 2026 - Developed by Professional Dev Team</p>
-        <div style="margin-top: 30px; opacity: 0.6;">
-            <i class="fab fa-cc-visa" style="font-size: 2rem; margin: 0 15px;"></i>
-            <i class="fab fa-cc-mastercard" style="font-size: 2rem; margin: 0 15px;"></i>
-            <i class="fab fa-bitcoin" style="font-size: 2rem; margin: 0 15px;"></i>
-        </div>
-    </div>
-</footer>
-
-<a href="https://t.me/gsmshtool" class="floating-support" target="_blank">
-    <i class="fab fa-telegram-plane"></i>
-    <span>Live Support</span>
-</a>
 
 </body>
 </html>
