@@ -6,7 +6,13 @@
     <title>Place Order | GSM SHTOOL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --p: #00d2ff; --s: #9d50bb; --bg: #050507; --card: #0f111a; }
+        :root { 
+            --p: #00d2ff; 
+            --s: #9d50bb; 
+            --bg: #050507; 
+            --card: #0f111a; 
+            --neon: #00ff88; /* تم إضافة اللون النيوني للمحفظة */
+        }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
         
         .order-card { 
@@ -55,6 +61,28 @@
 
         .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
         
+        /* قسم معلومات الدفع */
+        .payment-info {
+            margin-top: 30px; 
+            padding: 15px; 
+            border: 1px solid #1f2235; 
+            border-radius: 10px; 
+            background: rgba(0,210,255,0.05);
+            text-align: left;
+        }
+
+        .wallet-address {
+            background: #000; 
+            padding: 10px; 
+            border-radius: 5px; 
+            font-size: 11px; 
+            color: var(--neon); 
+            word-break: break-all; 
+            font-family: monospace;
+            margin-top: 10px;
+            border: 1px solid #1f2235;
+        }
+
         .back-link { display: block; text-align: center; margin-top: 20px; color: #555; text-decoration: none; font-size: 13px; transition: 0.3s; }
         .back-link:hover { color: var(--p); }
 
@@ -133,6 +161,14 @@
         </select>
 
         <button class="btn-submit" onclick="sendOrder()">Submit Order</button>
+
+        <div class="payment-info">
+            <h4 style="color:var(--p); margin:0 0 10px 0;"><i class="fab fa-bitcoin"></i> Payment Information</h4>
+            <p style="font-size:11px; color:#888; margin: 0;">Pay via BTC & Send screenshot to <b>@gsmshtool</b></p>
+            <div class="wallet-address">
+                bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
+            </div>
+        </div>
         
         <a href="index.html" class="back-link">← Return to Price List</a>
     </div>
@@ -148,10 +184,8 @@
                 return;
             }
 
-            // توليد رقم طلب عشوائي
             const orderId = "GSM-" + Math.floor(Math.random() * 90000 + 10000);
 
-            // حفظ بيانات الطلب في الـ LocalStorage ليتم قراءتها في صفحة المعالجة والتتبع
             const orderData = {
                 id: orderId,
                 customer: name,
@@ -162,7 +196,6 @@
 
             localStorage.setItem("currentOrder", JSON.stringify(orderData));
 
-            // توجيه المستخدم لصفحة المعالجة
             window.location.href = "processing.html";
         }
     </script>
