@@ -1,98 +1,170 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Control Panel - GSM SHTOOL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Place Order | GSM SHTOOL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --vip-gold: #c5a059; --primary: #3b82f6; --btc: #f7931a; --success: #22c55e; --dark-bg: #05070a; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; padding: 20px; }
-        .glass-card { max-width: 850px; margin: 20px auto; padding: 35px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
-        .header-vip { text-align: center; margin-bottom: 30px; }
-        .header-vip h1 { font-family: 'Oswald', sans-serif; color: var(--vip-gold); font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
-        .live-dashboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 20px; border-left: 4px solid var(--vip-gold); }
-        .stat-label { font-size: 0.7rem; color: #666; text-transform: uppercase; display: block; }
-        .stat-value { font-weight: 900; font-size: 1.1rem; color: var(--success); }
-        .category-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
-        .tab-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 12px; color: #888; cursor: pointer; text-align: center; font-weight: bold; }
-        .tab-btn.active { border-color: var(--vip-gold); color: var(--vip-gold); background: rgba(197, 160, 89, 0.1); }
-        .premium-select, .premium-input { width: 100%; padding: 16px; background: #111; border: 1px solid #333; border-radius: 15px; color: white; margin-bottom: 20px; }
-        .btc-section { background: rgba(247, 147, 26, 0.05); padding: 20px; border-radius: 20px; border: 1px solid rgba(247, 147, 26, 0.2); }
-        .buy-btn { width: 100%; padding: 20px; background: linear-gradient(90deg, #c5a059, #8e6d31); border: none; border-radius: 15px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #050507; --card: #0f111a; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        
+        .order-card { 
+            background: var(--card); 
+            border: 1px solid #1f2235; 
+            padding: 30px; 
+            border-radius: 20px; 
+            width: 100%; 
+            max-width: 500px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 { color: var(--p); margin-top: 0; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
+        label { display: block; margin-top: 15px; font-size: 13px; color: #888; margin-left: 5px; }
+
+        input, select { 
+            width: 100%; 
+            padding: 14px; 
+            margin: 8px 0; 
+            background: #161b22; 
+            border: 1px solid #30363d; 
+            color: white; 
+            border-radius: 10px; 
+            box-sizing: border-box; 
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus { border-color: var(--p); box-shadow: 0 0 8px rgba(0,210,255,0.2); }
+
+        .btn-submit { 
+            background: linear-gradient(45deg, var(--p), var(--s)); 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            width: 100%; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 25px; 
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #555; text-decoration: none; font-size: 13px; transition: 0.3s; }
+        .back-link:hover { color: var(--p); }
+
+        optgroup { background: #0f111a; color: var(--p); font-style: normal; }
+        option { background: #161b22; color: white; }
     </style>
 </head>
 <body>
 
-<div class="glass-card">
-    <div class="header-vip">
-        <h1>VIP CONTROL PANEL</h1>
-        <p style="color: #666;">GSM SHTOOL OFFICIAL SERVER</p>
+    <div class="order-card">
+        <h2><i class="fas fa-shopping-cart"></i> New Order</h2>
+        
+        <label>Customer Name</label>
+        <input type="text" id="name" placeholder="Enter your full name">
+
+        <label>Device IMEI / Serial Number</label>
+        <input type="text" id="device" placeholder="Ex: 3567XXXXXXXXXXX">
+
+        <label>Select Service & Model</label>
+        <select id="service">
+            <optgroup label="iPhone Official Unlock">
+                <option value="iPhone 6 ($25)">iPhone 6 ($25)</option>
+                <option value="iPhone 6 Plus ($25)">iPhone 6 Plus ($25)</option>
+                <option value="iPhone 6s ($25)">iPhone 6s ($25)</option>
+                <option value="iPhone 6s Plus ($25)">iPhone 6s Plus ($25)</option>
+                <option value="iPhone SE ($30)">iPhone SE ($30)</option>
+                <option value="iPhone 7 ($30)">iPhone 7 ($30)</option>
+                <option value="iPhone 7 Plus ($30)">iPhone 7 Plus ($30)</option>
+                <option value="iPhone 8 ($35)">iPhone 8 ($35)</option>
+                <option value="iPhone 8 Plus ($35)">iPhone 8 Plus ($35)</option>
+                <option value="iPhone X ($35)">iPhone X ($35)</option>
+                <option value="iPhone XR ($40)">iPhone XR ($40)</option>
+                <option value="iPhone XS ($40)">iPhone XS ($40)</option>
+                <option value="iPhone XS Max ($45)">iPhone XS Max ($45)</option>
+                <option value="iPhone 11 ($45)">iPhone 11 ($45)</option>
+                <option value="iPhone 11 Pro ($55)">iPhone 11 Pro ($55)</option>
+                <option value="iPhone 11 Pro Max ($75)">iPhone 11 Pro Max ($75)</option>
+                <option value="iPhone 12 ($90)">iPhone 12 ($90)</option>
+                <option value="iPhone 12 mini ($90)">iPhone 12 mini ($90)</option>
+                <option value="iPhone 12 Pro ($95)">iPhone 12 Pro ($95)</option>
+                <option value="iPhone 12 Pro Max ($100)">iPhone 12 Pro Max ($100)</option>
+                <option value="iPhone 13 ($115)">iPhone 13 ($115)</option>
+                <option value="iPhone 13 mini ($120)">iPhone 13 mini ($120)</option>
+                <option value="iPhone 13 Pro ($135)">iPhone 13 Pro ($135)</option>
+                <option value="iPhone 13 Pro Max ($150)">iPhone 13 Pro Max ($150)</option>
+                <option value="iPhone 14 ($160)">iPhone 14 ($160)</option>
+                <option value="iPhone 14 Plus ($160)">iPhone 14 Plus ($160)</option>
+                <option value="iPhone 14 Pro ($165)">iPhone 14 Pro ($165)</option>
+                <option value="iPhone 14 Pro Max ($175)">iPhone 14 Pro Max ($175)</option>
+                <option value="iPhone 15 ($165)">iPhone 15 ($165)</option>
+                <option value="iPhone 15 Plus ($175)">iPhone 15 Plus ($175)</option>
+                <option value="iPhone 15 Pro ($180)">iPhone 15 Pro ($180)</option>
+                <option value="iPhone 15 Pro Max ($190)">iPhone 15 Pro Max ($190)</option>
+                <option value="iPhone 16 ($190)">iPhone 16 ($190)</option>
+                <option value="iPhone 16 Plus ($195)">iPhone 16 Plus ($195)</option>
+                <option value="iPhone 16 Pro ($195)">iPhone 16 Pro ($195)</option>
+                <option value="iPhone 16 Pro Max ($205)">iPhone 16 Pro Max ($205)</option>
+                <option value="iPhone 16e ($195)">iPhone 16e ($195)</option>
+                <option value="iPhone 17 ($195)">iPhone 17 ($195)</option>
+                <option value="iPhone 17 Pro ($200)">iPhone 17 Pro ($200)</option>
+                <option value="iPhone 17 Pro Max ($210)">iPhone 17 Pro Max ($210)</option>
+                <option value="iPhone 17 Air ($200)">iPhone 17 Air ($200)</option>
+            </optgroup>
+            <optgroup label="iPad Models">
+                <option value="iPad 8 ($50)">iPad 8 ($50)</option>
+                <option value="iPad 9 ($55)">iPad 9 ($55)</option>
+                <option value="iPad 10 ($65)">iPad 10 ($65)</option>
+                <option value="Air 4 ($80)">Air 4 ($80)</option>
+                <option value="Air 5 ($85)">Air 5 ($85)</option>
+                <option value="iPad Pro Series ($140+)">iPad Pro Series ($140+)</option>
+            </optgroup>
+            <optgroup label="Apple Watch">
+                <option value="Watch Series 4-9 ($50+)">Watch Series 4-9 ($50+)</option>
+                <option value="Watch Ultra 1/2/3 ($110+)">Watch Ultra 1/2/3 ($110+)</option>
+            </optgroup>
+        </select>
+
+        <button class="btn-submit" onclick="sendOrder()">Submit Order</button>
+        
+        <a href="index.html" class="back-link">← Return to Price List</a>
     </div>
 
-    <div class="live-dashboard">
-        <div class="stat-box"><span class="stat-label">Server Status</span><span class="stat-value">ACTIVE</span></div>
-        <div class="stat-box"><span class="stat-label">Total Price</span><span class="stat-value" id="dashPrice">$0</span></div>
-        <div class="stat-box"><span class="stat-label">Security</span><span class="stat-value">SSL-256</span></div>
-    </div>
+    <script>
+        function sendOrder() {
+            const name = document.getElementById("name").value;
+            const device = document.getElementById("device").value;
+            const service = document.getElementById("service").value;
 
-    <form onsubmit="handleOrder(event)">
-        <div class="category-tabs">
-            <div id="tabApple" class="tab-btn active" onclick="switchCat('apple')">Apple</div>
-            <div id="tabAndroid" class="tab-btn" onclick="switchCat('android')">Android</div>
-        </div>
+            if (!name || !device) {
+                alert("❌ Please fill in your name and IMEI!");
+                return;
+            }
 
-        <select id="serviceSelect" class="premium-select" onchange="updateUI()" required></select>
-        <input type="text" id="imeiInput" class="premium-input" placeholder="Enter IMEI or Serial Number" required>
+            // توليد رقم طلب عشوائي
+            const orderId = "GSM-" + Math.floor(Math.random() * 90000 + 10000);
 
-        <div class="btc-section">
-            <p style="color: var(--btc); font-weight: bold;">Manual BTC Payment: <br><small>bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</small></p>
-        </div>
+            // حفظ بيانات الطلب في الـ LocalStorage ليتم قراءتها في صفحة المعالجة والتتبع
+            const orderData = {
+                id: orderId,
+                customer: name,
+                device: device,
+                service: service,
+                status: "Processing 🔄"
+            };
 
-        <button type="submit" class="buy-btn">Confirm Order & Proceed <i class="fas fa-bolt"></i></button>
-    </form>
-</div>
+            localStorage.setItem("currentOrder", JSON.stringify(orderData));
 
-<script>
-    const data = {
-        apple: [
-            { n: "iPhone 6/6s Series", p: 25 }, { n: "iPhone 7/7 Plus", p: 30 }, { n: "iPhone 8/X", p: 35 },
-            { n: "iPhone XR/XS", p: 40 }, { n: "iPhone 11 Series", p: 45 }, { n: "iPhone 12 Series", p: 90 },
-            { n: "iPhone 13 Series", p: 120 }, { n: "iPhone 14 Series", p: 160 }, { n: "iPhone 15 Series", p: 175 },
-            { n: "iPhone 16 Series", p: 195 }, { n: "iPhone 17 Series", p: 210 }, { n: "iPad All Series", p: 140 }
-        ],
-        android: [
-            { n: "Samsung FRP All", p: 15 }, { n: "Xiaomi Mi Account", p: 30 }, { n: "Huawei ID Server", p: 45 }
-        ]
-    };
-
-    function switchCat(cat) {
-        document.getElementById('tabApple').classList.toggle('active', cat === 'apple');
-        document.getElementById('tabAndroid').classList.toggle('active', cat === 'android');
-        const select = document.getElementById('serviceSelect');
-        select.innerHTML = data[cat].map(item => `<option value="${item.p}">${item.n} - $${item.p}</option>`).join('');
-        updateUI();
-    }
-
-    function updateUI() {
-        document.getElementById('dashPrice').innerText = '$' + document.getElementById('serviceSelect').value;
-    }
-
-    function handleOrder(e) {
-        e.preventDefault();
-        const sel = document.getElementById('serviceSelect');
-        const orderData = {
-            id: "#GSM" + Math.floor(Math.random() * 10000),
-            service: sel.options[sel.selectedIndex].text,
-            imei: document.getElementById('imeiInput').value,
-            price: sel.value,
-            status: "Processing"
-        };
-        localStorage.setItem('currentOrder', JSON.stringify(orderData));
-        window.location.href = "processing.html"; // سينقلنا لصفحة المعالجة
-    }
-    switchCat('apple');
-</script>
+            // توجيه المستخدم لصفحة المعالجة
+            window.location.href = "processing.html";
+        }
+    </script>
 </body>
 </html>
