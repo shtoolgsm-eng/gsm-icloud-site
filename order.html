@@ -11,7 +11,7 @@
             --s: #9d50bb; 
             --bg: #050507; 
             --card: #0f111a; 
-            --neon: #00ff88; /* تم إضافة اللون النيوني للمحفظة */
+            --neon: #00ff88; 
         }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
         
@@ -42,6 +42,11 @@
             transition: 0.3s;
         }
 
+        input[type="file"] {
+            padding: 10px;
+            cursor: pointer;
+        }
+
         input:focus, select:focus { border-color: var(--p); box-shadow: 0 0 8px rgba(0,210,255,0.2); }
 
         .btn-submit { 
@@ -61,7 +66,6 @@
 
         .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
         
-        /* قسم معلومات الدفع */
         .payment-info {
             margin-top: 30px; 
             padding: 15px; 
@@ -160,7 +164,10 @@
             </optgroup>
         </select>
 
-        <button class="btn-submit" onclick="sendOrder()">Submit Order</button>
+        <label><i class="fas fa-camera"></i> Upload Payment Screenshot</label>
+        <input type="file" id="screenshot" accept="image/*">
+
+        <button class="btn-submit" onclick="sendOrderToTelegram()">SUBMIT ORDER & CONFIRM</button>
 
         <div class="payment-info">
             <h4 style="color:var(--p); margin:0 0 10px 0;"><i class="fab fa-bitcoin"></i> Payment Information</h4>
@@ -174,29 +181,29 @@
     </div>
 
     <script>
-        function sendOrder() {
+        function sendOrderToTelegram() {
             const name = document.getElementById("name").value;
             const device = document.getElementById("device").value;
             const service = document.getElementById("service").value;
+            const screenshot = document.getElementById("screenshot").files[0];
 
             if (!name || !device) {
                 alert("❌ Please fill in your name and IMEI!");
                 return;
             }
 
-            const orderId = "GSM-" + Math.floor(Math.random() * 90000 + 10000);
+            // تجهيز نص التليجرام
+            const message = `New Order From: ${name}%0A` +
+                            `Device IMEI: ${device}%0A` +
+                            `Service: ${service}%0A` +
+                            `--------------------------%0A` +
+                            `I have attached the payment screenshot below.`;
 
-            const orderData = {
-                id: orderId,
-                customer: name,
-                device: device,
-                service: service,
-                status: "Processing 🔄"
-            };
-
-            localStorage.setItem("currentOrder", JSON.stringify(orderData));
-
-            window.location.href = "processing.html";
+            const telegramUser = "gsmshtool"; 
+            
+            // تنبيه المستخدم وفتح التليجرام
+            alert("✅ Order details prepared! Now please attach your screenshot in the Telegram chat.");
+            window.location.href = `https://t.me/${telegramUser}?text=${message}`;
         }
     </script>
 </body>
