@@ -3,153 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL | VIP Unlock Services</title>
+    
+    <title>GSM SHTOOL | Official iCloud Unlock & Forensic Tools</title>
+    <meta name="description" content="Official GSM SHTOOL server for iCloud unlock, Samsung FRP bypass, and professional forensic tools like MD-NEXT and Magnet Axiom. Fast and secure services.">
+    <meta name="keywords" content="iCloud Unlock, GSM SHTOOL, MD-NEXT Free, Magnet Axiom Download, iPhone Unlock, Samsung FRP, ArabiCloud Tool, Forensic Tools">
+    <meta name="author" content="GSM SHTOOL">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; overflow-x: hidden; }
         
-        /* Navbar */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.9); backdrop-filter: blur(10px); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; }
         .logo { font-size: 26px; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo i { color: var(--p); font-size: 30px; filter: drop-shadow(0 0 5px var(--p)); }
         .logo span { color: var(--p); }
 
-        /* Hero Section */
-        .hero { position: relative; padding: 100px 5%; text-align: center; background: url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=2070') center/cover; }
-        .hero::before { content: ''; position: absolute; top:0; left:0; width: 100%; height: 100%; background: rgba(3,3,5,0.85); }
+        .hero { position: relative; padding: 140px 5%; text-align: center; background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070') center/cover; }
+        .hero::before { content: ''; position: absolute; top:0; left:0; width: 100%; height: 100%; background: rgba(3,3,5,0.8); }
         .hero-content { position: relative; z-index: 1; }
-        .hero h1 { font-size: 3.5rem; margin: 0; background: linear-gradient(45deg, var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-        .hero p { color: #888; font-size: 1.2rem; max-width: 700px; margin: 20px auto; }
+        .hero h1 { font-size: 4rem; margin: 0; background: linear-gradient(45deg, var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
 
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        .section-title { border-left: 5px solid var(--p); padding-left: 15px; margin: 60px 0 30px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Description Section */
-        .about-services { text-align: center; margin-bottom: 60px; }
-        .about-services h2 { color: var(--p); font-size: 2rem; }
-        .about-services p { color: #aaa; line-height: 1.8; max-width: 800px; margin: auto; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        /* تصميم البطاقات بالصور */
+        .s-card { 
+            background: var(--card); 
+            border: 1px solid #1f2235; 
+            border-radius: 20px; 
+            overflow: hidden;
+            transition: 0.4s; 
+            text-align: center;
+        }
+        .s-card:hover { transform: translateY(-10px); border-color: var(--p); box-shadow: 0 10px 40px rgba(0,210,255,0.2); }
+        
+        .card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #1f2235; }
+        .card-body { padding: 25px; }
+        .card-body i { font-size: 40px; color: var(--p); margin-bottom: 15px; }
+        
+        .price-tag { color: var(--neon); font-weight: bold; font-size: 1.3rem; margin-top: 15px; display: block; }
+        .btn-tool { display: inline-block; margin-top: 20px; padding: 12px 30px; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: bold; }
 
-        /* Services Grid */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
-        .s-card { background: var(--card); border: 1px solid #1f2235; border-radius: 20px; padding: 30px; text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
-        .s-card:hover { transform: translateY(-10px); border-color: var(--p); box-shadow: 0 10px 30px rgba(0,210,255,0.15); }
-        .s-card i { font-size: 50px; margin-bottom: 20px; background: linear-gradient(var(--p), var(--s)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .s-card h3 { margin: 10px 0; font-size: 1.5rem; }
-        .price-tag { color: var(--neon); font-weight: bold; font-size: 1.2rem; }
-
-        /* Section Title */
-        .section-title { border-left: 5px solid var(--p); padding-left: 15px; margin: 60px 0 30px; font-size: 1.8rem; text-transform: uppercase; }
-
-        /* Footer & Payment */
         footer { background: #0a0c14; padding: 60px 5% 20px; border-top: 1px solid #1f2235; margin-top: 80px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .wallet-box { background: #161b22; padding: 15px; border-radius: 10px; border: 1px dashed var(--p); word-break: break-all; font-family: monospace; font-size: 12px; margin-top: 10px; color: var(--neon); }
-        .social-links a { color: #fff; font-size: 24px; margin-right: 15px; transition: 0.3s; }
-        .social-links a:hover { color: var(--p); }
-
-        .btn-vip { background: linear-gradient(45deg, var(--p), var(--s)); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,210,255,0.4); }
+        .wallet-box { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--p); color: var(--neon); font-family: monospace; font-size: 12px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo"><i class="fas fa-user-shield"></i> GSM <span>SHTOOL</span></a>
+        <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i> GSM <span>SHTOOL</span></a>
         <div class="nav-links">
-            <a href="order.html">Place Order</a>
-            <a href="track.html">Track Order</a>
-            <a href="tools.html">Tools</a>
-            <a href="https://t.me/gsmshtool" style="background:var(--p); padding:8px 15px; border-radius:20px; color:#000; font-weight:bold;">Support</a>
+            <a href="order.html" style="color:white; text-decoration:none; margin-right:20px;">Place Order</a>
+            <a href="https://t.me/gsmshtool" style="background:var(--p); padding:10px 20px; border-radius:30px; color:#000; font-weight:bold; text-decoration:none;">Support</a>
         </div>
     </nav>
 
     <div class="hero">
         <div class="hero-content">
-            <h1>VIP UNLOCK SOLUTIONS</h1>
-            <p>Official iCloud Unlock, Samsung FRP, and Advanced Android Services with 100% Success Rate and Instant Support.</p>
-            <a href="order.html" class="btn-vip">GET STARTED NOW</a>
+            <h1>PREMIUM UNLOCK HUB</h1>
+            <p style="color:#ccc; font-size: 1.2rem;">Official iCloud Services & Forensic Software Solutions</p>
         </div>
     </div>
 
     <div class="container">
         
-        <div class="about-services">
-            <h2>Our Premium Services</h2>
-            <p>We provide professional GSM solutions worldwide. Our services include Official Apple iCloud unlocking, Network removal, and comprehensive Android software repairs. All orders are processed via secure servers to ensure your device's safety.</p>
-        </div>
-
-        <div class="section-title">🍎 Apple Services</div>
+        <div class="section-title">🍎 Official Apple Services</div>
         <div class="services-grid">
             <div class="s-card">
-                <i class="fab fa-apple"></i>
-                <h3>iPhone Unlock</h3>
-                <p>Official Server Unlock</p>
-                <div class="price-tag">Starting from $25</div>
+                <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba3f21?q=80&w=2070" class="card-img" alt="iPhone Unlock">
+                <div class="card-body">
+                    <h3>iPhone Official Unlock</h3>
+                    <p style="color:#777; font-size:13px;">Permanent server-side unlock for all models.</p>
+                    <span class="price-tag">From $25</span>
+                </div>
             </div>
             <div class="s-card">
-                <i class="fas fa-tablet-alt"></i>
-                <h3>iPad Unlock</h3>
-                <p>All Models Supported</p>
-                <div class="price-tag">Starting from $50</div>
-            </div>
-            <div class="s-card">
-                <i class="fas fa-clock"></i>
-                <h3>Apple Watch</h3>
-                <p>Series 4 to Ultra 3</p>
-                <div class="price-tag">Starting from $50</div>
+                <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=2030" class="card-img" alt="iPad Unlock">
+                <div class="card-body">
+                    <h3>iPad & Watch Services</h3>
+                    <p style="color:#777; font-size:13px;">Fast iCloud bypass for iPad and Apple Watch.</p>
+                    <span class="price-tag">From $50</span>
+                </div>
             </div>
         </div>
 
-        <div class="section-title">🤖 Android VIP Services</div>
+        <div class="section-title">🛠️ Forensic Tools (Free Download)</div>
         <div class="services-grid">
             <div class="s-card">
-                <i class="fab fa-android"></i>
-                <h3>Samsung FRP</h3>
-                <p>Google Account Bypass</p>
-                <div class="price-tag">$15</div>
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2026" class="card-img" alt="ArabiCloud">
+                <div class="card-body">
+                    <h3>ArabiCloud v5</h3>
+                    <p style="color:#888; font-size:12px;">Advanced iCloud Bypass Tool</p>
+                    <a href="arabicicloud.html" class="btn-tool">Download Now</a>
+                </div>
             </div>
             <div class="s-card">
-                <i class="fas fa-unlock-alt"></i>
-                <h3>MI Account</h3>
-                <p>Xiaomi Cloud Unlock</p>
-                <div class="price-tag">$25</div>
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070" class="card-img" alt="MD-NEXT">
+                <div class="card-body">
+                    <h3>MD-NEXT 2.0.3</h3>
+                    <p style="color:#888; font-size:12px;">Digital Forensic Extraction</p>
+                    <a href="mdnext.html" class="btn-tool">Download Now</a>
+                </div>
             </div>
             <div class="s-card">
-                <i class="fas fa-shield-virus"></i>
-                <h3>Huawei ID</h3>
-                <p>Official ID Removal</p>
-                <div class="price-tag">$30</div>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072" class="card-img" alt="Magnet Axiom">
+                <div class="card-body">
+                    <h3>Magnet Axiom</h3>
+                    <p style="color:#888; font-size:12px;">Evidence Analysis Software</p>
+                    <a href="magnet.html" class="btn-tool">Download Now</a>
+                </div>
             </div>
         </div>
 
     </div>
 
     <footer>
-        <div class="footer-grid">
-            <div>
-                <h3>About GSM SHTOOL</h3>
-                <p style="color:#888; font-size:14px;">The most trusted name in the GSM industry. Fast delivery, professional support, and competitive prices.</p>
-                <div class="social-links">
-                    <a href="https://t.me/gsmshtool"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div>
-                <h3>VIP Payment (BTC)</h3>
-                <p style="font-size:12px; color:#888;">Send payment to the wallet below then send IMEI to Support:</p>
-                <div class="wallet-box">
-                    bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
-                </div>
-            </div>
-            <div>
-                <h3>Quick Links</h3>
-                <ul style="list-style:none; padding:0; font-size:14px; color:#888;">
-                    <li><a href="order.html" style="color:#888; text-decoration:none;">How to Order</a></li>
-                    <li><a href="track.html" style="color:#888; text-decoration:none;">Check Status</a></li>
-                    <li><a href="https://t.me/gsmshtool" style="color:#888; text-decoration:none;">Contact Admin</a></li>
-                </ul>
-            </div>
+        <div style="text-align:center;">
+            <h3>VIP PAYMENT (BTC)</h3>
+            <div class="wallet-box">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
+            <p style="color:#444; margin-top:30px;">© 2026 GSM SHTOOL GLOBAL - Secure Professional Unlock</p>
         </div>
-        <center style="margin-top:50px; color:#444; font-size:12px;">© 2026 GSM SHTOOL - Luxury Unlock Experience</center>
     </footer>
 
 </body>
