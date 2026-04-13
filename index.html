@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>GSM SHTOOL | Official iCloud Unlock & Forensic Tools</title>
-    <meta name="description" content="Official GSM SHTOOL server for iCloud unlock, Samsung FRP bypass, and professional forensic tools like MD-NEXT and Magnet Axiom. Fast and secure services.">
-    <meta name="keywords" content="iCloud Unlock, GSM SHTOOL, MD-NEXT Free, Magnet Axiom Download, iPhone Unlock, Samsung FRP, ArabiCloud Tool, Forensic Tools">
+    <meta name="description" content="Official GSM SHTOOL server for iCloud unlock, Samsung FRP bypass, and professional forensic tools. Fast and secure services.">
+    <meta name="keywords" content="iCloud Unlock, GSM SHTOOL, MD-NEXT, Magnet Axiom, iPhone Unlock, Samsung FRP, Free IMEI Check">
     <meta name="author" content="GSM SHTOOL">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,6 +17,7 @@
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.9); backdrop-filter: blur(10px); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; }
         .logo { font-size: 26px; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: var(--p); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; }
 
         .hero { position: relative; padding: 140px 5%; text-align: center; background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070') center/cover; }
         .hero::before { content: ''; position: absolute; top:0; left:0; width: 100%; height: 100%; background: rgba(3,3,5,0.8); }
@@ -28,26 +29,41 @@
 
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        /* تصميم البطاقات بالصور */
-        .s-card { 
-            background: var(--card); 
-            border: 1px solid #1f2235; 
-            border-radius: 20px; 
-            overflow: hidden;
-            transition: 0.4s; 
-            text-align: center;
-        }
+        .s-card { background: var(--card); border: 1px solid #1f2235; border-radius: 20px; overflow: hidden; transition: 0.4s; text-align: center; }
         .s-card:hover { transform: translateY(-10px); border-color: var(--p); box-shadow: 0 10px 40px rgba(0,210,255,0.2); }
         
         .card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #1f2235; }
         .card-body { padding: 25px; }
-        .card-body i { font-size: 40px; color: var(--p); margin-bottom: 15px; }
-        
         .price-tag { color: var(--neon); font-weight: bold; font-size: 1.3rem; margin-top: 15px; display: block; }
         .btn-tool { display: inline-block; margin-top: 20px; padding: 12px 30px; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: bold; }
 
-        footer { background: #0a0c14; padding: 60px 5% 20px; border-top: 1px solid #1f2235; margin-top: 80px; }
-        .wallet-box { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--p); color: var(--neon); font-family: monospace; font-size: 12px; margin-top: 10px; }
+        /* --- تصميم الفحص المجاني --- */
+        .check-wrapper {
+            background: linear-gradient(145deg, #0f111a, #1a1d29);
+            border: 2px solid #1f2235;
+            border-radius: 25px;
+            padding: 50px 20px;
+            margin: 50px auto;
+            max-width: 900px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        .check-header h2 { font-size: 32px; background: linear-gradient(to right, var(--p), var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
+        .check-input { width: 100%; max-width: 550px; padding: 18px 25px; border-radius: 50px; border: 1px solid #30363d; background: #050507; color: #fff; font-size: 16px; text-align: center; outline: none; margin-bottom: 25px; }
+        .check-options { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-check-tool { padding: 12px 25px; border-radius: 50px; border: 1px solid var(--p); background: transparent; color: var(--p); font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .btn-check-tool:hover { background: var(--p); color: #000; transform: translateY(-3px); }
+        .btn-android { border-color: #a4c639; color: #a4c639; }
+
+        /* --- التذييل Footer --- */
+        .site-footer { background: #0a0c14; padding: 60px 5% 30px; border-top: 1px solid #1f2235; text-align: center; margin-top: 80px; }
+        .footer-brand { font-size: 22px; font-weight: bold; color: #fff; margin-bottom: 30px; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .footer-links a:hover { color: var(--p); }
+        .copyright-section { color: #555; font-size: 13px; margin-top: 20px; border-top: 1px solid #161b22; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .dmca-badge { background: #000; padding: 5px 10px; border: 1px solid #222; border-radius: 5px; display: flex; align-items: center; gap: 8px; }
+        .wallet-box { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--p); color: var(--neon); font-family: monospace; font-size: 12px; margin: 20px auto; max-width: 400px; word-break: break-all; }
     </style>
 </head>
 <body>
@@ -55,8 +71,9 @@
     <nav>
         <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i> GSM <span>SHTOOL</span></a>
         <div class="nav-links">
-            <a href="order.html" style="color:white; text-decoration:none; margin-right:20px;">Place Order</a>
-            <a href="https://t.me/gsmshtool" style="background:var(--p); padding:10px 20px; border-radius:30px; color:#000; font-weight:bold; text-decoration:none;">Support</a>
+            <a href="order.html">Place Order</a>
+            <a href="tools.html">Free Tools</a>
+            <a href="https://t.me/gsmshtool" style="background:var(--p); padding:10px 20px; border-radius:30px; color:#000; font-weight:bold;">Support</a>
         </div>
     </nav>
 
@@ -69,176 +86,83 @@
 
     <div class="container">
         
+        <div class="check-wrapper">
+            <div class="check-header">
+                <h2><i class="fas fa-microchip"></i> Global Free Check</h2>
+                <p>Verify iCloud Status, Blacklist, Warranty, and Knox Guard instantly.</p>
+            </div>
+            <input type="text" id="imeiSearch" class="check-input" placeholder="Enter IMEI or Serial Number...">
+            <div class="check-options">
+                <button class="btn-check-tool" onclick="checkDevice('apple')"><i class="fab fa-apple"></i> Apple Check</button>
+                <button class="btn-check-tool btn-android" onclick="checkDevice('android')"><i class="fab fa-android"></i> Android / Knox</button>
+                <button class="btn-check-tool" style="border-color:#ff4b2b; color:#ff4b2b;" onclick="checkDevice('blacklist')"><i class="fas fa-shield-alt"></i> Blacklist</button>
+            </div>
+        </div>
+
         <div class="section-title">🍎 Official Apple Services</div>
         <div class="services-grid">
             <div class="s-card">
-                <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba3f21?q=80&w=2070" class="card-img" alt="iPhone Unlock">
+                <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba3f21?q=80&w=2070" class="card-img">
                 <div class="card-body">
                     <h3>iPhone Official Unlock</h3>
-                    <p style="color:#777; font-size:13px;">Permanent server-side unlock for all models.</p>
+                    <p style="color:#777; font-size:13px;">Permanent server-side unlock.</p>
                     <span class="price-tag">From $25</span>
                 </div>
             </div>
             <div class="s-card">
-                <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=2030" class="card-img" alt="iPad Unlock">
+                <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=2030" class="card-img">
                 <div class="card-body">
                     <h3>iPad & Watch Services</h3>
-                    <p style="color:#777; font-size:13px;">Fast iCloud bypass for iPad and Apple Watch.</p>
+                    <p style="color:#777; font-size:13px;">Fast iCloud bypass solutions.</p>
                     <span class="price-tag">From $50</span>
                 </div>
             </div>
         </div>
 
-        <div class="section-title">🛠️ Forensic Tools (Free Download)</div>
+        <div class="section-title">🛠️ Forensic Tools</div>
         <div class="services-grid">
             <div class="s-card">
-                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2026" class="card-img" alt="ArabiCloud">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2026" class="card-img">
                 <div class="card-body">
                     <h3>ArabiCloud v5</h3>
-                    <p style="color:#888; font-size:12px;">Advanced iCloud Bypass Tool</p>
                     <a href="arabicicloud.html" class="btn-tool">Download Now</a>
                 </div>
             </div>
             <div class="s-card">
-                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070" class="card-img" alt="MD-NEXT">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070" class="card-img">
                 <div class="card-body">
                     <h3>MD-NEXT 2.0.3</h3>
-                    <p style="color:#888; font-size:12px;">Digital Forensic Extraction</p>
                     <a href="mdnext.html" class="btn-tool">Download Now</a>
                 </div>
             </div>
-            <div class="s-card">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072" class="card-img" alt="Magnet Axiom">
-                <div class="card-body">
-                    <h3>Magnet Axiom</h3>
-                    <p style="color:#888; font-size:12px;">Evidence Analysis Software</p>
-                    <a href="magnet.html" class="btn-tool">Download Now</a>
-                </div>
-            </div>
         </div>
 
     </div>
 
-    <footer>
-        <div style="text-align:center;">
-            <h3>VIP PAYMENT (BTC)</h3>
-            <div class="wallet-box">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
-            <p style="color:#444; margin-top:30px;">© 2026 GSM SHTOOL GLOBAL - Secure Professional Unlock</p>
+    <footer class="site-footer">
+        <div class="rating-section"><h2>Rate our service!</h2></div>
+        <div class="footer-brand">GSM SHTOOL PRO</div>
+        <div class="wallet-box">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
+        <div class="footer-links">
+            <a href="#">Terms of Agreement</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Refund Policy</a>
+            <a href="https://t.me/gsmshtool">Support</a>
+        </div>
+        <div class="copyright-section">
+            <div class="dmca-badge"><i class="fas fa-lock" style="color:#00ff88;"></i> <b>DMCA</b> PROTECTED</div>
+            <div>© 2020-2026 GSM SHTOOL PRO LTD. All rights reserved.</div>
         </div>
     </footer>
 
+    <script>
+        function checkDevice(type) {
+            const imei = document.getElementById('imeiSearch').value.trim();
+            if (imei.length < 5) { alert("⚠️ Enter a valid IMEI!"); return; }
+            let url = (type === 'apple') ? `https://iunlocker.com/en/check_imei.php?imei=${imei}` : 
+                      (type === 'android') ? `https://www.imei.info/info/samsung-check/` : `https://www.imeipro.info/`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
-<style>
-    /* تنسيق قسم التذييل الجديد */
-    .site-footer {
-        background: #0a0c14;
-        padding: 60px 5% 30px;
-        border-top: 1px solid #1f2235;
-        text-align: center;
-        margin-top: 50px;
-    }
-
-    .footer-brand {
-        font-size: 22px;
-        font-weight: bold;
-        color: #fff;
-        margin-bottom: 30px;
-    }
-
-    .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-
-    .footer-links a {
-        color: #888;
-        text-decoration: none;
-        font-size: 14px;
-        transition: 0.3s;
-    }
-
-    .footer-links a:hover {
-        color: var(--p);
-    }
-
-    .social-icon-box {
-        margin-bottom: 30px;
-    }
-
-    .social-icon-box a {
-        color: var(--p);
-        font-size: 24px;
-        transition: 0.3s;
-    }
-
-    .copyright-section {
-        color: #555;
-        font-size: 13px;
-        margin-top: 20px;
-        border-top: 1px solid #161b22;
-        padding-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .dmca-badge {
-        background: #000;
-        padding: 5px 10px;
-        border: 1px solid #222;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .rating-section {
-        margin-bottom: 40px;
-    }
-
-    .rating-section h2 {
-        font-size: 28px;
-        font-weight: bold;
-        color: #fff;
-        margin-bottom: 10px;
-    }
-</style>
-
-<footer class="site-footer">
-    
-    <div class="rating-section">
-        <h2>Rate our service!</h2>
-    </div>
-
-    <div class="footer-brand">
-        GSM SHTOOL PRO
-    </div>
-
-    <div class="footer-links">
-        <a href="#">Terms of Agreement</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Refund Policy</a>
-        <a href="https://t.me/gsmshtool">Contact</a>
-        <a href="https://t.me/gsmshtool">Support</a>
-    </div>
-
-    <div class="social-icon-box">
-        <a href="https://t.me/gsmshtool"><i class="fab fa-telegram"></i></a>
-    </div>
-
-    <div class="copyright-section">
-        <div class="dmca-badge">
-            <i class="fas fa-lock" style="color:#00ff88;"></i>
-            <span style="color:#fff; font-weight:bold;">DMCA</span>
-            <span style="color:#888;">PROTECTED</span>
-        </div>
-        <div>
-            © 2020-2026 GSM SHTOOL PRO LTD. All rights reserved.
-        </div>
-    </div>
-</footer>
