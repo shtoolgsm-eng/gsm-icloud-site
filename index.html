@@ -3,199 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL | Expert Forensic & Unlocking Hub</title>
+    <title>GSM SHTOOL | Global Unlock & Forensic Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; 
-            --neon: #00ff88; --yt: #ff0000; --text-gray: #aaa; --fb: #1877F2;
-        }
-
-        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; line-height: 1.6; }
-
-        /* Nav & Tabs */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; overflow-x: hidden; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
         .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; }
         .logo span { color: var(--p); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 600; }
 
-        .tabs-nav { display: flex; justify-content: center; background: #0a0c14; padding: 10px; gap: 8px; border-bottom: 1px solid #1f2235; flex-wrap: wrap; position: sticky; top: 60px; z-index: 999; }
-        .tab-btn { padding: 10px 18px; border: none; background: none; color: #888; cursor: pointer; font-weight: 600; transition: 0.3s; border-radius: 8px; font-size: 13px; }
-        .tab-btn.active { background: var(--card); color: var(--p); border: 1px solid var(--p); }
-
-        .tab-content { display: none; padding: 30px 5%; animation: fadeIn 0.4s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Search & Forms */
-        .check-box { max-width: 800px; margin: 30px auto; background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #1f2235; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .imei-input { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; text-align: center; margin-bottom: 15px; font-size: 16px; outline: none; box-sizing: border-box; }
-        .btn-main { padding: 12px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
+        /* Hero & Search */
+        .hero { padding: 80px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d29 0%, #030305 100%); }
+        .check-box { max-width: 800px; margin: 30px auto; background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid #1f2235; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .imei-input { width: 100%; padding: 20px; border-radius: 50px; border: 1px solid #30363d; background: #000; color: #fff; font-size: 18px; text-align: center; margin-bottom: 25px; outline: none; box-sizing: border-box; }
+        
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 14px; }
         .btn-check { background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; }
+        .btn-free { background: #1f2235; color: #fff; border: 1px solid #30363d; }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        .section-title { border-left: 5px solid var(--p); padding-left: 15px; margin: 60px 0 30px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Services List */
+        .service-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .service-item { background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid #1f2235; display: flex; align-items: center; justify-content: space-between; transition: 0.3s; }
+        .service-item:hover { border-color: var(--p); background: #161b22; }
+        .price { color: var(--neon); font-weight: bold; }
 
         /* Software Cards */
-        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-        .soft-card { background: var(--card); border-radius: 15px; border: 1px solid #1f2235; overflow: hidden; display: flex; flex-direction: column; }
-        .soft-header { padding: 20px; text-align: center; background: rgba(255,255,255,0.02); border-bottom: 1px solid #1f2235; }
-        .soft-header i { font-size: 35px; color: var(--p); margin-bottom: 10px; }
-        .soft-body { padding: 20px; flex-grow: 1; }
-        .pass-box { background: #000; padding: 8px; border-radius: 6px; border: 1px dashed var(--neon); color: var(--neon); font-family: monospace; font-size: 12px; display: block; margin: 10px 0; text-align: center; }
-        
-        .action-area { padding: 15px; background: rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 8px; }
-        .btn-dl { padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .dl-main { background: var(--p); color: #000; }
-        .dl-yt { background: var(--yt); color: #fff; }
+        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .soft-card { background: var(--card); border-radius: 20px; border: 1px solid #1f2235; overflow: hidden; text-align: center; transition: 0.4s; }
+        .soft-card:hover { transform: translateY(-10px); border-color: var(--p); }
+        .soft-img { width: 100%; height: 160px; object-fit: cover; }
+        .soft-body { padding: 20px; }
+        .btn-download { display: block; margin-top: 15px; padding: 10px; background: var(--p); color: #000; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 13px; }
 
-        /* Pricing Table */
-        .price-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
-        .price-item { background: var(--card); padding: 15px; border-radius: 10px; border: 1px solid #1f2235; display: flex; justify-content: space-between; align-items: center; }
-        .price-val { color: var(--neon); font-weight: 800; }
+        /* Guide */
+        .guide { background: #0a0c14; padding: 60px 5%; border-top: 1px solid #1f2235; margin-top: 50px; }
+        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+        .guide-item i { font-size: 30px; color: #555; margin-bottom: 15px; }
 
-        footer { text-align: center; padding: 50px 20px; border-top: 1px solid #1f2235; margin-top: 40px; }
-        .footer-social { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
-        .social-link { color: #fff; text-decoration: none; font-size: 20px; transition: 0.3s; }
-        .social-link:hover { color: var(--p); }
+        /* Footer */
+        footer { background: #050507; padding: 60px 5% 20px; border-top: 1px solid #1f2235; text-align: center; }
+        .wallet-box { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--p); color: var(--neon); font-family: monospace; font-size: 12px; margin: 20px auto; max-width: 500px; word-break: break-all; }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo">GSM <span>SHTOOL</span></a>
-    <a href="https://t.me/gsmshtool" target="_blank" class="btn-main btn-check"><i class="fab fa-telegram"></i> Join Telegram</a>
+    <a href="index.html" class="logo">GSM <span>SHTOOL</span></a>
+    <div class="nav-links">
+        <a href="order.html">New Order</a>
+        <a href="https://t.me/gsmshtool" style="background:var(--p); color:#000; padding:8px 15px; border-radius:20px;">Support</a>
+    </div>
 </nav>
 
-<div class="tabs-nav">
-    <button class="tab-btn active" onclick="openTab(event, 'home')">IMEI Check</button>
-    <button class="tab-btn" onclick="openTab(event, 'pricing')">Pricing</button>
-    <button class="tab-btn" onclick="openTab(event, 'software')">Forensic Tools</button>
-    <button class="tab-btn" onclick="openTab(event, 'tracking')">Order Status</button>
-</div>
-
-<div id="home" class="tab-content active">
-    <div class="hero" style="text-align: center;">
-        <h1 style="font-size: 2rem;">Device Master Hub</h1>
-        <p style="color: var(--text-gray);">Official Bypass & Forensic Solutions</p>
-    </div>
+<section class="hero">
+    <h1>NEED INFO FOR YOUR DEVICE?</h1>
+    <p style="color:#888;">Instant iCloud & Blacklist verification services.</p>
     <div class="check-box">
-        <input type="text" id="imeiBox" class="imei-input" placeholder="Enter IMEI / Serial Number">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <button class="btn-main btn-check" onclick="window.open('https://iunlocker.com/en/check_imei.php', '_blank')"><i class="fab fa-apple"></i> Apple</button>
-            <button class="btn-main btn-check" style="background: #333;" onclick="window.open('https://www.imeipro.info/', '_blank')"><i class="fab fa-android"></i> Android</button>
+        <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter IMEI or Serial Number...">
+        <div class="btn-group">
+            <button class="btn-main btn-check" onclick="runCheck('apple')"><i class="fab fa-apple"></i> Apple Check</button>
+            <button class="btn-main btn-free" onclick="runCheck('android')"><i class="fab fa-android"></i> Android Check</button>
+            <button class="btn-main btn-free" style="color:#ff4b2b" onclick="runCheck('blacklist')"><i class="fas fa-shield-alt"></i> Blacklist</button>
         </div>
     </div>
-</div>
+</section>
 
-<div id="pricing" class="tab-content">
-    <h2 style="color: var(--p);">iPhone iCloud Official (1-24h)</h2>
-    <div class="price-list">
-        <div class="price-item"><span>iPhone 6 - X</span><span class="price-val">$25 - $35</span></div>
-        <div class="price-item"><span>iPhone 11 Series</span><span class="price-val">$45 - $75</span></div>
-        <div class="price-item"><span>iPhone 13 Series</span><span class="price-val">$115 - $150</span></div>
-        <div class="price-item"><span>iPhone 15 Series</span><span class="price-val">$165 - $190</span></div>
-        <div class="price-item"><span>iPhone 16 Series</span><span class="price-val">$190 - $205</span></div>
-        <div class="price-item"><span>iPhone 17 Series</span><span class="price-val">$195 - $210</span></div>
+<div class="container">
+    <div class="section-title">💎 Premium Services</div>
+    <div class="service-list">
+        <div class="service-item">
+            <div style="display:flex; align-items:center; gap:15px;">
+                <i class="fas fa-shield-virus" style="color:var(--p); font-size:20px;"></i>
+                <div><h4 style="margin:0;">Samsung KNOX GUARD</h4><p style="margin:0; font-size:11px; color:#555;">Instant Check</p></div>
+            </div>
+            <div class="price">USD 3.00</div>
+        </div>
+        <div class="service-item">
+            <div style="display:flex; align-items:center; gap:15px;">
+                <i class="fas fa-search-location" style="color:var(--p); font-size:20px;"></i>
+                <div><h4 style="margin:0;">iCloud Clean/Lost Check</h4><p style="margin:0; font-size:11px; color:#555;">Official API</p></div>
+            </div>
+            <div class="price">USD 1.50</div>
+        </div>
     </div>
-</div>
 
-<div id="software" class="tab-content">
+    <div class="section-title">🛠️ Forensic & Bypass Tools</div>
     <div class="software-grid">
         <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-mobile-alt"></i><h3>MD-NEXT 2.0.3</h3></div>
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2026" class="soft-img">
             <div class="soft-body">
-                <p>Forensic data extraction tool with MD-Plug. Free Activation included.</p>
-                <span class="pass-box">Password: @gaddtech</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Download & Activation</a>
-                <a href="https://www.youtube.com/playlist?list=PLdD4BEVTmGuw-4AcHZyIsM5lP4lR5S8ac" class="btn-dl dl-yt" target="_blank"><i class="fab fa-youtube"></i> Video Tutorials</a>
+                <h3>ArabiCloud v5</h3>
+                <p style="font-size:12px; color:#777;">Advanced iCloud Bypass Tool</p>
+                <a href="arabicicloud.html" class="btn-download">Download Tool</a>
             </div>
         </div>
-
         <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-magnet"></i><h3>Magnet Axiom V7.80</h3></div>
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070" class="soft-img">
             <div class="soft-body">
-                <p>Advanced digital forensic analysis. Recover data from mobile and cloud.</p>
-                <span class="pass-box">Password: @arbad9000</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/5176t9glfsafd/Magnet+Axiom" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Download Free Pack</a>
+                <h3>MD-NEXT 2.0.3</h3>
+                <p style="font-size:12px; color:#777;">Digital Forensic Extraction</p>
+                <a href="mdnext.html" class="btn-download">Download Tool</a>
             </div>
         </div>
-
         <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-unlock"></i><h3>Mohamed Soft Tool</h3></div>
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072" class="soft-img">
             <div class="soft-body">
-                <p>No Jailbreak iCloud bypass. Supports iOS 7 up to iOS 26.1.</p>
-                <span class="pass-box">Password: @arbad9000</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/o6wa02ku2b5j5/EGY-Unlockers.com" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Download Tool</a>
-                <a href="https://www.facebook.com/share/18XUvLWK7L/" class="btn-dl dl-yt" style="background:var(--fb)" target="_blank"><i class="fab fa-facebook"></i> Contact Developer</a>
-            </div>
-        </div>
-
-        <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-shield-alt"></i><h3>Oxygen Forensic</h3></div>
-            <div class="soft-body">
-                <p>V17.1.0.131. Remove screen locks without formatting devices.</p>
-                <span class="pass-box">Password: NONE</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Full Software</a>
+                <h3>Magnet Axiom</h3>
+                <p style="font-size:12px; color:#777;">Evidence Analysis Software</p>
+                <a href="magnet.html" class="btn-download">Download Tool</a>
             </div>
         </div>
     </div>
 </div>
 
-<div id="tracking" class="tab-content">
-    <div style="max-width: 600px; margin: auto; text-align: center;">
-        <h2 style="color: var(--p);">Order Management</h2>
-        <div class="check-box">
-            <p style="font-size: 14px; margin-bottom: 20px;">Enter your Order ID or IMEI to check processing status.</p>
-            <input type="text" id="trackId" class="imei-input" placeholder="Ex: IMEI3568XXXXXXXX">
-            <button class="btn-main btn-check" style="width: 100%;" onclick="trackOrder()">Track Order Now</button>
-            <div id="statusResult" style="display:none; margin-top: 25px; border-top: 1px solid #333; padding-top: 20px;">
-                <div style="background: rgba(0,255,136,0.1); padding: 15px; border-radius: 10px; border: 1px solid var(--neon);">
-                    <p style="margin: 0; font-weight: bold; color: var(--neon);">Status: IN PROGRESS (OOF)</p>
-                    <small style="color: #888;">Expected Completion: Within 24 Hours</small>
-                </div>
-                <div style="margin-top: 15px; text-align: left; font-size: 12px; color: #aaa;">
-                    • Request Received ✓<br>
-                    • Server Authentication ✓<br>
-                    • Final Processing... (Working)
-                </div>
-            </div>
-        </div>
+<section class="guide">
+    <h3 style="text-align:center; margin-bottom:40px;">HOW TO FIND IMEI?</h3>
+    <div class="guide-grid">
+        <div class="guide-item"><i class="fas fa-cog"></i><h4>Settings</h4><p>General > About</p></div>
+        <div class="guide-item"><i class="fas fa-phone"></i><h4>Dialer</h4><p>Dial *#06#</p></div>
+        <div class="guide-item"><i class="fas fa-sim-card"></i><h4>SIM Tray</h4><p>Check the metal tray</p></div>
     </div>
-</div>
+</section>
 
 <footer>
-    <div class="footer-social">
-        <a href="https://t.me/gsmshtool" class="social-link"><i class="fab fa-telegram"></i></a>
-        <a href="https://www.facebook.com/share/18XUvLWK7L/" class="social-link"><i class="fab fa-facebook"></i></a>
+    <div class="wallet-box">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
+    <div style="margin:20px 0;">
+        <a href="https://t.me/gsmshtool" style="color:var(--p); font-size:24px;"><i class="fab fa-telegram"></i></a>
     </div>
-    <p>© 2026 GSM SHTOOL | Professional Mobile Solutions</p>
-    <div style="background: #000; padding: 10px; border-radius: 8px; display: inline-block; font-family: monospace; font-size: 12px; border: 1px solid #1f2235;">
-        <span style="color: var(--p);">BTC:</span> bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
-    </div>
+    <p style="color:#444;">© 2020-2026 GSM SHTOOL GLOBAL - Secure Unlock Systems</p>
 </footer>
 
 <script>
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
-        tablinks = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tablinks.length; i++) tablinks[i].className = tablinks[i].className.replace(" active", "");
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-        window.scrollTo(0,0);
-    }
-    function trackOrder() {
-        const val = document.getElementById('trackId').value;
-        if(val) document.getElementById('statusResult').style.display = 'block';
-        else alert("Please enter ID");
-    }
+function runCheck(type) {
+    const imei = document.getElementById('imeiSearch').value.trim();
+    if (imei.length < 5) { alert("⚠️ Enter a valid IMEI!"); return; }
+    let url = "";
+    if (type === 'apple') url = `https://iunlocker.com/en/check_imei.php?imei=${imei}`;
+    else if (type === 'android') url = `https://www.imei.info/`;
+    else if (type === 'blacklist') url = `https://www.imeipro.info/`;
+    window.open(url, '_blank');
+}
 </script>
 
 </body>
