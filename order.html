@@ -5,98 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Order | GSM SHTOOL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; --danger: #ff4b2b; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 20px; }
         .order-container { max-width: 650px; margin: auto; background: var(--card); padding: 35px; border-radius: 25px; border: 1px solid #1f2235; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        h2 { color: var(--p); text-align: center; margin-bottom: 25px; letter-spacing: 1px; }
+        h2 { color: var(--p); text-align: center; margin-bottom: 25px; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+        
         .form-group { margin-bottom: 20px; }
         label { display: block; font-size: 13px; color: #aaa; margin-bottom: 8px; }
         .input-field { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; font-size: 14px; outline: none; box-sizing: border-box; }
         select.input-field { appearance: auto; }
         optgroup { background: #0f111a; color: var(--p); font-style: normal; }
         option { background: #000; color: #fff; }
-        .btn-submit { width: 100%; padding: 16px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: 0.3s; }
+
+        /* قسم النبذة التعريفية والشروط */
+        .service-notice { background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); padding: 20px; border-radius: 15px; margin: 20px 0; font-size: 12px; line-height: 1.6; color: #cbd5e1; }
+        .service-notice i { color: var(--p); margin-right: 5px; }
+        .highlight { color: var(--neon); font-weight: bold; }
+
+        .btn-submit { width: 100%; padding: 16px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
         .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,210,255,0.3); }
+
         .payment-info { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px; border: 1px solid #1f2235; margin-top: 25px; }
-        .wallet-item { background: #000; padding: 12px; border-radius: 8px; border: 1px solid #333; font-family: monospace; font-size: 11px; margin-top: 10px; word-break: break-all; }
+        .wallet-item { background: #000; padding: 12px; border-radius: 8px; border: 1px solid #333; font-family: monospace; font-size: 11px; margin-top: 10px; word-break: break-all; border-left: 3px solid var(--p); }
     </style>
 </head>
 <body>
 
 <div class="order-container">
-    <h2><i class="fas fa-cart-plus"></i> Submit New Order</h2>
+    <h2><i class="fas fa-unlock-alt"></i> Submit New Order</h2>
     
-    <div class="form-group">
-        <label>Customer Full Name</label>
-        <input type="text" class="input-field" placeholder="Enter your name">
-    </div>
+    <form onsubmit="handleOrder(event)">
+        <div class="form-group">
+            <label>Customer Full Name</label>
+            <input type="text" id="clientName" class="input-field" placeholder="Enter your full name" required>
+        </div>
 
-    <div class="form-group">
-        <label>IMEI / Serial Number</label>
-        <input type="text" class="input-field" placeholder="15-digit IMEI or Serial">
-    </div>
+        <div class="form-group">
+            <label>IMEI / Serial Number</label>
+            <input type="text" id="imeiInput" class="input-field" placeholder="15-digit IMEI or Serial" required>
+        </div>
 
-    <div class="form-group">
-        <label>Select Device & Service Plan</label>
-        <select class="input-field">
-            <optgroup label="iPhone Series">
-                <option>iPhone 6 / 6 Plus / 6s / 6s Plus - $25</option>
-                <option>iPhone SE - $30</option>
-                <option>iPhone 7 / 7 Plus - $30</option>
-                <option>iPhone 8 / 8 Plus - $35</option>
-                <option>iPhone X - $35</option>
-                <option>iPhone XR / XS - $40</option>
-                <option>iPhone XS Max - $45</option>
-                <option>iPhone 11 - $45</option>
-                <option>iPhone 11 Pro - $55</option>
-                <option>iPhone 11 Pro Max - $75</option>
-                <option>iPhone 12 / 12 mini - $90</option>
-                <option>iPhone 12 Pro - $95</option>
-                <option>iPhone 12 Pro Max - $100</option>
-                <option>iPhone 13 / 13 mini - $115</option>
-                <option>iPhone 13 Pro - $135</option>
-                <option>iPhone 13 Pro Max - $150</option>
-                <option>iPhone 14 / 14 Plus - $160</option>
-                <option>iPhone 14 Pro - $165</option>
-                <option>iPhone 14 Pro Max - $175</option>
-                <option>iPhone 15 - $165</option>
-                <option>iPhone 15 Plus - $175</option>
-                <option>iPhone 15 Pro - $180</option>
-                <option>iPhone 15 Pro Max - $190</option>
-                <option>iPhone 16 / 16e / 16 Plus - $190-$195</option>
-                <option>iPhone 16 Pro - $195</option>
-                <option>iPhone 16 Pro Max - $205</option>
-                <option>iPhone 17 / 17 Air - $195-$200</option>
-                <option>iPhone 17 Pro - $200</option>
-                <option>iPhone 17 Pro Max - $210</option>
-            </optgroup>
-            <optgroup label="iPad Series">
-                <option>iPad 8 - $50</option>
-                <option>iPad 9 - $55</option>
-                <option>iPad 10 - $65</option>
-                <option>iPad Air 4 - $80</option>
-                <option>iPad Air 5 - $85</option>
-                <option>iPad Pro 9.7 / 10.5 - $140</option>
-                <option>iPad Pro 11 (Gen 1-4) - $140</option>
-                <option>iPad Pro 12.9 (Gen 1-6) - $150</option>
-            </optgroup>
-            <optgroup label="Apple Watch">
-                <option>Series 4 / 5 / 6 - Contact Admin</option>
-                <option>Series 7 / 8 / 9 - Contact Admin</option>
-                <option>Series 10 / 11 - Contact Admin</option>
-                <option>Ultra 1 / 2 / 3 - Contact Admin</option>
-            </optgroup>
-        </select>
-    </div>
+        <div class="form-group">
+            <label>Select Device & Service Plan</label>
+            <select id="serviceSelect" class="input-field" required>
+                <optgroup label="Official iCloud Removal (OFF)">
+                    <option value="210">iPhone 17 Pro Max - $210</option>
+                    <option value="200">iPhone 17 Pro - $200</option>
+                    <option value="205">iPhone 16 Pro Max - $205</option>
+                    <option value="195">iPhone 16 / 16 Plus - $195</option>
+                    <option value="190">iPhone 15 Pro Max - $190</option>
+                    <option value="175">iPhone 14 Pro Max - $175</option>
+                    <option value="150">iPhone 13 Pro Max - $150</option>
+                    <option value="100">iPhone 12 Pro Max - $100</option>
+                </optgroup>
+                <optgroup label="iPhone Legacy">
+                    <option value="35">iPhone X - $35</option>
+                    <option value="30">iPhone 7 / 7 Plus - $30</option>
+                    <option value="25">iPhone 6 Series - $25</option>
+                </optgroup>
+                <optgroup label="iPad Series">
+                    <option value="150">iPad Pro 12.9 (Gen 1-6) - $150</option>
+                    <option value="140">iPad Pro 11 (Gen 1-4) - $140</option>
+                    <option value="65">iPad 10 - $65</option>
+                </optgroup>
+            </select>
+        </div>
 
-    <div class="form-group">
-        <label>Payment Screenshot</label>
-        <input type="file" class="input-field" style="padding: 10px;">
-    </div>
+        <div class="form-group">
+            <label>Payment Screenshot</label>
+            <input type="file" class="input-field" style="padding: 10px;">
+        </div>
 
-    <button class="btn-submit" onclick="alert('Order submitted! Send your receipt to @gsmshtool on Telegram.')">Confirm & Submit</button>
+        <div class="service-notice">
+            <p><strong><i class="fas fa-info-circle"></i> Service Description & Ethics:</strong></p>
+            <p>This is an <span class="highlight">Official iCloud Removal (OFF)</span> service. We maintain the highest ethical standards. 
+            Supports devices in <span class="highlight">ON</span> or <span class="highlight">LOST</span> status.</p>
+            
+            <p><i class="fas fa-clock"></i> Delivery Time: <span class="highlight">1 to 24 Hours.</span></p>
+            <p><i class="fas fa-calendar-alt"></i> Working Days: <span class="highlight">Sunday to Thursday.</span></p>
+            <p><i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i> Please ensure you transfer to the <span class="highlight">correct wallet address</span> below.</p>
+            <p><i class="fas fa-comments"></i> Please contact customer support and send your <span class="highlight">payment receipt</span> to confirm and execute your order.</p>
+        </div>
+
+        <button type="submit" class="btn-submit">Confirm & Process Order</button>
+    </form>
 
     <div class="payment-info">
         <h4 style="margin:0; color: var(--p); font-size: 14px;"><i class="fas fa-wallet"></i> Payment Methods</h4>
@@ -114,6 +108,44 @@
 <div style="text-align: center; margin-top: 25px;">
     <a href="index.html" style="color: #555; text-decoration: none; font-size: 12px;">← Return to Homepage</a>
 </div>
+
+<script>
+function handleOrder(e) {
+    e.preventDefault();
+    const sel = document.getElementById('serviceSelect');
+    const model = sel.options[sel.selectedIndex].text;
+    const imei = document.getElementById('imeiInput').value;
+    const price = sel.value;
+    const client = document.getElementById('clientName').value;
+    const orderId = "#GSM" + Math.floor(Math.random() * 10000);
+
+    // 1. حفظ الطلب في الذاكرة المحلية (Tracking)
+    const newOrder = { 
+        id: orderId, 
+        service: model, 
+        imei: imei, 
+        price: price, 
+        status: 'Pending Verification',
+        date: new Date().toLocaleString()
+    };
+    let orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
+    orders.push(newOrder);
+    localStorage.setItem('gsm_orders', JSON.stringify(orders));
+
+    // 2. رسالة التليجرام الاحترافية
+    const msg = `👑 *NEW VIP ORDER*%0A%0A` +
+                `🆔 *Order:* ${orderId}%0A` +
+                `👤 *Client:* ${client}%0A` +
+                `🔹 *Service:* ${model}%0A` +
+                `🆔 *IMEI:* ${imei}%0A` +
+                `💰 *Price:* $${price}%0A%0A` +
+                `⚠️ _Please send your payment receipt image now to process!_`;
+
+    // 3. التوجيه
+    window.open(`https://t.me/gsmshtool?text=${msg}`, '_blank');
+    window.location.href = "track.html"; 
+}
+</script>
 
 </body>
 </html>
