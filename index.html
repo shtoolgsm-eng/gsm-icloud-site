@@ -5,257 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GSM SHTOOL | Global Unlock & Forensic Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; overflow-x: hidden; }
-
-        <section class="services-section">
-    <h2 class="section-title">خدمات GSM SHTOOL | Our Services</h2>
-    
-    <div class="services-grid">
-        <div class="service-card">
-            <i class="fas fa-microchip icon"></i>
-            <h3>Digital Forensics</h3>
-            <h4>التحقيق الرقمي وفك التشفير</h4>
-            <p>دعم كامل وبرامج حصريّة لأجهزة <b>Oxygen Forensic</b> و <b>Cellebrite UFED</b> لسحب البيانات وفك الأقفال المعقدة.</p>
-        </div>
-
-        <div class="service-card highlight">
-            <i class="fas fa-unlock-alt icon"></i>
-            <h3>Screen Lock Removal</h3>
-            <h4>إزالة قفل الشاشة بدون فورمات</h4>
-            <p>حلول تقنية ذكية لإزالة الرمز والنمط <b>بدون فقدان البيانات</b> (No Data Loss) لجميع موديلات الأندرويد.</p>
-        </div>
-
-        <div class="service-card">
-            <i class="fas fa-download icon"></i>
-            <h3>Free Software</h3>
-            <h4>تحميل برامج مجانية مع التفعيل</h4>
-            <p>مكتبة متجددة لتحميل أحدث برامج الـ GSM والبوكسات <b>مع التفعيل</b> (With Activation) بروابط مباشرة.</p>
-        </div>
-    </div>
-</section>
-
-<link rel="stylesheet" href="gsmshtool.mooo.com">
-
-        
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
-        .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; }
+        .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Orbitron', sans-serif; }
         .logo span { color: var(--p); }
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 600; }
-
-        /* Hero & Search */
         .hero { padding: 80px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d29 0%, #030305 100%); }
         .check-box { max-width: 800px; margin: 30px auto; background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid #1f2235; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .imei-input { width: 100%; padding: 20px; border-radius: 50px; border: 1px solid #30363d; background: #000; color: #fff; font-size: 18px; text-align: center; margin-bottom: 25px; outline: none; box-sizing: border-box; }
-        
-        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 14px; }
-        .btn-check { background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; }
-        .btn-free { background: #1f2235; color: #fff; border: 1px solid #30363d; }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-
+        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 14px; color: #fff; }
+        .btn-check { background: linear-gradient(45deg, var(--p), var(--s)); }
+        .btn-free { background: #1f2235; border: 1px solid #30363d; }
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
-        .section-title { border-left: 5px solid var(--p); padding-left: 15px; margin: 60px 0 30px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; }
-
-        /* Services List */
-        .service-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-        .service-item { background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid #1f2235; display: flex; align-items: center; justify-content: space-between; transition: 0.3s; }
-        .service-item:hover { border-color: var(--p); background: #161b22; }
-        .price { color: var(--neon); font-weight: bold; }
-
-        /* Software Cards */
-        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .soft-card { background: var(--card); border-radius: 20px; border: 1px solid #1f2235; overflow: hidden; text-align: center; transition: 0.4s; }
-        .soft-card:hover { transform: translateY(-10px); border-color: var(--p); }
-        .soft-img { width: 100%; height: 160px; object-fit: cover; }
-        .soft-body { padding: 20px; }
-        .btn-download { display: block; margin-top: 15px; padding: 10px; background: var(--p); color: #000; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 13px; }
-
-        /* Guide */
-        .guide { background: #0a0c14; padding: 60px 5%; border-top: 1px solid #1f2235; margin-top: 50px; }
-        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
-        .guide-item i { font-size: 30px; color: #555; margin-bottom: 15px; }
-
-        /* Footer */
-        footer { background: #050507; padding: 60px 5% 20px; border-top: 1px solid #1f2235; text-align: center; }
-        .wallet-box { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--p); color: var(--neon); font-family: monospace; font-size: 12px; margin: 20px auto; max-width: 500px; word-break: break-all; }
+        .section-title { border-left: 5px solid var(--p); padding-left: 15px; margin: 60px 0 30px; font-size: 1.5rem; text-transform: uppercase; font-family: 'Orbitron', sans-serif; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .review-card { background: rgba(255,255,255,0.02); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; }
+        .rev-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .rev-avatar { width: 45px; height: 45px; background: #161b22; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--p); border: 1px solid #333; }
+        .rev-number { font-size: 14px; font-weight: 700; }
+        .status-online { width: 8px; height: 8px; background: var(--neon); border-radius: 50%; display: inline-block; margin-right: 6px; }
+        .wallet-box { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--p); color: var(--neon); font-family: monospace; font-size: 11px; margin: 20px auto; max-width: 600px; word-break: break-all; }
+        footer { background: #050507; padding: 40px 5%; border-top: 1px solid #1f2235; text-align: center; }
     </style>
 </head>
 <body>
-
-<nav>
-    <a href="index.html" class="logo">GSM <span>SHTOOL</span></a>
-    <div class="nav-links">
-        <a href="order.html">New Order</a>
-        <a href="https://t.me/gsmshtool" style="background:var(--p); color:#000; padding:8px 15px; border-radius:20px;">Support</a>
-    </div>
-</nav>
-
-<section class="hero">
-    <h1>NEED INFO FOR YOUR DEVICE?</h1>
-    <p style="color:#888;">Instant iCloud & Blacklist verification services.</p>
-    <div class="check-box">
-        <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter IMEI or Serial Number...">
-        <div class="btn-group">
-            <button class="btn-main btn-check" onclick="runCheck('apple')"><i class="fab fa-apple"></i> Apple Check</button>
-            <button class="btn-main btn-free" onclick="runCheck('android')"><i class="fab fa-android"></i> Android Check</button>
-            <button class="btn-main btn-free" style="color:#ff4b2b" onclick="runCheck('blacklist')"><i class="fas fa-shield-alt"></i> Blacklist</button>
+    <nav>
+        <a href="index.html" class="logo">GSM <span>SHTOOL</span></a>
+        <div class="nav-links">
+            <a href="order.html">New Order</a>
+            <a href="tools.html">Free Tools</a>
+            <a href="https://t.me/gsmshtool" style="background:var(--p); color:#000; padding:8px 18px; border-radius:20px;">Support</a>
         </div>
+    </nav>
+
+    <section class="hero">
+        <h1>GLOBAL FORENSIC & UNLOCK SOLUTIONS</h1>
+        <p style="color:#888;">Professional services for Apple & Android devices.</p>
+        <div class="check-box">
+            <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter IMEI or Serial Number...">
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <button class="btn-main btn-check" onclick="runCheck()">Check IMEI</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="reviews-section">
+            <div class="section-title">💬 Client Feedback</div>
+            <div class="reviews-grid" id="reviewsContainer"></div>
+        </section>
     </div>
+
     <footer>
-    <div class="footer-social">
-        <a href="https://t.me/gsmshtool" class="social-link"><i class="fab fa-telegram"></i></a>
-        <a href="https://www.facebook.com/share/18XUvLWK7L/" class="social-link"><i class="fab fa-facebook"></i></a>
-    </div>
-    <p>© 2026 GSM SHTOOL | Professional Mobile Solutions</p>
-    
-    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; margin-top: 20px;">
-        <div style="background: #000; padding: 12px; border-radius: 8px; display: inline-block; font-family: monospace; font-size: 11px; border: 1px solid #1f2235; color: #fff; width: 100%; max-width: 500px; word-break: break-all;">
-            <span style="color: #f7931a;"><i class="fab fa-bitcoin"></i> BTC:</span> bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
-        </div>
+        <div class="wallet-box">BTC: bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
+        <p>© 2026 GSM SHTOOL GLOBAL</p>
+    </footer>
 
-        <div style="background: #000; padding: 12px; border-radius: 8px; display: inline-block; font-family: monospace; font-size: 11px; border: 1px solid #1f2235; color: #fff; width: 100%; max-width: 500px; word-break: break-all;">
-            <span style="color: #26a17b;"><i class="fas fa-dollar-sign"></i> USDT (ERC20/BEP20):</span> 0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2
-        </div>
-    </div>
-</footer>
-
-</section>
-
-<div class="container">
-    <div class="section-title">💎 Premium Services</div>
-    <div class="service-list">
-        <div class="service-item">
-            <div style="display:flex; align-items:center; gap:15px;">
-                <i class="fas fa-shield-virus" style="color:var(--p); font-size:20px;"></i>
-                <div><h4 style="margin:0;">Samsung KNOX GUARD</h4><p style="margin:0; font-size:11px; color:#555;">Instant Check</p></div>
-            </div>
-            <div class="price">USD 3.00</div>
-        </div>
-        <div class="service-item">
-            <div style="display:flex; align-items:center; gap:15px;">
-                <i class="fas fa-search-location" style="color:var(--p); font-size:20px;"></i>
-                <div><h4 style="margin:0;">iCloud Clean/Lost Check</h4><p style="margin:0; font-size:11px; color:#555;">Official API</p></div>
-            </div>
-            <div class="price">USD 1.50</div>
-        </div>
-    </div>
-
-    <div class="section-title">🛠️ Forensic & Bypass Tools</div>
-    <div class="software-grid">
-        <div class="soft-card">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2026" class="soft-img">
-            <div class="soft-body">
-                <h3>ArabiCloud v5</h3>
-                <p style="font-size:12px; color:#777;">Advanced iCloud Bypass Tool</p>
-                <a href="arabicicloud.html" class="btn-download">Download Tool</a>
-            </div>
-        </div>
-        <div class="soft-card">
-            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070" class="soft-img">
-            <div class="soft-body">
-                <h3>MD-NEXT 2.0.3</h3>
-                <p style="font-size:12px; color:#777;">Digital Forensic Extraction</p>
-                <a href="mdnext.html" class="btn-download">Download Tool</a>
-            </div>
-        </div>
-        <div class="soft-card">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072" class="soft-img">
-            <div class="soft-body">
-                <h3>Magnet Axiom</h3>
-                <p style="font-size:12px; color:#777;">Evidence Analysis Software</p>
-                <a href="magnet.html" class="btn-download">Download Tool</a>
-            </div>
-        </div>
-    </div><div class="soft-card">
-            <div class="soft-header"><i class="fas fa-microchip"></i><h3>UFED 7.71 FREE</h3></div>
-            <div class="soft-body">
-                <p>Full Forensic extraction with Fix Search included. Professional Crack & KeyGen available below.</p>
-                <span class="pass-box">Password: @gaddtech</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Setup + Fix Search</a>
-                <a href="https://drive.google.com/drive/folders/1HOpn4Qmsqc6TNN0s51pvO6Sqrg3eO4Ws?usp=drive_link" class="btn-dl dl-secondary" target="_blank"><i class="fas fa-key"></i> Crack + Key-Gen</a>
-                <a href="https://youtu.be/DMJR8GAd7dc" class="btn-dl dl-yt" target="_blank"><i class="fab fa-youtube"></i> How to Download from G-Drive</a>
-            </div>
-        </div>
-
-        <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-fingerprint"></i><h3>Oxygen Forensic Detective</h3></div>
-            <div class="soft-body">
-                <p>V 17.1.0.131. Bypass screen locks without formatting. Free version provided by GSM SHTOOL.</p>
-                <span class="pass-box">Password: NONE / @gaddtech</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Software + Drivers + KeyGen</a>
-            </div>
-        </div>
-
-        <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-mobile-alt"></i><h3>MD-NEXT 2.0.3</h3></div>
-            <div class="soft-body">
-                <p>Forensic extraction for mobile & cloud. Includes MD-Plug Free Activation link.</p>
-                <span class="pass-box">Password: @gaddtech</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Download Main Folder</a>
-                <a href="https://www.youtube.com/playlist?list=PLdD4BEVTmGuw-4AcHZyIsM5lP4lR5S8ac" class="btn-dl dl-yt" target="_blank"><i class="fab fa-youtube"></i> Video Tutorials</a>
-            </div>
-        </div>
-
-        <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-search-plus"></i><h3>Magnet Axiom V7.80</h3></div>
-            <div class="soft-body">
-                <p>Complete digital investigation suite. Recover and analyze deleted mobile data.</p>
-                <span class="pass-box">Password: @arbad9000</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/5176t9glfsafd/Magnet+Axiom" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Download V7.80 Full</a>
-            </div>
-        </div>
-
-        <div class="soft-card">
-            <div class="soft-header"><i class="fas fa-unlock-alt"></i><h3>Mohamed Soft Tool</h3></div>
-            <div class="soft-body">
-                <p>iCloud Bypass No Jailbreak solution. Supports iOS 7 up to iOS 26.1.</p>
-                <span class="pass-box">Password: @arbad9000</span>
-            </div>
-            <div class="action-area">
-                <a href="https://www.mediafire.com/folder/o6wa02ku2b5j5/EGY-Unlockers.com" class="btn-dl dl-main" target="_blank"><i class="fas fa-download"></i> Download Tool</a>
-                <a href="https://www.facebook.com/share/18XUvLWK7L/" class="btn-dl dl-yt" style="background:#1877F2" target="_blank"><i class="fab fa-facebook"></i> Contact Developer</a>
-            </div>
-        </div>
-</div>
-
-<section class="guide">
-    <h3 style="text-align:center; margin-bottom:40px;">HOW TO FIND IMEI?</h3>
-    <div class="guide-grid">
-        <div class="guide-item"><i class="fas fa-cog"></i><h4>Settings</h4><p>General > About</p></div>
-        <div class="guide-item"><i class="fas fa-phone"></i><h4>Dialer</h4><p>Dial *#06#</p></div>
-        <div class="guide-item"><i class="fas fa-sim-card"></i><h4>SIM Tray</h4><p>Check the metal tray</p></div>
-    </div>
-</section>
-
-<footer>
-    <div class="wallet-box">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</div>
-    <div style="margin:20px 0;">
-        <a href="https://t.me/gsmshtool" style="color:var(--p); font-size:24px;"><i class="fab fa-telegram"></i></a>
-    </div>
-    <p style="color:#444;">© 2007-2021 GSM SHTOOL GLOBAL - Secure Unlock Systems</p>
-</footer>
-
-<script>
-function runCheck(type) {
-    const imei = document.getElementById('imeiSearch').value.trim();
-    if (imei.length < 5) { alert("⚠️ Enter a valid IMEI!"); return; }
-    let url = "";
-    if (type === 'apple') url = `https://iunlocker.com/en/check_imei.php?imei=${imei}`;
-    else if (type === 'android') url = `https://www.imei.info/`;
-    else if (type === 'blacklist') url = `https://www.imeipro.info/`;
-    window.open(url, '_blank');
-}
-</script>
-
+    <script>
+        const numbers = ["+96777849 8393", "+966 599 29 0423", "+971 507 990 653", "+447 217 293 866", "+21264033 0967"];
+        const messages = ["Oxygen Forensic worked perfectly!", "Fast iCloud check, thanks!", "UFED 7.71 fix is 100% working.", "Best support team ever!"];
+        const container = document.getElementById('reviewsContainer');
+        for(let i=0; i<6; i++){
+            const num = numbers[Math.floor(Math.random()*numbers.length)];
+            const msg = messages[Math.floor(Math.random()*messages.length)];
+            container.innerHTML += `
+                <div class="review-card">
+                    <div class="rev-header">
+                        <div class="rev-avatar"><i class="fas fa-user"></i></div>
+                        <div class="rev-number">${num}</div>
+                    </div>
+                    <p style="font-size:12px; color:#aaa;"><span class="status-online"></span> "${msg}"</p>
+                </div>`;
+        }
+        function runCheck() {
+            const imei = document.getElementById('imeiSearch').value;
+            window.open(`https://iunlocker.com/en/check_imei.php?imei=${imei}`, '_blank');
+        }
+    </script>
 </body>
 </html>
