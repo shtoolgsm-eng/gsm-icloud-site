@@ -2,40 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Track Your Order</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - GSM SHTOOL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #050507; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #0f111a; border: 1px solid #1f2235; padding: 40px; border-radius: 20px; width: 100%; max-width: 450px; text-align: center; }
-        input { width: 100%; padding: 15px; margin: 20px 0; background: #161b22; border: 1px solid #30363d; color: white; border-radius: 10px; box-sizing: border-box; font-size: 16px; }
-        .btn { background: #00d2ff; color: black; border: none; padding: 15px; width: 100%; border-radius: 30px; font-weight: bold; cursor: pointer; }
-        #result { margin-top: 25px; padding: 15px; border-radius: 10px; display: none; background: rgba(0,210,255,0.1); border: 1px solid #00d2ff; }
+        :root { --primary: #3b82f6; --dark: #05070a; --gold: #c5a059; }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: 50px auto; }
+        .glass-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 30px; }
+        .status-badge { padding: 8px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .pending { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; }
+        .order-item { border-bottom: 1px solid #222; padding: 20px 0; }
+        .track-id { font-family: 'Orbitron'; color: var(--gold); }
+        .btn-home { display: block; text-align: center; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2 style="color:#00d2ff">📦 Track Order</h2>
-        <p style="color:#888">Enter your Order ID to check status</p>
-        <input type="text" id="orderInput" placeholder="Order ID (e.g., GSM-12345)">
-        <button class="btn" onclick="track()">TRACK NOW</button>
-        <div id="result"></div>
-        <br><a href="index.html" style="color:#555; text-decoration:none; font-size:12px">Return Home</a>
+
+<div class="container">
+    <div class="glass-card">
+        <h2 style="font-family: 'Orbitron'; text-align: center; margin-bottom: 30px;">
+            <i class="fas fa-satellite-dish"></i> ORDER TRACKING
+        </h2>
+        
+        <div id="noOrders" style="text-align: center; color: #666;">No active orders found.</div>
+        <div id="ordersList"></div>
+
+        <a href="index.html" class="btn-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
+</div>
 
-    <script>
-        function track() {
-            const input = document.getElementById('orderInput').value.trim();
-            const res = document.getElementById('result');
-            const stored = JSON.parse(localStorage.getItem('currentOrder'));
+<script>
+    function loadOrders() {
+        const orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
+        const list = document.getElementById('ordersList');
+        const noOrders = document.getElementById('noOrders');
 
-            if (stored && input === stored.id) {
-                res.style.display = 'block';
-                res.innerHTML = `<strong>Status:</strong> ${stored.status}<br><strong>Device:</strong> ${stored.device}`;
-            } else {
-                res.style.display = 'block';
-                res.style.borderColor = 'red';
-                res.innerHTML = '<span style="color:red">Order ID not found!</span>';
-            }
+        if (orders.length > 0) {
+            noOrders.style.display = 'none';
+            list.innerHTML = orders.reverse().map(order => `
+                <div class="order-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="track-id">${order.id}</span>
+                        <span class="status-badge pending">Pending Verification</span>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 14px; color: #94a3b8;">
+                        <div><i class="fas fa-microchip"></i> ${order.service}</div>
+                        <div><i class="fas fa-fingerprint"></i> IMEI: ${order.imei}</div>
+                        <div style="color: #22c55e; margin-top: 5px; font-weight: bold;">Price: $${order.price}</div>
+                    </div>
+                </div>
+            `).join('');
         }
-    </script>
+    }
+    loadOrders();
+</script>
 </body>
 </html>
