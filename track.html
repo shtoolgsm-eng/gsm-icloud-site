@@ -3,60 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Your Order - GSM SHTOOL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>GSM SHTOOL | Professional Forensic & Unlock Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #3b82f6; --dark: #05070a; --gold: #c5a059; }
-        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; padding: 20px; }
-        .container { max-width: 600px; margin: 50px auto; }
-        .glass-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 30px; }
-        .status-badge { padding: 8px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
-        .pending { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; }
-        .order-item { border-bottom: 1px solid #222; padding: 20px 0; }
-        .track-id { font-family: 'Orbitron'; color: var(--gold); }
-        .btn-home { display: block; text-align: center; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: bold; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #05070a; --card: #0f111a; --neon: #00ff88; --gold: #c5a059; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; margin: 0; overflow-x: hidden; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
+        .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Orbitron'; }
+        .logo span { color: var(--p); }
+
+        .hero { padding: 60px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d29 0%, #05070a 100%); }
+        .glass-card { max-width: 850px; margin: 30px auto; background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        
+        .service-select, .imei-input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #30363d; background: #161b22; color: #fff; font-size: 16px; margin-bottom: 20px; outline: none; }
+        .btn-main { width: 100%; padding: 18px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; color: #fff; background: linear-gradient(45deg, var(--p), var(--s)); font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+
+        /* --- SOFTWARE SECTION --- */
+        .section-title { font-family: 'Orbitron'; font-size: 1.5rem; margin: 50px 5% 20px; border-left: 5px solid var(--p); padding-left: 15px; color: #fff; }
+        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 5%; margin-bottom: 50px; }
+        .soft-card { background: var(--card); border: 1px solid #1f2235; border-radius: 20px; padding: 25px; transition: 0.3s; position: relative; }
+        .soft-card:hover { border-color: var(--p); transform: translateY(-5px); }
+        .soft-card h3 { font-family: 'Orbitron'; color: var(--p); font-size: 16px; margin-bottom: 15px; }
+        .soft-card p { font-size: 12px; color: #aaa; margin-bottom: 20px; line-height: 1.6; }
+        .links-group { display: flex; flex-direction: column; gap: 10px; }
+        .download-link { background: #161b22; color: #fff; text-decoration: none; padding: 10px 15px; border-radius: 10px; font-size: 11px; display: flex; align-items: center; gap: 8px; border: 1px solid #30363d; transition: 0.2s; }
+        .download-link:hover { background: var(--p); color: #000; border-color: var(--p); }
+        .pass-box { font-size: 10px; color: var(--gold); background: rgba(197, 160, 89, 0.1); padding: 8px; border-radius: 8px; border: 1px dashed var(--gold); margin-top: 10px; }
+
+        /* Slider & Feedback */
+        .slider-container { width: 100%; overflow: hidden; padding: 25px 0; background: rgba(255,255,255,0.02); border-top: 1px solid #1f2235; border-bottom: 1px solid #1f2235; margin: 40px 0; }
+        .slider-track { display: flex; width: calc(250px * 16); animation: scroll 40s linear infinite; }
+        .slide { width: 250px; flex-shrink: 0; text-align: center; color: #888; font-size: 13px; font-weight: bold; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 8)); } }
+
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 5%; }
+        .review-card { background: rgba(255,255,255,0.02); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; }
+
+        .shtool-footer { background: #020305; border-top: 2px solid #1f2235; padding: 60px 5% 30px; color: #888; margin-top: 60px; font-size: 12px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="glass-card">
-        <h2 style="font-family: 'Orbitron'; text-align: center; margin-bottom: 30px;">
-            <i class="fas fa-satellite-dish"></i> ORDER TRACKING
-        </h2>
-        
-        <div id="noOrders" style="text-align: center; color: #666;">No active orders found.</div>
-        <div id="ordersList"></div>
+<nav>
+    <a href="#" class="logo">SHTOOL <span>PREMIER</span></a>
+    <div style="font-size: 11px; color: var(--neon);"><i class="fas fa-shield-check"></i> ENCRYPTED SYSTEM</div>
+</nav>
 
-        <a href="index.html" class="btn-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+<section class="hero">
+    <h1 style="font-family: 'Orbitron';">SHTOOL GLOBAL TERMINAL</h1>
+    <div class="glass-card">
+        <h2 style="font-family: 'Orbitron'; font-size: 16px; margin-bottom: 25px; text-align: left;"><i class="fas fa-plus-circle"></i> NEW ORDER</h2>
+        <select id="serviceType" class="service-select">
+            <option value="25" data-name="iPhone 6/7/SE">iPhone 6 / 7 / SE Series - $25-$30</option>
+            <option value="45" data-name="iPhone 11 Series">iPhone 11 Series - $45-$75</option>
+            <option value="100" data-name="iPhone 12 Pro Max">iPhone 12 Pro Max - $100</option>
+            <option value="150" data-name="iPhone 13 Pro Max">iPhone 13 Pro Max - $150</option>
+            <option value="190" data-name="iPhone 16 Series">iPhone 16 Series - $190</option>
+            <option value="210" data-name="iPhone 17 Pro Max">iPhone 17 Pro Max - $210</option>
+        </select>
+        <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter IMEI / Serial Number">
+        <button class="btn-main" onclick="submitOrder()"><i class="fas fa-server"></i> PROCESS REQUEST</button>
+        <div id="ordersList" style="margin-top: 30px;"></div>
+    </div>
+</section>
+
+<h2 class="section-title">PROFESSIONAL SOFTWARE TOOLS</h2>
+<div class="software-grid">
+    <div class="soft-card">
+        <h3>UFED 7.71 Gold Edition</h3>
+        <p>Advanced mobile forensic extraction with Search Fix.</p>
+        <div class="links-group">
+            <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="download-link"><i class="fas fa-download"></i> Setup + Fix Search</a>
+            <a href="https://drive.google.com/drive/folders/1HOpn4Qmsqc6TNN0s51pvO6Sqrg3eO4Ws?usp=drive_link" class="download-link"><i class="fas fa-key"></i> Crack + Key-Gen</a>
+        </div>
+        <div class="pass-box"><i class="fas fa-lock"></i> Password: @gaddtech</div>
+    </div>
+
+    <div class="soft-card">
+        <h3>ArabiCloud Tool v5</h3>
+        <p>Premium iCloud Bypass for the latest modern devices.</p>
+        <div class="links-group">
+            <a href="https://arabfrp.com/" class="download-link"><i class="fas fa-globe"></i> Official Website</a>
+            <a href="https://www.mediafire.com/file/30nlwubfgnhg2l0/ArabiCloud+Tool+v5" class="download-link"><i class="fas fa-play-circle"></i> Practical Guide (Video)</a>
+            <a href="https://t.me/ArabFrp_Support" class="download-link"><i class="fab fa-telegram"></i> Join Support Group</a>
+        </div>
+    </div>
+
+    <div class="soft-card">
+        <h3>MD-NEXT 2.0.3 (FREE)</h3>
+        <p>Professional MD-NEXT + MD-Plug with full activation.</p>
+        <div class="links-group">
+            <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="download-link"><i class="fas fa-download"></i> Software + Activation</a>
+            <a href="https://www.youtube.com/playlist?list=PLdD4BEVTmGuw-4AcHZyIsM5lP4lR5S8ac" class="download-link"><i class="fab fa-youtube"></i> Video Tutorials</a>
+        </div>
+        <div class="pass-box"><i class="fas fa-lock"></i> Password: @gaddtech</div>
+    </div>
+
+    <div class="soft-card">
+        <h3>Oxygen Forensic Detective</h3>
+        <p>v17.1.0 - Passcode removal without data loss. Includes Key-Gen & Drivers.</p>
+        <div class="links-group">
+            <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="download-link"><i class="fas fa-file-download"></i> Download Full Package</a>
+        </div>
     </div>
 </div>
 
+<div class="slider-container">
+    <div class="slider-track">
+        <div class="slide"><i class="fab fa-apple"></i> iCLOUD BYPASS</div>
+        <div class="slide"><i class="fas fa-microchip"></i> FORENSIC EXTRACTION</div>
+        <div class="slide"><i class="fas fa-fingerprint"></i> FRP REMOVAL</div>
+        <div class="slide"><i class="fas fa-shield-alt"></i> MDM UNLOCK</div>
+        <div class="slide"><i class="fab fa-apple"></i> iCLOUD BYPASS</div>
+        <div class="slide"><i class="fas fa-microchip"></i> FORENSIC EXTRACTION</div>
+    </div>
+</div>
+
+<div class="reviews-grid" id="reviewsContainer"></div>
+
+<footer class="shtool-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="#" class="logo">SHTOOL <span>PREMIER</span></a>
+            <p style="margin-top:15px;">Official partner for Al-Ikhwa Communications. Global Forensic Solutions.</p>
+        </div>
+        <div class="footer-col">
+            <h4>DEVELOPER</h4>
+            <p style="color:var(--p); font-weight:bold;">Ahmad</p>
+        </div>
+        <div class="footer-col">
+            <h4>SUPPORT</h4>
+            <ul><li><a href="https://t.me/gsmshtool">Telegram</a></li><li>WhatsApp</li></ul>
+        </div>
+        <div class="footer-col">
+            <h4>PAYMENT</h4>
+            <ul><li>USDT / BTC</li><li>Binance Pay</li></ul>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:40px; border-top:1px solid #1f2235; padding-top:20px;">
+        © 2026 SHTOOL GLOBAL 
+    </div>
+</footer>
+
 <script>
+    function submitOrder() {
+        const imei = document.getElementById('imeiSearch').value.trim();
+        const select = document.getElementById('serviceType');
+        const serviceName = select.options[select.selectedIndex].getAttribute('data-name');
+        if (imei.length < 8) { alert("Invalid IMEI"); return; }
+        const newOrder = { id: 'SHT-' + Math.floor(Math.random()*9000), service: serviceName, imei: imei };
+        let orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
+        orders.push(newOrder);
+        localStorage.setItem('gsm_orders', JSON.stringify(orders));
+        loadOrders();
+    }
+
     function loadOrders() {
         const orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
         const list = document.getElementById('ordersList');
-        const noOrders = document.getElementById('noOrders');
-
         if (orders.length > 0) {
-            noOrders.style.display = 'none';
-            list.innerHTML = orders.reverse().map(order => `
-                <div class="order-item">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span class="track-id">${order.id}</span>
-                        <span class="status-badge pending">Pending Verification</span>
-                    </div>
-                    <div style="margin-top: 10px; font-size: 14px; color: #94a3b8;">
-                        <div><i class="fas fa-microchip"></i> ${order.service}</div>
-                        <div><i class="fas fa-fingerprint"></i> IMEI: ${order.imei}</div>
-                        <div style="color: #22c55e; margin-top: 5px; font-weight: bold;">Price: $${order.price}</div>
-                    </div>
-                </div>
-            `).join('');
+            list.innerHTML = orders.reverse().map(o => `
+                <div style="padding:15px; border-bottom:1px solid #222; text-align:left;">
+                    <span style="color:var(--gold); font-family:Orbitron;">${o.id}</span>
+                    <p style="font-size:11px; color:#888;">${o.service} | IMEI: ${o.imei}</p>
+                </div>`).join('');
         }
     }
-    loadOrders();
+
+    function loadReviews() {
+        const data = [{n: "+967 77***449", m: "UFED 7.71 is working perfectly!"}, {n: "+966 59***231", m: "Best tools for mobile forensics."}];
+        const container = document.getElementById('reviewsContainer');
+        data.forEach(i => {
+            container.innerHTML += `<div class="review-card"><p style="font-size:12px; font-weight:800; color:var(--p);">${i.n}</p><p style="font-size:11px; color:#aaa;">"${i.m}"</p></div>`;
+        });
+    }
+
+    window.onload = function() { loadOrders(); loadReviews(); };
 </script>
 </body>
 </html>
