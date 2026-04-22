@@ -3,143 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL | Global Unlock & Forensic Tools</title>
+    <title>GSM SHTOOL | Premier Global Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; --error: #ff4d4d; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; --gold: #c5a059; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; overflow-x: hidden; }
         
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
         .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Orbitron', sans-serif; }
         .logo span { color: var(--p); }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 600; }
+
+        .hero { padding: 60px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d29 0%, #030305 100%); }
+        .check-box { max-width: 850px; margin: 30px auto; background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid #1f2235; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         
-        .hero { padding: 80px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d29 0%, #030305 100%); }
-        .hero h1 { font-family: 'Orbitron'; letter-spacing: 2px; text-transform: uppercase; }
-
-        .check-box { max-width: 800px; margin: 30px auto; background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid #1f2235; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        /* 1. قائمة اختيار الخدمة والأسعار */
+        .service-select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #30363d; background: #161b22; color: #fff; font-size: 15px; margin-bottom: 20px; outline: none; }
         .imei-input { width: 100%; padding: 20px; border-radius: 50px; border: 1px solid #30363d; background: #000; color: #fff; font-size: 18px; text-align: center; margin-bottom: 25px; outline: none; box-sizing: border-box; }
-        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; color: #fff; margin: auto; background: linear-gradient(45deg, var(--p), var(--s)); }
+        .btn-main { padding: 15px 40px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; color: #fff; background: linear-gradient(45deg, var(--p), var(--s)); margin: auto; display: flex; align-items: center; gap: 10px; }
 
-        #resultArea { display: none; margin-top: 30px; text-align: left; background: #000; border: 1px solid #1f2235; border-radius: 20px; overflow: hidden; }
-        .result-body { padding: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .data-item { font-size: 13px; color: #888; }
-        .data-item b { color: #fff; display: block; font-size: 15px; margin-top: 4px; }
+        /* 2. شريط الخدمات المتحرك */
+        .slider-container { width: 100%; overflow: hidden; padding: 30px 0; background: rgba(255,255,255,0.02); margin-top: 30px; border-top: 1px solid #1f2235; border-bottom: 1px solid #1f2235; }
+        .slider-track { display: flex; width: calc(250px * 16); animation: scroll 40s linear infinite; }
+        .slide { width: 250px; padding: 10px; flex-shrink: 0; }
+        .service-card { background: var(--card); border: 1px solid #1f2235; padding: 15px; border-radius: 15px; text-align: center; font-size: 14px; font-weight: 600; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 8)); } }
 
-        /* --- شريط الخدمات المتحرك --- */
-        .slider-container { width: 100%; overflow: hidden; padding: 40px 0; background: rgba(255,255,255,0.02); margin-top: 30px; border-top: 1px solid #1f2235; }
-        .slider-track { display: flex; width: calc(250px * 12); animation: scroll 25s linear infinite; }
-        .slide { width: 250px; padding: 15px; flex-shrink: 0; }
-        .service-card { background: var(--card); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; text-align: center; transition: 0.3s; }
-        .service-card i { font-size: 25px; color: var(--p); margin-bottom: 10px; }
-        .service-card h3 { font-size: 13px; font-family: 'Orbitron'; margin: 5px 0; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 6)); } }
-
-        /* --- قسم آراء العملاء (الدردشة) --- */
+        /* 3. آراء العملاء */
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
-        .section-title { border-left: 5px solid var(--p); padding-left: 15px; margin-bottom: 30px; font-size: 1.2rem; font-family: 'Orbitron'; }
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .review-card { background: rgba(255,255,255,0.02); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; }
-        .rev-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-        .rev-avatar { width: 40px; height: 40px; background: #161b22; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--p); border: 1px solid #333; }
-        .status-online { width: 8px; height: 8px; background: var(--neon); border-radius: 50%; display: inline-block; margin-right: 5px; }
 
-        footer { background: #050507; padding: 30px; border-top: 1px solid #1f2235; text-align: center; font-size: 12px; color: #666; }
+        /* 4. الخاتمة الفخمة (Premier Footer) */
+        .shtool-footer { background: #050507; border-top: 2px solid #1f2235; padding: 60px 5% 30px; color: #888; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 30px; max-width: 1200px; margin: auto; }
+        .footer-col h4 { font-family: 'Orbitron'; color: #fff; margin-bottom: 20px; font-size: 13px; border-left: 3px solid var(--p); padding-left: 10px; text-transform: uppercase; }
+        .footer-col ul { list-style: none; padding: 0; font-size: 12px; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: #888; text-decoration: none; transition: 0.3s; }
+        .footer-col a:hover { color: var(--p); transform: translateX(5px); display: inline-block; }
+        .trust-badge { border: 1px dashed var(--gold); color: var(--gold); padding: 12px; border-radius: 8px; text-align: center; font-size: 10px; margin-top: 20px; display: block; font-family: 'Orbitron'; text-decoration: none; }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">GSM <span>SHTOOL</span></a>
-        <div class="nav-links">
-            <a href="order.html">New Order</a>
-            <a href="tools.html">Free Tools</a>
-            <a href="https://t.me/gsmshtool" style="background:var(--p); color:#000; padding:8px 18px; border-radius:20px;">Support</a>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <h1>ADVANCED ICLOUD & FORENSIC SOLUTIONS</h1>
-        <div class="check-box">
-            <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter IMEI / Serial Number...">
-            <button class="btn-main" onclick="handleCheck()">ANALYZE DEVICE</button>
-            <div id="resultArea"><div class="result-body" id="resultContent"></div></div>
-        </div>
-    </section>
+<nav>
+    <a href="#" class="logo">SHTOOL <span>PREMIER</span></a>
+    <div style="font-size: 12px; color: var(--p); font-weight: bold;"><i class="fas fa-lock"></i> SHTOOL SECURE API</div>
+</nav>
 
-    <div class="slider-container">
-        <div class="slider-track">
-            <div class="slide"><div class="service-card"><i class="fab fa-apple"></i><h3>iCloud Unlock</h3><p style="font-size:10px;">All Models Supported</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-unlock"></i><h3>Carrier Unlock</h3><p style="font-size:10px;">Network Bypass</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-fingerprint"></i><h3>FRP Remove</h3><p style="font-size:10px;">Android Bypass</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-microchip"></i><h3>Forensic</h3><p style="font-size:10px;">Data Recovery</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-shield-alt"></i><h3>MDM Bypass</h3><p style="font-size:10px;">Corporate Unlock</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-search"></i><h3>Blacklist</h3><p style="font-size:10px;">Clean Check</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fab fa-apple"></i><h3>iCloud Unlock</h3></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-unlock"></i><h3>Carrier Unlock</h3></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-fingerprint"></i><h3>FRP Remove</h3></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-microchip"></i><h3>Forensic</h3></div></div>
+<section class="hero">
+    <h1 style="font-size: 2.2rem; font-family: 'Orbitron';">SHTOOL GLOBAL HUB</h1>
+    <div class="check-box">
+        <label style="display:block; text-align:left; font-size:11px; margin-bottom:10px; color:var(--p); font-weight:800;">SELECT YOUR SERVICE & MODEL:</label>
+        <select id="serviceType" class="service-select">
+            <optgroup label="--- iPHONE MODELS ---">
+                <option value="25">iPhone 6 / 6S Series - $25</option>
+                <option value="30">iPhone 7 / 7 Plus / SE - $30</option>
+                <option value="35">iPhone 8 / 8 Plus / X - $35</option>
+                <option value="40">iPhone XR / XS - $40</option>
+                <option value="45">iPhone XS Max / 11 - $45</option>
+                <option value="55">iPhone 11 Pro - $55</option>
+                <option value="75">iPhone 11 Pro Max - $75</option>
+                <option value="90">iPhone 12 / 12 mini - $90</option>
+                <option value="95">iPhone 12 Pro - $95</option>
+                <option value="100">iPhone 12 Pro Max - $100</option>
+                <option value="115">iPhone 13 - $115</option>
+                <option value="135">iPhone 13 Pro - $135</option>
+                <option value="150">iPhone 13 Pro Max - $150</option>
+                <option value="160">iPhone 14 / 14 Plus - $160</option>
+                <option value="165">iPhone 14 Pro / 15 - $165</option>
+                <option value="175">iPhone 15 Plus / 14 Pro Max - $175</option>
+                <option value="180">iPhone 15 Pro - $180</option>
+                <option value="190">iPhone 15 Pro Max / 16 - $190</option>
+                <option value="195">iPhone 16 Plus / 16e / 17 - $195</option>
+                <option value="205">iPhone 16 Pro Max - $205</option>
+                <option value="210">iPhone 17 Pro Max - $210</option>
+            </optgroup>
+            <optgroup label="--- iPAD SERIES ---">
+                <option value="50">iPad 8 - $50</option>
+                <option value="65">iPad 10 - $65</option>
+                <option value="85">iPad Air 5 - $85</option>
+                <option value="140">iPad Pro 11 (1-4) - $140</option>
+                <option value="150">iPad Pro 12.9 (1-6) - $150</option>
+            </optgroup>
+            <optgroup label="--- APPLE WATCH ---">
+                <option value="50">Watch Series 4 - $50</option>
+                <option value="80">Watch Series 6/7 - $80</option>
+                <option value="100">Watch Series 9/10/11 - $100</option>
+                <option value="110">Watch Ultra 1 - $110</option>
+                <option value="120">Watch Ultra 2/3 - $120</option>
+            </optgroup>
+        </select>
+
+        <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter IMEI / Serial Number">
+        <button class="btn-main" onclick="alert('Request sent for IMEI: ' + document.getElementById('imeiSearch').value)">SUBMIT REQUEST</button>
+    </div>
+</section>
+
+<div class="slider-container">
+    <div class="slider-track">
+        <div class="slide"><div class="service-card"><i class="fab fa-apple"></i> iCloud Unlock</div></div>
+        <div class="slide"><div class="service-card"><i class="fas fa-fingerprint"></i> FRP Android</div></div>
+        <div class="slide"><div class="service-card"><i class="fas fa-microchip"></i> Forensic Tools</div></div>
+        <div class="slide"><div class="service-card"><i class="fas fa-shield-alt"></i> MDM Bypass</div></div>
+        <div class="slide"><div class="service-card"><i class="fas fa-search"></i> Blacklist Check</div></div>
+        <div class="slide"><div class="service-card"><i class="fas fa-unlock"></i> Carrier Unlock</div></div>
+        <div class="slide"><div class="service-card"><i class="fab fa-apple"></i> iCloud Unlock</div></div>
+        <div class="slide"><div class="service-card"><i class="fas fa-fingerprint"></i> FRP Android</div></div>
+    </div>
+</div>
+
+<div class="container">
+    <div style="border-left: 5px solid var(--p); padding-left: 15px; margin-bottom: 30px; font-family: 'Orbitron';">💬 CUSTOMER FEEDBACK</div>
+    <div class="reviews-grid" id="reviewsContainer">
+        </div>
+</div>
+
+<footer class="shtool-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="#" class="logo" style="font-size:18px;">SHTOOL <span>PREMIER</span></a>
+            <p style="font-size:11px; line-height:1.8; margin-top:15px;">Advanced Forensic & Global Unlocking Hub. Professional solutions for mobile technicians worldwide.</p>
+            <a href="#" class="trust-badge">CERTIFIED SHTOOL PARTNER 2026</a>
+        </div>
+        <div class="footer-col">
+            <h4>APPLE</h4>
+            <ul>
+                <li><a href="#">iCloud Bypass</a></li>
+                <li><a href="#">FMI Off Status</a></li>
+                <li><a href="#">Carrier Lookup</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>ANDROID</h4>
+            <ul>
+                <li><a href="#">Samsung Knox</a></li>
+                <li><a href="#">Xiaomi Account</a></li>
+                <li><a href="#">FRP Removal</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>TOOLS</h4>
+            <ul>
+                <li><a href="#">Oxygen Forensic</a></li>
+                <li><a href="#">UFED Detective</a></li>
+                <li><a href="#">SHTOOL API</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>SUPPORT</h4>
+            <ul>
+                <li><a href="https://t.me/gsmshtool"><i class="fab fa-telegram"></i> Telegram Channel</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Wallet: BTC/USDT</a></li>
+            </ul>
         </div>
     </div>
-
-    <div class="container">
-        <div class="section-title">💬 Live Feedback</div>
-        <div class="reviews-grid" id="reviewsContainer">
-            </div>
+    <div style="text-align:center; margin-top:50px; font-size:10px; border-top:1px solid #1f2235; padding-top:20px; color:#555;">
+        © 2007 SHTOOL PREMIER | Al-Ikhwa Communications | Developed by Shamsan Ahmad
     </div>
+</footer>
 
-    <footer>© 2026 GSM SHTOOL GLOBAL | Trusted Forensic Solutions</footer>
-
-    <script>
-        // دالة الفحص
-        async function handleCheck() {
-            const imei = document.getElementById('imeiSearch').value.trim();
-            const resultArea = document.getElementById('resultArea');
-            const resultContent = document.getElementById('resultContent');
-
-            if (imei.length < 14) { alert("Invalid IMEI"); return; }
-            resultArea.style.display = 'block';
-            resultContent.innerHTML = `<p style="grid-column: 1/-1; text-align: center;"><i class="fas fa-sync fa-spin"></i> Checking Database...</p>`;
-
-            try {
-                const API_KEY = 'a4985612-2f41-466e-b4b9-5fbf1f33e5bf'; 
-                const response = await fetch(`https://zylalabs.com/api/check/imei/v2?imei=${imei}`, {
-                    headers: { 'Authorization': `Bearer ${API_KEY}` }
-                });
-                const data = await response.json();
-                resultContent.innerHTML = `
-                    <div class="data-item">BRAND <b>${data.brand || 'Apple/Samsung'}</b></div>
-                    <div class="data-item">MODEL <b>${data.model || 'Detected'}</b></div>
-                    <div class="data-item">iCLOUD <b style="color:var(--neon)">OFF / READY</b></div>
-                    <div class="data-item">STATUS <b style="color:var(--neon)">CLEAN</b></div>
-                `;
-            } catch (e) {
-                resultContent.innerHTML = `<p style="color:var(--error); grid-column:1/-1;">Connection Error.</p>`;
-            }
-        }
-
-        // دالة آراء العملاء
-        function loadReviews() {
-            const numbers = ["+967 77***449", "+966 59***23", "+971 50***90", "+212 64***67", "+967 73***21"];
-            const messages = ["Oxygen Forensic worked perfectly!", "Fast iCloud check, thanks!", "UFED fix is 100% working.", "Best support team!", "SHTOOL is safe & fast."];
-            const container = document.getElementById('reviewsContainer');
-            
-            for(let i=0; i<6; i++){
-                const num = numbers[Math.floor(Math.random()*numbers.length)];
-                const msg = messages[Math.floor(Math.random()*messages.length)];
-                container.innerHTML += `
-                    <div class="review-card">
-                        <div class="rev-header">
-                            <div class="rev-avatar"><i class="fas fa-user-shield"></i></div>
-                            <div style="font-size: 13px; font-weight: 700;">${num}</div>
-                        </div>
-                        <p style="font-size:12px; color:#aaa;"><span class="status-online"></span> "${msg}"</p>
-                    </div>`;
-            }
-        }
-
-        // تشغيل الآراء عند التحميل
-        window.onload = loadReviews;
-    </script>
+<script>
+    function loadReviews() {
+        const data = [
+            {num: "+967 77***449", msg: "Oxygen Forensic worked perfectly!"},
+            {num: "+966 59***231", msg: "iCloud check is very fast."},
+            {num: "+971 50***902", msg: "Best price for iPhone 15 Pro Max."}
+        ];
+        const container = document.getElementById('reviewsContainer');
+        data.forEach(item => {
+            container.innerHTML += `
+                <div class="review-card">
+                    <p style="font-size:13px; font-weight:800; color:var(--p); margin-bottom:5px;">${item.num}</p>
+                    <p style="font-size:11px; color:#aaa;">"${item.msg}"</p>
+                </div>`;
+        });
+    }
+    window.onload = loadReviews;
+</script>
 </body>
 </html>
