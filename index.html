@@ -3,141 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iRemove VIP | Official Forensic & Unlock</title>
+    <title>iRemove VIP | Official Forensic & iCloud Unlock</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; --gold: #ffd700; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #10121b; --gold: #ffd700; --neon: #00ff88; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; scroll-behavior: smooth; }
         
-        /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
-        .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Orbitron', sans-serif; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index: 1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
+        .logo { font-size: 22px; font-weight: 800; font-family: 'Orbitron'; text-decoration: none; color: #fff; }
         .logo span { color: var(--p); }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; }
 
-        /* Sections */
-        .container { padding: 60px 5%; max-width: 1200px; margin: auto; }
-        .section-title { font-family: 'Orbitron'; text-align: center; margin-bottom: 40px; color: var(--p); letter-spacing: 2px; }
+        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
+        .section-title { font-family: 'Orbitron'; text-align: center; margin-bottom: 30px; color: var(--p); letter-spacing: 2px; text-transform: uppercase; }
 
-        /* Order Form */
-        .order-card { background: var(--card); border: 1px solid #1f2235; border-radius: 30px; padding: 40px; max-width: 700px; margin: auto; }
-        select, input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; font-size: 16px; }
-        .price-box { font-size: 30px; color: var(--gold); text-align: center; margin: 20px 0; font-weight: 800; }
+        /* --- Price & Order Section --- */
+        .order-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
+        .card { background: var(--card); border: 1px solid #1f2235; border-radius: 20px; padding: 30px; }
         
-        /* Wallet Box */
-        .wallet-container { background: rgba(0,210,255,0.05); border: 1px dashed var(--p); padding: 20px; border-radius: 15px; margin: 20px 0; display: none; }
-        .wallet-address { font-family: monospace; font-size: 12px; color: var(--neon); word-break: break-all; }
-        .copy-btn { background: var(--p); color: #000; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: bold; }
+        select, input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; font-size: 15px; box-sizing: border-box; }
+        .price-display { font-size: 35px; color: var(--gold); text-align: center; margin: 20px 0; font-weight: 800; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
 
-        /* Software Grid */
-        .soft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .soft-card { background: var(--card); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; transition: 0.3s; }
+        /* --- Payment & Wallet --- */
+        .payment-info { background: rgba(0,210,255,0.05); border: 1px dashed var(--p); padding: 20px; border-radius: 15px; margin-top: 20px; display: none; animation: fadeIn 0.5s; }
+        .wallet-addr { font-family: monospace; font-size: 11px; color: var(--neon); background: #000; padding: 10px; border-radius: 5px; word-break: break-all; margin: 10px 0; }
+        .btn-copy { background: var(--p); color: #000; border: none; padding: 5px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 12px; }
+
+        /* --- Software Section --- */
+        .soft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .soft-card { background: var(--card); border: 1px solid #1f2235; padding: 20px; border-radius: 15px; transition: 0.3s; }
         .soft-card:hover { border-color: var(--p); transform: translateY(-5px); }
-        .soft-card h3 { font-family: 'Orbitron'; font-size: 14px; color: var(--p); }
-        .dl-link { display: inline-block; margin-top: 15px; color: var(--neon); text-decoration: none; font-size: 13px; font-weight: bold; border-bottom: 1px solid var(--neon); }
+        .soft-card h3 { font-size: 14px; color: var(--p); margin-bottom: 10px; font-family: 'Orbitron'; }
+        .dl-btn { display: inline-block; color: var(--neon); text-decoration: none; font-size: 12px; font-weight: bold; margin-top: 10px; border: 1px solid var(--neon); padding: 5px 15px; border-radius: 20px; }
 
-        .btn-submit { width: 100%; padding: 18px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; font-weight: 800; cursor: pointer; margin-top: 20px; }
+        .btn-submit { width: 100%; padding: 18px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; font-weight: 800; cursor: pointer; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,210,255,0.2); }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid #1f2235; color: #666; font-size: 12px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">iRemove <span>VIP</span></a>
-        <div class="nav-links">
-            <a href="#order">New Order</a>
-            <a href="#software">Software</a>
-            <a href="https://t.me/gsmshtool" style="background:var(--p); color:#000; padding:5px 15px; border-radius:20px;">Support</a>
-        </div>
-    </nav>
+<nav>
+    <a href="#" class="logo">iRemove <span>VIP</span></a>
+    <div style="font-size: 13px; color: var(--gold);"><i class="fas fa-shield-check"></i> Verified Partner</div>
+</nav>
 
-    <div class="container" id="order">
-        <h2 class="section-title">PLACE OFFICIAL ORDER</h2>
-        <div class="order-card">
-            <label>Choose Device Model:</label>
-            <select id="modelSelect" onchange="updateUI()">
-                <option value="0" data-price="0">-- Select Model --</option>
-                <optgroup label="iPhone (Best Prices)">
+<div class="container">
+    <h2 class="section-title">Official Unlock Services</h2>
+    
+    <div class="order-grid">
+        <div class="card">
+            <label>Select Device Model:</label>
+            <select id="serviceSelect" onchange="updateService()">
+                <option value="0" data-price="0">-- Choose Service --</option>
+                <optgroup label="iPhone Official Unlock">
+                    <option value="ip6" data-price="25">iPhone 6 / 6 Plus / 6s / 6s Plus</option>
+                    <option value="ip7" data-price="30">iPhone 7 / 7 Plus / SE</option>
+                    <option value="ip8" data-price="35">iPhone 8 / 8 Plus / X</option>
+                    <option value="ipxr" data-price="40">iPhone XR / XS</option>
+                    <option value="ipxsm" data-price="45">iPhone XS Max / 11</option>
+                    <option value="ip11p" data-price="55">iPhone 11 Pro</option>
                     <option value="ip11pm" data-price="75">iPhone 11 Pro Max</option>
+                    <option value="ip12" data-price="90">iPhone 12 / 12 Mini</option>
+                    <option value="ip12p" data-price="95">iPhone 12 Pro</option>
+                    <option value="ip12pm" data-price="100">iPhone 12 Pro Max</option>
+                    <option value="ip13" data-price="115">iPhone 13 / 13 Mini</option>
+                    <option value="ip13p" data-price="135">iPhone 13 Pro</option>
+                    <option value="ip13pm" data-price="150">iPhone 13 Pro Max</option>
+                    <option value="ip14" data-price="160">iPhone 14 / 14 Plus</option>
+                    <option value="ip14p" data-price="165">iPhone 14 Pro</option>
+                    <option value="ip14pm" data-price="175">iPhone 14 Pro Max</option>
+                    <option value="ip15" data-price="165">iPhone 15 / 15 Plus</option>
+                    <option value="ip15p" data-price="180">iPhone 15 Pro</option>
                     <option value="ip15pm" data-price="190">iPhone 15 Pro Max</option>
-                    <option value="ip16pm" data-price="205">iPhone 16 Pro Max</option>
+                    <option value="ip16" data-price="190">iPhone 16 / 16 Plus / 16e</option>
+                    <option value="ip16p" data-price="195">iPhone 16 Pro / 16 Pro Max</option>
+                    <option value="ip17" data-price="195">iPhone 17 / 17 Air</option>
+                    <option value="ip17p" data-price="200">iPhone 17 Pro</option>
                     <option value="ip17pm" data-price="210">iPhone 17 Pro Max</option>
                 </optgroup>
+                <optgroup label="iPad Series">
+                    <option value="ipad89" data-price="55">iPad 8 / 9</option>
+                    <option value="ipad10" data-price="65">iPad 10</option>
+                    <option value="air45" data-price="85">iPad Air 4 / 5</option>
+                    <option value="pro11" data-price="140">iPad Pro 11 (All Gen)</option>
+                    <option value="pro12" data-price="150">iPad Pro 12.9 (All Gen)</option>
+                </optgroup>
                 <optgroup label="Apple Watch">
-                    <option value="awu2" data-price="120">Apple Watch Ultra 2</option>
+                    <option value="aw45" data-price="60">Series 4 / 5</option>
+                    <option value="aw67" data-price="80">Series 6 / 7</option>
+                    <option value="aw89" data-price="100">Series 8 / 9 / 10 / 11</option>
+                    <option value="awu" data-price="120">Ultra 1 / 2 / 3</option>
                 </optgroup>
             </select>
 
-            <input type="text" id="serialInput" placeholder="Enter IMEI / Serial Number">
+            <input type="text" id="imeiInput" placeholder="Enter IMEI or Serial Number">
             
-            <div class="price-box">Total: $<span id="totalPrice">0</span></div>
+            <div class="price-display">$<span id="priceVal">0</span></div>
 
-            <div id="paymentInfo" class="wallet-container">
-                <p style="font-size:12px; margin-bottom:10px;"><i class="fas fa-coins"></i> USDT Address (TRC20/ERC20):</p>
-                <div class="wallet-address" id="walletAddr">0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2</div>
-                <button class="copy-btn" onclick="copyWallet()">COPY ADDRESS</button>
-                <p style="font-size:11px; margin-top:15px; color:#aaa;">Upload your payment screenshot below:</p>
-                <input type="file" id="screenshot" accept="image/*" style="border:none; background:transparent; padding:0;">
+            <div id="payBox" class="payment-info">
+                <p style="font-size: 12px;"><i class="fab fa-ethereum"></i> USDT Address (TRC20/ERC20):</p>
+                <div class="wallet-addr" id="addr">0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2</div>
+                <button class="btn-copy" onclick="copyAddr()">COPY</button>
+                <p style="font-size:11px; color:#888; margin-top:15px;">1. Pay the amount. 2. Screenshot the receipt. 3. Submit below.</p>
             </div>
 
-            <button class="btn-submit" onclick="submitToTelegram()">SUBMIT ORDER TO TELEGRAM</button>
+            <button class="btn-submit" onclick="submitOrder()">SUBMIT ORDER & SEND RECEIPT</button>
+        </div>
+
+        <div class="card">
+            <h3 style="font-family:'Orbitron'; font-size:14px; margin-bottom:20px;">Forensic Software</h3>
+            <div class="soft-grid">
+                <div class="soft-card">
+                    <h3>UFED 7.71</h3>
+                    <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="dl-btn">Download</a>
+                </div>
+                <div class="soft-card">
+                    <h3>Oxygen 17.1</h3>
+                    <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="dl-btn">Download</a>
+                </div>
+                <div class="soft-card">
+                    <h3>ArabiCloud v5</h3>
+                    <a href="https://arabfrp.com/" class="dl-btn">Official</a>
+                </div>
+                <div class="soft-card">
+                    <h3>MD-NEXT</h3>
+                    <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="dl-btn">Download</a>
+                </div>
+            </div>
+            <p style="font-size:10px; color:#555; margin-top:20px;">Support: @gsmshtool</p>
         </div>
     </div>
+</div>
 
-    <div class="container" id="software">
-        <h2 class="section-title">FORENSIC SOFTWARE HUB</h2>
-        <div class="soft-grid">
-            <div class="soft-card">
-                <h3>UFED 7.71 Detective</h3>
-                <p style="font-size:12px; color:#888;">Setup + Fix Search. Professional mobile extraction.</p>
-                <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="dl-link">Download Now</a>
-            </div>
-            <div class="soft-card">
-                <h3>ArabiCloud Tool v5</h3>
-                <p style="font-size:12px; color:#888;">Bypass tool for modern iOS devices.</p>
-                <a href="https://arabfrp.com/" class="dl-link">Official Website</a>
-            </div>
-            <div class="soft-card">
-                <h3>Oxygen Forensic 17.1</h3>
-                <p style="font-size:12px; color:#888;">V 17.1.0.131 - Free Download With Key-Gen.</p>
-                <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="dl-link">Download Now</a>
-            </div>
-            <div class="soft-card">
-                <h3>MD-NEXT 2.0.3</h3>
-                <p style="font-size:12px; color:#888;">Install MD-NEXT + MD-Plug Free.</p>
-                <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="dl-link">Download Now</a>
-            </div>
-        </div>
-    </div>
+<footer>
+    © 2026 iRemove VIP | Global Mobile Forensic Solutions | Eng. Shamsan Sha'ban
+</footer>
 
-    <footer>© 2026 iRemove VIP | Developed by Eng. Shamsan Sha'ban</footer>
+<script>
+    function updateService() {
+        const sel = document.getElementById('serviceSelect');
+        const price = sel.options[sel.selectedIndex].getAttribute('data-price');
+        document.getElementById('priceVal').innerText = price;
+        document.getElementById('payBox').style.display = price > 0 ? 'block' : 'none';
+    }
 
-    <script>
-        function updateUI() {
-            const select = document.getElementById('modelSelect');
-            const price = select.options[select.selectedIndex].getAttribute('data-price');
-            document.getElementById('totalPrice').innerText = price;
-            document.getElementById('paymentInfo').style.display = price > 0 ? 'block' : 'none';
+    function copyAddr() {
+        navigator.clipboard.writeText("0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2");
+        alert("Wallet Address Copied!");
+    }
+
+    function submitOrder() {
+        const model = document.getElementById('serviceSelect').options[document.getElementById('serviceSelect').selectedIndex].text;
+        const imei = document.getElementById('imeiInput').value;
+        const price = document.getElementById('priceVal').innerText;
+        
+        if(!imei || price == "0") {
+            alert("Please select a model and enter IMEI/SN");
+            return;
         }
 
-        function copyWallet() {
-            navigator.clipboard.writeText("0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2");
-            alert("Wallet Address Copied!");
-        }
+        const msg = `⚡ *iRemove VIP Order* %0A--------------------%0A📱 Model: ${model}%0A🔢 IMEI/SN: ${imei}%0A💰 Total: $${price}%0A✅ Payment: Sent via USDT %0A--------------------%0A_Please confirm my order._`;
+        window.location.href = `https://t.me/gsmshtool?text=${msg}`;
+    }
+</script>
 
-        function submitToTelegram() {
-            const model = document.getElementById('modelSelect').options[document.getElementById('modelSelect').selectedIndex].text;
-            const sn = document.getElementById('serialInput').value;
-            const price = document.getElementById('totalPrice').innerText;
-            
-            if(sn.length < 5 || price == "0") {
-                alert("Please select a model and enter Serial Number.");
-                return;
-            }
-
-            const message = `🚀 *NEW ORDER* %0A--------------------%0A📱 Model: ${model}%0A🔢 S/N: ${sn}%0A💰 Price: $${price}%0A✅ Payment: USDT Sent%0A--------------------%0A_Please check my attached screenshot._`;
-            window.location.href = `https://t.me/gsmshtool?text=${message}`;
-        }
-    </script>
 </body>
 </html>
