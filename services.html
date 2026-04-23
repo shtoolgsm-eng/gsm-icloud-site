@@ -2,195 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Services - GSM SHTOOL</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>iRemove VIP | Price List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #3b82f6; --accent: #00ff88; --dark: #05070a; --glass: rgba(255, 255, 255, 0.03); }
-        body { background-color: var(--dark); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-        
-        .hero-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; object-fit: cover; }
-        
-        nav { background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1f2235; position: sticky; top: 0; z-index: 100; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900; color: #fff; text-decoration: none; }
-        .logo span { color: var(--primary); }
-
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        
-        /* Categories Navigation */
-        .category-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 40px; }
-        .cat-btn { background: var(--glass); border: 1px solid #1f2235; color: #fff; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; }
-        .cat-btn:hover, .cat-btn.active { background: var(--primary); border-color: var(--primary); transform: translateY(-3px); }
-
-        /* Forms & Sections */
-        .service-section { display: none; background: var(--glass); border: 1px solid #1f2235; padding: 30px; border-radius: 25px; backdrop-filter: blur(15px); }
-        .service-section.active { display: block; animation: fadeIn 0.5s ease; }
-        
-        .info-notice { background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary); padding: 20px; margin: 20px 0; border-radius: 8px; font-size: 13px; line-height: 1.8; }
-        
-        label { display: block; margin: 15px 0 5px; color: var(--primary); font-weight: bold; font-size: 12px; }
-        select, input { width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; box-sizing: border-box; }
-        
-        .wallet-box { background: #0a0a0a; border: 1px dashed var(--accent); padding: 15px; border-radius: 10px; margin-top: 20px; text-align: center; }
-        .wallet-addr { font-family: monospace; font-size: 12px; color: var(--accent); word-break: break-all; }
-
-        .btn-pay { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--primary), #1d4ed8); border: none; border-radius: 12px; color: white; font-weight: 900; margin-top: 20px; cursor: pointer; transition: 0.3s; }
-        .btn-pay:hover { opacity: 0.9; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-
-        /* Tools Cards */
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .tool-card { background: #0f111a; border: 1px solid #1f2235; padding: 20px; border-radius: 20px; transition: 0.4s; }
-        .tool-card:hover { border-color: var(--primary); transform: scale(1.02); }
-        .tool-title { color: var(--primary); font-family: 'Orbitron'; margin-bottom: 10px; }
-        .btn-download { display: inline-block; padding: 10px 20px; background: #1f2235; color: white; text-decoration: none; border-radius: 8px; font-size: 12px; margin-top: 10px; border: 1px solid #333; }
-        .btn-download:hover { background: var(--primary); }
-
-        /* Floating Support */
-        .support-btn { position: fixed; bottom: 30px; right: 30px; background: #229ED9; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); text-decoration: none; z-index: 1000; animation: bounce 2s infinite; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        body { background: #050508; color: #fff; font-family: 'Poppins', sans-serif; padding: 50px 5%; }
+        .price-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .price-card { background: #10121b; border: 1px solid #1f2235; border-radius: 20px; padding: 20px; }
+        .price-card h2 { color: #ffd700; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; text-transform: uppercase; }
+        .item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #161821; font-size: 14px; }
+        .item b { color: #00d2ff; }
     </style>
 </head>
 <body>
 
-<img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJid3R4bmV4bmV4bmV4bmV4bmV4bmV4bmV4bmV4bmV4bmV4bmV4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif" class="hero-bg">
+<h1 style="text-align:center; color:#ffd700;">OFFICIAL SERVICE PRICES</h1>
 
-<nav>
-    <a href="index.html" class="logo">GSM <span>SHTOOL</span></a>
-    <div style="font-size: 12px; color: #888;">Professional Forensic Solutions</div>
-</nav>
-
-<div class="container">
-    <div class="category-nav">
-        <div class="cat-btn active" onclick="showSection('iphone', this)"><i class="fab fa-apple"></i> iPhone</div>
-        <div class="cat-btn" onclick="showSection('watch', this)"><i class="fas fa-clock"></i> iWatch</div>
-        <div class="cat-btn" onclick="showSection('ipad', this)"><i class="fas fa-tablet-alt"></i> iPad</div>
-        <div class="cat-btn" onclick="showSection('android', this)"><i class="fab fa-android"></i> Android</div>
-        <div class="cat-btn" onclick="showSection('free', this)"><i class="fas fa-gift"></i> Free Bypass</div>
-        <div class="cat-btn" onclick="showSection('tools', this)"><i class="fas fa-tools"></i> Pro Tools</div>
+<div class="price-container">
+    <div class="price-card">
+        <h2><i class="fab fa-apple"></i> iPhone Series</h2>
+        <div class="item"><span>iPhone 6 / Plus</span> <b>$25</b></div>
+        <div class="item"><span>iPhone 7 / Plus</span> <b>$30</b></div>
+        <div class="item"><span>iPhone 11 Pro Max</span> <b>$75</b></div>
+        <div class="item"><span>iPhone 14 Pro Max</span> <b>$175</b></div>
+        <div class="item"><span>iPhone 15 Pro Max</span> <b>$190</b></div>
+        <div class="item"><span>iPhone 16 Pro Max</span> <b>$205</b></div>
+        <div class="item"><span>iPhone 17 Pro Max</span> <b>$210</b></div>
     </div>
 
-    <div id="iphone" class="service-section active">
-        <h2 class="tool-title">Official iPhone iCloud Unlock</h2>
-        <label>Select Device Model</label>
-        <select id="iphone_model">
-            <option>iPhone 15/16/17 Pro Max Official - $210</option>
-            <option>iPhone 13/14 Pro Max Official - $160</option>
-            <option>iPhone 11/12 Pro Max Official - $120</option>
-            <option>iPhone 6/7/8/X Official - $45</option>
-        </select>
-        <label>Enter IMEI or Serial Number</label>
-        <input type="text" placeholder="Ex: 3587XXXXXXXXX">
-        
-        <div class="info-notice">
-            <strong>Service terms & ethical values:</strong><br>
-            • This service supports both <b>ON</b> and <b>LOST</b> status devices.<br>
-            • iCloud will be removed permanently (OFF).<br>
-            • Delivery time: 1 to 24 hours.<br>
-            • ⚠️ Please ensure you send payment to the correct wallet address.<br>
-            • Service available from <b>Sunday to Thursday</b>.<br>
-            • <b>Important:</b> After payment, contact support and send your receipt to confirm.
-        </div>
-        
-        <div class="wallet-box">
-            <span style="font-size: 10px; color: #888;">USDT (TRC20) Wallet:</span><br>
-            <span class="wallet-addr">0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2</span>
-        </div>
-        <button class="btn-pay" onclick="alert('Order submitted! Please send payment receipt via Telegram.')">SUBMIT ORDER</button>
+    <div class="price-card">
+        <h2><i class="fas fa-tablet-alt"></i> iPad Series</h2>
+        <div class="item"><span>iPad 10</span> <b>$65</b></div>
+        <div class="item"><span>iPad Air 5</span> <b>$85</b></div>
+        <div class="item"><span>iPad Pro 11 (1-4)</span> <b>$140</b></div>
+        <div class="item"><span>iPad Pro 12.9 (1-6)</span> <b>$150</b></div>
     </div>
 
-    <div id="watch" class="service-section">
-        <h2 class="tool-title">Official Apple Watch Unlock</h2>
-        <select>
-            <option>Apple Watch Ultra 1/2/3 - $140</option>
-            <option>Apple Watch Series 7/8/9 - $90</option>
-            <option>Apple Watch Series 1-6 - $45</option>
-        </select>
-        <input type="text" placeholder="Enter Serial Number">
-        <div class="info-notice">Same rules as iPhone service. Delivery 1-24h. Sunday-Thursday.</div>
-        <button class="btn-pay">PROCEED PAYMENT</button>
-    </div>
-
-    <div id="ipad" class="service-section">
-        <h2 class="tool-title">Official iPad iCloud Unlock</h2>
-        <select>
-            <option>iPad Pro M1/M2/M4 - $155</option>
-            <option>iPad Air/Mini New Gen - $85</option>
-            <option>iPad Older Models - $40</option>
-        </select>
-        <input type="text" placeholder="Enter Serial Number">
-        <button class="btn-pay">PROCEED PAYMENT</button>
-    </div>
-
-    <div id="android" class="service-section">
-        <h2 class="tool-title">Android Professional Services</h2>
-        <select>
-            <option>Samsung FRP Google Account (Instant) - $15</option>
-            <option>Xiaomi Mi Account Global - $25</option>
-            <option>Huawei ID / Honor - $20</option>
-        </select>
-        <input type="text" placeholder="IMEI or Lock Code">
-        <button class="btn-pay">START UNLOCK</button>
-    </div>
-
-    <div id="free" class="service-section">
-        <h2 class="tool-title">Free iCloud Bypass (Hello Screen)</h2>
-        <p style="font-size: 13px; color: #ccc;">No signal support for these free tools. Use for iPad or Media players only.</p>
-        <div class="tools-grid">
-            <div class="tool-card">
-                <h3>ArabiCloud Tool v5</h3>
-                <p style="font-size: 11px;">New tool for modern devices bypass.</p>
-                <a href="https://arabfrp.com/" class="btn-download" target="_blank">Official Website</a>
-                <a href="https://www.mediafire.com/file/30nlwubfgnhg2l0/ArabiCloud+Tool+v5شرح+عملي.mp4/file" class="btn-download">Watch Tutorial</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="tools" class="service-section">
-        <h2 class="tool-title">Professional Forensic Suite</h2>
-        <div class="tools-grid">
-            <div class="tool-card">
-                <h3 style="color: #00ff88;">✅ UFED 7.71</h3>
-                <p style="font-size: 11px; color: #888;">Setup + Fix Search & Extraction Fix.</p>
-                <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="btn-download">Download Setup</a>
-                <a href="https://drive.google.com/drive/folders/1HOpn4Qmsqc6TNN0s51pvO6Sqrg3eO4Ws" class="btn-download">Crack + Key-Gen</a>
-                <p style="font-size: 10px; margin-top: 10px;">🔑 Password: <span style="color:red">@gaddtech</span></p>
-            </div>
-
-            <div class="tool-card">
-                <h3 style="color: #00ff88;">✅ MD-NEXT 2.0.3</h3>
-                <p style="font-size: 11px; color: #888;">MD-NEXT 2.0.3 + MD-Plug (Full Activation).</p>
-                <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="btn-download">Download Full</a>
-                <a href="https://www.youtube.com/playlist?list=PLdD4BEVTmGuw-4AcHZyIsM5lP4lR5S8ac" class="btn-download">Video Guides</a>
-                <p style="font-size: 10px; margin-top: 10px;">🔑 Password: <span style="color:red">@gaddtech</span></p>
-            </div>
-
-            <div class="tool-card">
-                <h3 style="color: #00ff88;">✅ Oxygen Forensic</h3>
-                <p style="font-size: 11px; color: #888;">V 17.1.0.131 - Pattern/Passcode Removal without Data Loss.</p>
-                <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="btn-download">Download v17.1</a>
-            </div>
-        </div>
+    <div class="price-card">
+        <h2><i class="fas fa-stopwatch"></i> Apple Watch</h2>
+        <div class="item"><span>Series 9</span> <b>$100</b></div>
+        <div class="item"><span>Series 10 / 11</span> <b>$100</b></div>
+        <div class="item"><span>Ultra 2 / 3</span> <b>$120</b></div>
     </div>
 </div>
-
-<a href="https://t.me/gsmshtool" class="support-btn" target="_blank">
-    <i class="fab fa-telegram-plane"></i>
-</a>
-
-<script>
-    function showSection(id, btn) {
-        // Hide all
-        document.querySelectorAll('.service-section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        
-        // Show selected
-        document.getElementById(id).classList.add('active');
-        btn.classList.add('active');
-    }
-</script>
 
 </body>
 </html>
