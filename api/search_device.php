@@ -1,35 +1,33 @@
 <?php
 header('Content-Type: application/json');
 
+// تأكد من مسار الملف الصحيح في الـ GitHub/Server
+$db_path = '../database/SupportedDevices.db';
+
 if (isset($_GET['q'])) {
-    $imei = preg_replace('/[^0-9]/', '', $_GET['q']);
-    $tac = substr($imei, 0, 8);
-
-    $devices = json_decode(file_get_contents('../database/devices.json'), true);
+    $search = $_GET['q'];
     
-    // البحث الذكي
-    $foundDevice = null;
-    foreach ($devices as $device) {
-        if ($device['tac'] == $tac) {
-            $foundDevice = $device;
-            break;
-        }
-    }
+    try {
+        $db = new PDO("sqlite:$db_path");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if ($foundDevice) {
-        // إضافة نصيحة تلقائية بناءً على المعالج
-        $hint = "Standard USB connection.";
-        if (stripos($foundDevice['cpu'], 'Qualcomm') !== false) {
-            $hint = "Use EDL Cable or Test Point for deep flashing.";
-        } elseif (stripos($foundDevice['cpu'], 'MTK') !== false || stripos($foundDevice['cpu'], 'MediaTek') !== false) {
-            $hint = "Hold Volume buttons for BROM mode.";
-        }
+        // الاستعلام من جداول Oxygen Forensic
+        $query = "SELECT Manufacturer, Model, MarketingName, CpuType 
+                  FROM Devices 
+                  WHERE MarketingName LIKE :q 
+                  OR Model LIKE :q 
+                  LIMIT 15";
+        
+        $stmt = $db->prepare($query);
+        $stmt->execute([':q' => "%$search%"]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        echo json_encode([
-            "status" => "success",
-            "data" => array_merge($foundDevice, ["tech_hint" => $hint])
-        ]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Unknown Device"]);
+        if ($results) {
+            echo json_encode(["status" => "success", "results" => $results]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "No matching device found."]);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(["status" => "error", "message" => "Database Error"]);
     }
 }
