@@ -1,65 +1,131 @@
+Updated dashboard to English with wallet and ticket UI
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - GSM SHTOOL</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSM SHTOOL - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #c5a059; --bg: #05070a; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; margin: 0; padding: 20px; }
-        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 20px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
-        .stat-card { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #111; }
-        .status-badge { background: rgba(255, 193, 7, 0.1); color: #ffc107; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .sidebar { background: #1a1a1a; min-height: 100vh; color: white; padding-top: 20px; }
+        .card-custom { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .wallet-card { background: linear-gradient(45deg, #1e3c72, #2a5298); color: white; }
+        .btn-primary-custom { background-color: #2a5298; border: none; border-radius: 8px; }
+        .btn-primary-custom:hover { background-color: #1e3c72; }
     </style>
 </head>
 <body>
-    <div class="top-nav">
-        <h2 style="color: var(--gold);">Welcome, <span id="userNameDisplay">Guest</span></h2>
-        <button onclick="window.location.href='order.html'" style="background: var(--gold); border:none; padding:10px 20px; border-radius:10px; cursor:pointer; font-weight:bold;">+ New Order</button>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block sidebar">
+            <div class="position-sticky text-center">
+                <h4 class="mb-4">GSM SHTOOL</h4>
+                <ul class="nav flex-column text-start ps-3">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link text-white"><i class="fas fa-home me-2"></i> Dashboard</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link text-white"><i class="fas fa-search me-2"></i> IMEI Checker</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link text-white"><i class="fas fa-wallet me-2"></i> My Wallet</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link text-white"><i class="fas fa-ticket-alt me-2"></i> Support Tickets</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-10 ms-sm-auto px-md-4 py-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Control Panel</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <span class="badge bg-success p-2">Eng. Shamshan Shaban (Admin)</span>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card card-custom wallet-card p-4">
+                        <h5 class="card-title"><i class="fas fa-wallet me-2"></i> Account Balance</h5>
+                        <h2 class="my-3">$ 0.00 <small style="font-size: 14px;">USD</small></h2>
+                        <button class="btn btn-light btn-sm w-100 mt-2"><b>+ Add Credits (Binance/Local)</b></button>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card card-custom p-4">
+                        <h5 class="mb-3"><i class="fas fa-microchip me-2"></i> Fast IMEI Checker (Local TAC)</h5>
+                        <div class="input-group mb-3">
+                            <input type="text" id="imei_input" class="form-control" placeholder="Enter 15-digit IMEI..." maxlength="15">
+                            <button class="btn btn-primary-custom text-white" onclick="checkIMEI()">Check Device</button>
+                        </div>
+                        <div id="check_result" class="text-muted small">Enter a valid IMEI to see device details.</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card card-custom p-4">
+                        <h5 class="mb-3"><i class="fas fa-ticket-alt me-2"></i> Open New Ticket</h5>
+                        <form id="ticketForm">
+                            <div class="mb-3">
+                                <label class="form-label">Category</label>
+                                <select class="form-select">
+                                    <option>iCloud Bypass Service</option>
+                                    <option>Network/Carrier Unlock</option>
+                                    <option>Billing & Payments</option>
+                                    <option>Technical Issue</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Subject</label>
+                                <input type="text" class="form-control" placeholder="e.g. iCloud Bypass Error">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="3" placeholder="Describe your issue..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom text-white w-100">Submit Request</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card card-custom p-4">
+                        <h5 class="mb-3"><i class="fas fa-history me-2"></i> Recent Orders</h5>
+                        <table class="table table-sm text-center">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Service</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1024</td>
+                                    <td>iCloud Bypass</td>
+                                    <td><span class="badge bg-warning text-dark">Processing</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-muted pt-3">No other recent orders.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
+</div>
 
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-        <div class="stat-card"><h3>$0.00</h3><p>Balance</p></div>
-        <div class="stat-card"><h3 id="totalOrders">0</h3><p>Total Orders</p></div>
-        <div class="stat-card"><h3>Active</h3><p>Status</p></div>
-    </div>
-
-    <div style="margin-top: 40px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 20px;">
-        <h3>My Recent Orders</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th><th>Service</th><th>IMEI/SN</th><th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="ordersTable">
-                <tr><td colspan="4" style="text-align: center; color: #444;">No orders yet.</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <script>
-        window.onload = function() {
-            const user = localStorage.getItem('gsm_user');
-            if(!user) window.location.href = 'login.html';
-            document.getElementById('userNameDisplay').innerText = user;
-
-            const orders = JSON.parse(localStorage.getItem('gsm_orders') || '[]');
-            document.getElementById('totalOrders').innerText = orders.length;
-            
-            if(orders.length > 0) {
-                document.getElementById('ordersTable').innerHTML = orders.reverse().map(o => `
-                    <tr>
-                        <td>${o.id}</td>
-                        <td>${o.service}</td>
-                        <td>${o.imei}</td>
-                        <td><span class="status-badge">Pending</span></td>
-                    </tr>
-                `).join('');
-            }
+<script>
+    function checkIMEI() {
+        let imei = document.getElementById('imei_input').value;
+        if(imei.length < 15) {
+            alert("Please enter a valid 15-digit IMEI.");
+            return;
         }
-    </script>
+        document.getElementById('check_result').innerHTML = "Searching local TAC database...";
+        // هنا سيتم الربط مع ملف check_imei.php لاحقاً
+    }
+</script>
+
 </body>
 </html>
