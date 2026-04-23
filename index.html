@@ -2,144 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL | Global Unlock & Forensic Tools</title>
+    <title>iRemove VIP | Professional Forensic & Unlock Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; --error: #ff4d4d; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; overflow-x: hidden; }
-        
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
-        .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Orbitron', sans-serif; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #050508; --card: #10121b; --gold: #ffd700; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin:0; }
+        nav { display: flex; justify-content: space-between; padding: 20px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-family: 'Orbitron'; font-size: 22px; text-decoration: none; color: #fff; }
         .logo span { color: var(--p); }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 600; }
+        .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-size: 14px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--p); }
+
+        .section-header { text-align: center; padding: 60px 5% 20px; }
+        .section-header h2 { font-family: 'Orbitron'; font-size: 2rem; letter-spacing: 2px; }
+
+        /* Tools & Software Section */
+        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px 5%; }
+        .soft-card { background: var(--card); border: 1px solid #1f2235; border-radius: 20px; padding: 25px; transition: 0.3s; }
+        .soft-card:hover { border-color: var(--p); transform: translateY(-5px); }
+        .soft-card h3 { color: var(--p); font-family: 'Orbitron'; font-size: 16px; margin-bottom: 15px; }
+        .soft-card p { font-size: 13px; color: #aaa; line-height: 1.6; }
+        .dl-btn { display: inline-block; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: bold; margin-top: 15px; }
+
+        /* Forensic Search Box */
+        .search-container { max-width: 800px; margin: 40px auto; background: #0c0e16; padding: 40px; border-radius: 30px; border: 1px solid #1f2235; text-align: center; }
+        .imei-input { width: 90%; padding: 18px; border-radius: 50px; border: 1px solid #333; background: #000; color: #fff; text-align: center; font-size: 18px; outline: none; }
         
-        .hero { padding: 80px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d29 0%, #030305 100%); }
-        .hero h1 { font-family: 'Orbitron'; letter-spacing: 2px; text-transform: uppercase; }
-
-        .check-box { max-width: 800px; margin: 30px auto; background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid #1f2235; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .imei-input { width: 100%; padding: 20px; border-radius: 50px; border: 1px solid #30363d; background: #000; color: #fff; font-size: 18px; text-align: center; margin-bottom: 25px; outline: none; box-sizing: border-box; }
-        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; color: #fff; margin: auto; background: linear-gradient(45deg, var(--p), var(--s)); }
-
-        #resultArea { display: none; margin-top: 30px; text-align: left; background: #000; border: 1px solid #1f2235; border-radius: 20px; overflow: hidden; }
-        .result-body { padding: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .data-item { font-size: 13px; color: #888; }
-        .data-item b { color: #fff; display: block; font-size: 15px; margin-top: 4px; }
-
-        /* --- شريط الخدمات المتحرك --- */
-        .slider-container { width: 100%; overflow: hidden; padding: 40px 0; background: rgba(255,255,255,0.02); margin-top: 30px; border-top: 1px solid #1f2235; }
-        .slider-track { display: flex; width: calc(250px * 12); animation: scroll 25s linear infinite; }
-        .slide { width: 250px; padding: 15px; flex-shrink: 0; }
-        .service-card { background: var(--card); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; text-align: center; transition: 0.3s; }
-        .service-card i { font-size: 25px; color: var(--p); margin-bottom: 10px; }
-        .service-card h3 { font-size: 13px; font-family: 'Orbitron'; margin: 5px 0; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 6)); } }
-
-        /* --- قسم آراء العملاء (الدردشة) --- */
-        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
-        .section-title { border-left: 5px solid var(--p); padding-left: 15px; margin-bottom: 30px; font-size: 1.2rem; font-family: 'Orbitron'; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .review-card { background: rgba(255,255,255,0.02); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; }
-        .rev-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-        .rev-avatar { width: 40px; height: 40px; background: #161b22; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--p); border: 1px solid #333; }
-        .status-online { width: 8px; height: 8px; background: var(--neon); border-radius: 50%; display: inline-block; margin-right: 5px; }
-
-        footer { background: #050507; padding: 30px; border-top: 1px solid #1f2235; text-align: center; font-size: 12px; color: #666; }
+        #resultArea { margin-top: 25px; background: #000; border-radius: 15px; padding: 20px; display: none; text-align: left; }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">GSM <span>SHTOOL</span></a>
-        <div class="nav-links">
-            <a href="order.html">New Order</a>
-            <a href="tools.html">Free Tools</a>
-            <a href="https://t.me/gsmshtool" style="background:var(--p); color:#000; padding:8px 18px; border-radius:20px;">Support</a>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <h1>ADVANCED ICLOUD & FORENSIC SOLUTIONS</h1>
-        <div class="check-box">
-            <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter IMEI / Serial Number...">
-            <button class="btn-main" onclick="handleCheck()">ANALYZE DEVICE</button>
-            <div id="resultArea"><div class="result-body" id="resultContent"></div></div>
-        </div>
-    </section>
+<nav>
+    <a href="#" class="logo">iRemove <span>VIP</span></a>
+    <div class="nav-links">
+        <a href="#fcheck">Forensic Check</a>
+        <a href="services.html">Price List</a>
+        <a href="#software">Downloads</a>
+        <a href="track-order.html">Track Order</a>
+    </div>
+</nav>
 
-    <div class="slider-container">
-        <div class="slider-track">
-            <div class="slide"><div class="service-card"><i class="fab fa-apple"></i><h3>iCloud Unlock</h3><p style="font-size:10px;">All Models Supported</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-unlock"></i><h3>Carrier Unlock</h3><p style="font-size:10px;">Network Bypass</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-fingerprint"></i><h3>FRP Remove</h3><p style="font-size:10px;">Android Bypass</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-microchip"></i><h3>Forensic</h3><p style="font-size:10px;">Data Recovery</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-shield-alt"></i><h3>MDM Bypass</h3><p style="font-size:10px;">Corporate Unlock</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-search"></i><h3>Blacklist</h3><p style="font-size:10px;">Clean Check</p></div></div>
-            <div class="slide"><div class="service-card"><i class="fab fa-apple"></i><h3>iCloud Unlock</h3></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-unlock"></i><h3>Carrier Unlock</h3></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-fingerprint"></i><h3>FRP Remove</h3></div></div>
-            <div class="slide"><div class="service-card"><i class="fas fa-microchip"></i><h3>Forensic</h3></div></div>
-        </div>
+<section class="section-header" id="fcheck">
+    <h2>FREE FORENSIC ANALYSIS</h2>
+    <p>Check device compatibility via Oxygen Forensic Engine</p>
+    <div class="search-container">
+        <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter Model Name or IMEI...">
+        <button onclick="handleCheck()" class="dl-btn" style="border:none; cursor:pointer; margin-top:20px; width:200px;">ANALYZE</button>
+        <div id="resultArea"></div>
+    </div>
+</section>
+
+<section class="section-header" id="software">
+    <h2>PROFESSIONAL SOFTWARE</h2>
+</section>
+
+<div class="software-grid">
+    <div class="soft-card">
+        <h3>UFED 7.71 Detective</h3>
+        <p>Setup + Search Fix. Professional extraction tool for mobile devices.</p>
+        <p><b>Password:</b> @gaddtech</p>
+        <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="dl-btn">Download Setup</a>
+        <a href="https://drive.google.com/drive/folders/1HOpn4Qmsqc6TNN0s51pvO6Sqrg3eO4Ws" class="dl-btn" style="background:#444;">Crack & Keygen</a>
     </div>
 
-    <div class="container">
-        <div class="section-title">💬 Live Feedback</div>
-        <div class="reviews-grid" id="reviewsContainer">
-            </div>
+    <div class="soft-card">
+        <h3>ArabiCloud Tool v5</h3>
+        <p>New tool for bypassing iCloud on modern devices. Supports latest iOS versions.</p>
+        <a href="https://arabfrp.com/" class="dl-btn">Official Website</a>
+        <a href="https://www.mediafire.com/file/30nlwubfgnhg2l0/ArabiCloud+Tool+v5" class="dl-btn" style="background:#444;">Video Tutorial</a>
     </div>
 
-    <footer>© 2026 GSM SHTOOL GLOBAL | Trusted Forensic Solutions</footer>
+    <div class="soft-card">
+        <h3>MD-NEXT 2.0.3 FREE</h3>
+        <p>Full installation for MD-NEXT + MD-Plug. Best for mobile forensic data recovery.</p>
+        <p><b>Password:</b> @gaddtech</p>
+        <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="dl-btn">Download Full</a>
+    </div>
 
-    <script>
-        // دالة الفحص
-        async function handleCheck() {
-            const imei = document.getElementById('imeiSearch').value.trim();
-            const resultArea = document.getElementById('resultArea');
-            const resultContent = document.getElementById('resultContent');
+    <div class="soft-card">
+        <h3>Oxygen Forensic 17.1</h3>
+        <p>Remove screen locks without data loss. Version 17.1.0.131 with Keygen & Drivers.</p>
+        <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="dl-btn">Download Tool</a>
+    </div>
+</div>
 
-            if (imei.length < 14) { alert("Invalid IMEI"); return; }
-            resultArea.style.display = 'block';
-            resultContent.innerHTML = `<p style="grid-column: 1/-1; text-align: center;"><i class="fas fa-sync fa-spin"></i> Checking Database...</p>`;
-
-            try {
-                const API_KEY = 'a4985612-2f41-466e-b4b9-5fbf1f33e5bf'; 
-                const response = await fetch(`https://zylalabs.com/api/check/imei/v2?imei=${imei}`, {
-                    headers: { 'Authorization': `Bearer ${API_KEY}` }
-                });
-                const data = await response.json();
-                resultContent.innerHTML = `
-                    <div class="data-item">BRAND <b>${data.brand || 'Apple/Samsung'}</b></div>
-                    <div class="data-item">MODEL <b>${data.model || 'Detected'}</b></div>
-                    <div class="data-item">iCLOUD <b style="color:var(--neon)">OFF / READY</b></div>
-                    <div class="data-item">STATUS <b style="color:var(--neon)">CLEAN</b></div>
-                `;
-            } catch (e) {
-                resultContent.innerHTML = `<p style="color:var(--error); grid-column:1/-1;">Connection Error.</p>`;
+<script>
+    async function handleCheck() {
+        const query = document.getElementById('imeiSearch').value;
+        const resArea = document.getElementById('resultArea');
+        resArea.style.display = 'block';
+        resArea.innerHTML = "Searching Forensic Database...";
+        
+        try {
+            const response = await fetch(`api/search_device.php?q=${query}`);
+            const data = await response.json();
+            if(data.status === "success") {
+                const dev = data.data[0];
+                resArea.innerHTML = `<b style="color:var(--p)">Device:</b> ${dev.Manufacturer} ${dev.Model}<br><b>CPU:</b> ${dev.CpuType}<br><b style="color:var(--neon)">Status: Supported for Bypass</b>`;
+            } else {
+                resArea.innerHTML = "Device not found in local database.";
             }
-        }
+        } catch (e) { resArea.innerHTML = "System Offline."; }
+    }
+</script>
 
-        // دالة آراء العملاء
-        function loadReviews() {
-            const numbers = ["+967 77***449", "+966 59***23", "+971 50***90", "+212 64***67", "+967 73***21"];
-            const messages = ["Oxygen Forensic worked perfectly!", "Fast iCloud check, thanks!", "UFED fix is 100% working.", "Best support team!", "SHTOOL is safe & fast."];
-            const container = document.getElementById('reviewsContainer');
-            
-            for(let i=0; i<6; i++){
-                const num = numbers[Math.floor(Math.random()*numbers.length)];
-                const msg = messages[Math.floor(Math.random()*messages.length)];
-                container.innerHTML += `
-                    <div class="review-card">
-                        <div class="rev-header">
-                            <div class="rev-avatar"><i class="fas fa-user-shield"></i></div>
-                            <div style="font-size: 13px; font-weight: 700;">${num}</div>
-                        </div>
-                        <p style="font-size:12px; color:#aaa;"><span class="status-online"></span> "${msg}"</p>
-                    </div>`;
-            }
-        }
-
-        // تشغيل الآراء عند التحميل
-        window.onload = loadReviews;
-    </script>
 </body>
 </html>
