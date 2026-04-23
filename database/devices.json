@@ -1,6 +1,23 @@
 [
-  {"tac": "35870609", "brand": "Apple", "model": "iPhone 13 Pro", "cpu": "A15 Bionic"},
-  {"tac": "35920310", "brand": "Samsung", "model": "Galaxy S21", "cpu": "Exynos 2100"},
-  {"tac": "86441504", "brand": "Xiaomi", "model": "Redmi Note 10 Pro", "cpu": "Snapdragon 732G"},
-  {"tac": "35439111", "brand": "Huawei", "model": "P40 Pro", "cpu": "Kirin 990 5G"}
+  {
+    "tac": "35870609",
+    "brand": "Apple",
+    "model": "iPhone 13 Pro",
+    "cpu": "A15 Bionic",
+    "mode": "Recovery/DFU"
+  },
+  {
+    "tac": "35920310",
+    "brand": "Samsung",
+    "model": "Galaxy S21 Ultra",
+    "cpu": "Exynos 2100",
+    "mode": "Download Mode"
+  },
+  {
+    "tac": "86441504",
+    "brand": "Xiaomi",
+    "model": "Redmi Note 10 Pro",
+    "cpu": "Snapdragon 732G",
+    "mode": "Fastboot/EDL"
+  }
 ]
