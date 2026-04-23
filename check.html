@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iRemove VIP | Forensic Check Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --p: #00d2ff; --bg: #030305; --card: #0f111a; --neon: #00ff88; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); border-bottom: 1px solid #1f2235; }
+        .logo { font-size: 20px; font-weight: 800; font-family: 'Orbitron'; text-decoration: none; color: #fff; }
+        .logo span { color: var(--p); }
+
+        .search-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .check-card { width: 100%; max-width: 800px; background: var(--card); border: 1px solid #1f2235; padding: 40px; border-radius: 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        
+        h1 { font-family: 'Orbitron'; font-size: 24px; color: var(--p); margin-bottom: 30px; letter-spacing: 2px; }
+        .imei-box { position: relative; margin-bottom: 30px; }
+        input { width: 100%; padding: 20px 60px; border-radius: 50px; border: 1px solid #333; background: #000; color: #fff; font-size: 18px; outline: none; box-sizing: border-box; transition: 0.3s; }
+        input:focus { border-color: var(--p); box-shadow: 0 0 20px rgba(0,210,255,0.2); }
+        .search-icon { position: absolute; left: 25px; top: 50%; transform: translateY(-50%); color: var(--p); }
+
+        #resultArea { display: none; text-align: left; background: #000; border: 1px solid #1f2235; border-radius: 20px; padding: 25px; margin-top: 30px; animation: slideUp 0.4s ease; }
+        .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .res-item { background: #0a0a0f; padding: 15px; border-radius: 12px; border: 1px solid #161b22; }
+        .res-item small { color: #666; font-size: 10px; text-transform: uppercase; }
+        .res-item b { display: block; color: #fff; font-size: 14px; margin-top: 5px; }
+
+        .btn-check { padding: 15px 40px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), #9d50bb); color: #fff; font-weight: bold; cursor: pointer; font-size: 16px; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        footer { text-align: center; padding: 20px; font-size: 11px; color: #444; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">iRemove <span>VIP</span></a>
+    <a href="index.html" style="color:#888; text-decoration:none; font-size:13px;"><i class="fas fa-arrow-left"></i> Back to Services</a>
+</nav>
+
+<div class="search-wrapper">
+    <div class="check-card">
+        <h1>FORENSIC ENGINE</h1>
+        <p style="color:#666; font-size:13px; margin-bottom:30px;">Direct access to Oxygen Forensic Supported Devices Database</p>
+        
+        <div class="imei-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Enter Model or TAC (e.g. iPhone 16)">
+        </div>
+
+        <button class="btn-check" onclick="runForensicCheck()">START ANALYSIS</button>
+
+        <div id="resultArea">
+            <div class="res-grid" id="resContent"></div>
+            <div id="techNote" style="margin-top:20px; border-top:1px solid #1f2235; padding-top:15px; font-size:12px; color:var(--neon);"></div>
+        </div>
+    </div>
+</div>
+
+<footer>© 2026 iRemove VIP | Engine: Oxygen Forensic v17.1</footer>
+
+<script>
+    async function runForensicCheck() {
+        const q = document.getElementById('searchInput').value;
+        const resArea = document.getElementById('resultArea');
+        const resContent = document.getElementById('resContent');
+        const techNote = document.getElementById('techNote');
+
+        if(q.length < 3) { alert("Please enter at least 3 characters."); return; }
+
+        resArea.style.display = "block";
+        resContent.innerHTML = "<p style='grid-column:1/-1; text-align:center;'><i class='fas fa-spinner fa-spin'></i> Querying SupportedDevices.db...</p>";
+        techNote.innerHTML = "";
+
+        try {
+            const response = await fetch(`api/search_device.php?q=${encodeURIComponent(q)}`);
+            const res = await response.json();
+
+            if(res.status === "success") {
+                const d = res.data[0];
+                resContent.innerHTML = `
+                    <div class="res-item"><small>Manufacturer</small><b>${d.Manufacturer}</b></div>
+                    <div class="res-item"><small>Model ID</small><b>${d.Model}</b></div>
+                    <div class="res-item"><small>CPU Type</small><b>${d.CpuType}</b></div>
+                    <div class="res-item"><small>Forensic</small><b style="color:var(--neon)">SUPPORTED</b></div>
+                `;
+                techNote.innerHTML = `<i class="fas fa-microchip"></i> <b>Tech Note:</b> This device is fully supported for Physical Extraction via ${d.CpuType} protocol.`;
+            } else {
+                resContent.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#ff4d4d;'>No records found in forensic database.</p>";
+            }
+        } catch(e) {
+            resContent.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#ff4d4d;'>Connection Error. Ensure PHP is running.</p>";
+        }
+    }
+</script>
+
+</body>
+</html>
