@@ -2,111 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>iRemove VIP | Professional Forensic & Unlock Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iRemove VIP | Official Forensic & Unlock</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00d2ff; --s: #9d50bb; --bg: #050508; --card: #10121b; --gold: #ffd700; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin:0; }
-        nav { display: flex; justify-content: space-between; padding: 20px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
-        .logo { font-family: 'Orbitron'; font-size: 22px; text-decoration: none; color: #fff; }
-        .logo span { color: var(--p); }
-        .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-size: 14px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--p); }
-
-        .section-header { text-align: center; padding: 60px 5% 20px; }
-        .section-header h2 { font-family: 'Orbitron'; font-size: 2rem; letter-spacing: 2px; }
-
-        /* Tools & Software Section */
-        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px 5%; }
-        .soft-card { background: var(--card); border: 1px solid #1f2235; border-radius: 20px; padding: 25px; transition: 0.3s; }
-        .soft-card:hover { border-color: var(--p); transform: translateY(-5px); }
-        .soft-card h3 { color: var(--p); font-family: 'Orbitron'; font-size: 16px; margin-bottom: 15px; }
-        .soft-card p { font-size: 13px; color: #aaa; line-height: 1.6; }
-        .dl-btn { display: inline-block; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: bold; margin-top: 15px; }
-
-        /* Forensic Search Box */
-        .search-container { max-width: 800px; margin: 40px auto; background: #0c0e16; padding: 40px; border-radius: 30px; border: 1px solid #1f2235; text-align: center; }
-        .imei-input { width: 90%; padding: 18px; border-radius: 50px; border: 1px solid #333; background: #000; color: #fff; text-align: center; font-size: 18px; outline: none; }
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --neon: #00ff88; --gold: #ffd700; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; scroll-behavior: smooth; }
         
-        #resultArea { margin-top: 25px; background: #000; border-radius: 15px; padding: 20px; display: none; text-align: left; }
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
+        .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Orbitron', sans-serif; }
+        .logo span { color: var(--p); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; }
+
+        /* Sections */
+        .container { padding: 60px 5%; max-width: 1200px; margin: auto; }
+        .section-title { font-family: 'Orbitron'; text-align: center; margin-bottom: 40px; color: var(--p); letter-spacing: 2px; }
+
+        /* Order Form */
+        .order-card { background: var(--card); border: 1px solid #1f2235; border-radius: 30px; padding: 40px; max-width: 700px; margin: auto; }
+        select, input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; font-size: 16px; }
+        .price-box { font-size: 30px; color: var(--gold); text-align: center; margin: 20px 0; font-weight: 800; }
+        
+        /* Wallet Box */
+        .wallet-container { background: rgba(0,210,255,0.05); border: 1px dashed var(--p); padding: 20px; border-radius: 15px; margin: 20px 0; display: none; }
+        .wallet-address { font-family: monospace; font-size: 12px; color: var(--neon); word-break: break-all; }
+        .copy-btn { background: var(--p); color: #000; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: bold; }
+
+        /* Software Grid */
+        .soft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .soft-card { background: var(--card); border: 1px solid #1f2235; padding: 20px; border-radius: 20px; transition: 0.3s; }
+        .soft-card:hover { border-color: var(--p); transform: translateY(-5px); }
+        .soft-card h3 { font-family: 'Orbitron'; font-size: 14px; color: var(--p); }
+        .dl-link { display: inline-block; margin-top: 15px; color: var(--neon); text-decoration: none; font-size: 13px; font-weight: bold; border-bottom: 1px solid var(--neon); }
+
+        .btn-submit { width: 100%; padding: 18px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; font-weight: 800; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="#" class="logo">iRemove <span>VIP</span></a>
-    <div class="nav-links">
-        <a href="#fcheck">Forensic Check</a>
-        <a href="services.html">Price List</a>
-        <a href="#software">Downloads</a>
-        <a href="track-order.html">Track Order</a>
-    </div>
-</nav>
+    <nav>
+        <a href="#" class="logo">iRemove <span>VIP</span></a>
+        <div class="nav-links">
+            <a href="#order">New Order</a>
+            <a href="#software">Software</a>
+            <a href="https://t.me/gsmshtool" style="background:var(--p); color:#000; padding:5px 15px; border-radius:20px;">Support</a>
+        </div>
+    </nav>
 
-<section class="section-header" id="fcheck">
-    <h2>FREE FORENSIC ANALYSIS</h2>
-    <p>Check device compatibility via Oxygen Forensic Engine</p>
-    <div class="search-container">
-        <input type="text" id="imeiSearch" class="imei-input" placeholder="Enter Model Name or IMEI...">
-        <button onclick="handleCheck()" class="dl-btn" style="border:none; cursor:pointer; margin-top:20px; width:200px;">ANALYZE</button>
-        <div id="resultArea"></div>
-    </div>
-</section>
+    <div class="container" id="order">
+        <h2 class="section-title">PLACE OFFICIAL ORDER</h2>
+        <div class="order-card">
+            <label>Choose Device Model:</label>
+            <select id="modelSelect" onchange="updateUI()">
+                <option value="0" data-price="0">-- Select Model --</option>
+                <optgroup label="iPhone (Best Prices)">
+                    <option value="ip11pm" data-price="75">iPhone 11 Pro Max</option>
+                    <option value="ip15pm" data-price="190">iPhone 15 Pro Max</option>
+                    <option value="ip16pm" data-price="205">iPhone 16 Pro Max</option>
+                    <option value="ip17pm" data-price="210">iPhone 17 Pro Max</option>
+                </optgroup>
+                <optgroup label="Apple Watch">
+                    <option value="awu2" data-price="120">Apple Watch Ultra 2</option>
+                </optgroup>
+            </select>
 
-<section class="section-header" id="software">
-    <h2>PROFESSIONAL SOFTWARE</h2>
-</section>
+            <input type="text" id="serialInput" placeholder="Enter IMEI / Serial Number">
+            
+            <div class="price-box">Total: $<span id="totalPrice">0</span></div>
 
-<div class="software-grid">
-    <div class="soft-card">
-        <h3>UFED 7.71 Detective</h3>
-        <p>Setup + Search Fix. Professional extraction tool for mobile devices.</p>
-        <p><b>Password:</b> @gaddtech</p>
-        <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="dl-btn">Download Setup</a>
-        <a href="https://drive.google.com/drive/folders/1HOpn4Qmsqc6TNN0s51pvO6Sqrg3eO4Ws" class="dl-btn" style="background:#444;">Crack & Keygen</a>
-    </div>
+            <div id="paymentInfo" class="wallet-container">
+                <p style="font-size:12px; margin-bottom:10px;"><i class="fas fa-coins"></i> USDT Address (TRC20/ERC20):</p>
+                <div class="wallet-address" id="walletAddr">0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2</div>
+                <button class="copy-btn" onclick="copyWallet()">COPY ADDRESS</button>
+                <p style="font-size:11px; margin-top:15px; color:#aaa;">Upload your payment screenshot below:</p>
+                <input type="file" id="screenshot" accept="image/*" style="border:none; background:transparent; padding:0;">
+            </div>
 
-    <div class="soft-card">
-        <h3>ArabiCloud Tool v5</h3>
-        <p>New tool for bypassing iCloud on modern devices. Supports latest iOS versions.</p>
-        <a href="https://arabfrp.com/" class="dl-btn">Official Website</a>
-        <a href="https://www.mediafire.com/file/30nlwubfgnhg2l0/ArabiCloud+Tool+v5" class="dl-btn" style="background:#444;">Video Tutorial</a>
-    </div>
-
-    <div class="soft-card">
-        <h3>MD-NEXT 2.0.3 FREE</h3>
-        <p>Full installation for MD-NEXT + MD-Plug. Best for mobile forensic data recovery.</p>
-        <p><b>Password:</b> @gaddtech</p>
-        <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="dl-btn">Download Full</a>
+            <button class="btn-submit" onclick="submitToTelegram()">SUBMIT ORDER TO TELEGRAM</button>
+        </div>
     </div>
 
-    <div class="soft-card">
-        <h3>Oxygen Forensic 17.1</h3>
-        <p>Remove screen locks without data loss. Version 17.1.0.131 with Keygen & Drivers.</p>
-        <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="dl-btn">Download Tool</a>
+    <div class="container" id="software">
+        <h2 class="section-title">FORENSIC SOFTWARE HUB</h2>
+        <div class="soft-grid">
+            <div class="soft-card">
+                <h3>UFED 7.71 Detective</h3>
+                <p style="font-size:12px; color:#888;">Setup + Fix Search. Professional mobile extraction.</p>
+                <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="dl-link">Download Now</a>
+            </div>
+            <div class="soft-card">
+                <h3>ArabiCloud Tool v5</h3>
+                <p style="font-size:12px; color:#888;">Bypass tool for modern iOS devices.</p>
+                <a href="https://arabfrp.com/" class="dl-link">Official Website</a>
+            </div>
+            <div class="soft-card">
+                <h3>Oxygen Forensic 17.1</h3>
+                <p style="font-size:12px; color:#888;">V 17.1.0.131 - Free Download With Key-Gen.</p>
+                <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="dl-link">Download Now</a>
+            </div>
+            <div class="soft-card">
+                <h3>MD-NEXT 2.0.3</h3>
+                <p style="font-size:12px; color:#888;">Install MD-NEXT + MD-Plug Free.</p>
+                <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="dl-link">Download Now</a>
+            </div>
+        </div>
     </div>
-</div>
 
-<script>
-    async function handleCheck() {
-        const query = document.getElementById('imeiSearch').value;
-        const resArea = document.getElementById('resultArea');
-        resArea.style.display = 'block';
-        resArea.innerHTML = "Searching Forensic Database...";
-        
-        try {
-            const response = await fetch(`api/search_device.php?q=${query}`);
-            const data = await response.json();
-            if(data.status === "success") {
-                const dev = data.data[0];
-                resArea.innerHTML = `<b style="color:var(--p)">Device:</b> ${dev.Manufacturer} ${dev.Model}<br><b>CPU:</b> ${dev.CpuType}<br><b style="color:var(--neon)">Status: Supported for Bypass</b>`;
-            } else {
-                resArea.innerHTML = "Device not found in local database.";
+    <footer>© 2026 iRemove VIP | Developed by Eng. Shamsan Sha'ban</footer>
+
+    <script>
+        function updateUI() {
+            const select = document.getElementById('modelSelect');
+            const price = select.options[select.selectedIndex].getAttribute('data-price');
+            document.getElementById('totalPrice').innerText = price;
+            document.getElementById('paymentInfo').style.display = price > 0 ? 'block' : 'none';
+        }
+
+        function copyWallet() {
+            navigator.clipboard.writeText("0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2");
+            alert("Wallet Address Copied!");
+        }
+
+        function submitToTelegram() {
+            const model = document.getElementById('modelSelect').options[document.getElementById('modelSelect').selectedIndex].text;
+            const sn = document.getElementById('serialInput').value;
+            const price = document.getElementById('totalPrice').innerText;
+            
+            if(sn.length < 5 || price == "0") {
+                alert("Please select a model and enter Serial Number.");
+                return;
             }
-        } catch (e) { resArea.innerHTML = "System Offline."; }
-    }
-</script>
 
+            const message = `🚀 *NEW ORDER* %0A--------------------%0A📱 Model: ${model}%0A🔢 S/N: ${sn}%0A💰 Price: $${price}%0A✅ Payment: USDT Sent%0A--------------------%0A_Please check my attached screenshot._`;
+            window.location.href = `https://t.me/gsmshtool?text=${message}`;
+        }
+    </script>
 </body>
 </html>
