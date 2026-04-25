@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCloud Official Unlock | GSM SHTOOL VIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #10121b; --gold: #ffd700; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; text-align: center; }
+        .nav { padding: 20px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
+        .container { padding: 40px 5%; max-width: 900px; margin: auto; }
+        .order-card { background: var(--card); border: 1px solid #1f2235; padding: 30px; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        select, input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; font-size: 16px; box-sizing: border-box; }
+        .price-tag { font-size: 40px; color: var(--gold); margin: 20px 0; font-weight: 800; text-shadow: 0 0 15px rgba(255,215,0,0.3); }
+        .payment-box { background: rgba(0,210,255,0.05); border: 1px dashed var(--p); padding: 20px; border-radius: 15px; margin-top: 20px; display: none; }
+        .btn-pay { width: 100%; padding: 18px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; font-weight: 800; cursor: pointer; margin-top: 20px; font-size: 18px; }
+        .wallet { font-family: monospace; font-size: 12px; color: var(--p); background: #000; padding: 10px; border-radius: 8px; word-break: break-all; margin: 10px 0; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="index.html" style="color:#fff; text-decoration:none;"><i class="fas fa-arrow-left"></i> Back</a>
+    <span style="font-weight:bold; color:var(--p);">GSM SHTOOL VIP</span>
+</div>
+
+<div class="container">
+    <div class="order-card">
+        <h2 style="color:var(--p); font-family: 'Orbitron';">OFFICIAL ICLOUD UNLOCK</h2>
+        <p style="color:#666; font-size:13px;">Select your model and enter IMEI/SN to proceed</p>
+
+        <select id="serviceSelect" onchange="updatePrice()">
+            <option value="0" data-price="0">-- Select Device Model --</option>
+            
+            <optgroup label="iPhone Series">
+                <option data-price="25">iPhone 6 / 6 Plus / 6s / 6s Plus ($25)</option>
+                <option data-price="30">iPhone SE / 7 / 7 Plus ($30)</option>
+                <option data-price="35">iPhone 8 / 8 Plus / X ($35)</option>
+                <option data-price="40">iPhone XR / XS ($40)</option>
+                <option data-price="45">iPhone XS Max / 11 ($45)</option>
+                <option data-price="55">iPhone 11 Pro ($55)</option>
+                <option data-price="75">iPhone 11 Pro Max ($75)</option>
+                <option data-price="90">iPhone 12 / 12 mini ($90)</option>
+                <option data-price="95">iPhone 12 Pro ($95)</option>
+                <option data-price="100">iPhone 12 Pro Max ($100)</option>
+                <option data-price="115">iPhone 13 / 13 mini ($115)</option>
+                <option data-price="120">iPhone 13 mini (Alt) ($120)</option>
+                <option data-price="135">iPhone 13 Pro ($135)</option>
+                <option data-price="150">iPhone 13 Pro Max ($150)</option>
+                <option data-price="160">iPhone 14 / 14 Plus ($160)</option>
+                <option data-price="165">iPhone 14 Pro ($165)</option>
+                <option data-price="175">iPhone 14 Pro Max ($175)</option>
+                <option data-price="165">iPhone 15 ($165)</option>
+                <option data-price="175">iPhone 15 Plus ($175)</option>
+                <option data-price="180">iPhone 15 Pro ($180)</option>
+                <option data-price="190">iPhone 15 Pro Max ($190)</option>
+                <option data-price="190">iPhone 16 ($190)</option>
+                <option data-price="195">iPhone 16 Plus / 16 Pro / 16e ($195)</option>
+                <option data-price="205">iPhone 16 Pro Max ($205)</option>
+                <option data-price="195">iPhone 17 / 17 Air ($195)</option>
+                <option data-price="200">iPhone 17 Pro ($200)</option>
+                <option data-price="210">iPhone 17 Pro Max ($210)</option>
+            </optgroup>
+
+            <optgroup label="iPad Series">
+                <option data-price="50">iPad 8 ($50)</option>
+                <option data-price="55">iPad 9 ($55)</option>
+                <option data-price="65">iPad 10 ($65)</option>
+                <option data-price="80">iPad Air 4 ($80)</option>
+                <option data-price="85">iPad Air 5 ($85)</option>
+                <option data-price="140">iPad Pro 11 / 9.7 / 10.5 ($140)</option>
+                <option data-price="150">iPad Pro 12.9 (Gen 1-6) ($150)</option>
+            </optgroup>
+
+            <optgroup label="Apple Watch">
+                <option data-price="50">Watch Series 4 ($50)</option>
+                <option data-price="60">Watch Series 5 ($60)</option>
+                <option data-price="80">Watch Series 6 / 7 ($80)</option>
+                <option data-price="90">Watch Series 8 ($90)</option>
+                <option data-price="100">Watch Series 9 / 10 / 11 ($100)</option>
+                <option data-price="110">Watch Ultra 1 ($110)</option>
+                <option data-price="120">Watch Ultra 2 / 3 ($120)</option>
+            </optgroup>
+        </select>
+
+        <input type="text" id="imei" placeholder="Enter IMEI or Serial Number">
+        
+        <div class="price-tag">$<span id="priceVal">0</span></div>
+
+        <div id="payBox" class="payment-box">
+            <p style="font-size:12px; margin-bottom:5px;">USDT Address (Network: TRC20/ERC20):</p>
+            <span class="wallet" id="walletAddr">0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2</span>
+            <button onclick="copyWallet()" style="background:none; border:1px solid var(--p); color:var(--p); padding:5px 10px; border-radius:5px; cursor:pointer; font-size:11px;">Copy Address</button>
+            <p style="font-size:11px; color:#888; margin-top:10px;">Please pay the exact amount then click Submit.</p>
+        </div>
+
+        <button class="btn-pay" onclick="handleOrder()">SUBMIT ORDER & TRACK</button>
+    </div>
+</div>
+
+<script>
+    function updatePrice() {
+        const sel = document.getElementById('serviceSelect');
+        const price = sel.options[sel.selectedIndex].getAttribute('data-price');
+        document.getElementById('priceVal').innerText = price;
+        document.getElementById('payBox').style.display = price > 0 ? 'block' : 'none';
+    }
+
+    function copyWallet() {
+        navigator.clipboard.writeText("0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2");
+        alert("Wallet Address Copied!");
+    }
+
+    function handleOrder() {
+        const imei = document.getElementById('imei').value;
+        const price = document.getElementById('priceVal').innerText;
+        if(!imei || price === "0") { alert("Please complete details!"); return; }
+        
+        // الانتقال لصفحة "المعالجة" التي طلبتها
+        window.location.href = `processing.html?imei=${imei}&price=${price}`;
+    }
+</script>
+</body>
+</html>
