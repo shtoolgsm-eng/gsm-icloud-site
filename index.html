@@ -3,135 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM SHTOOL VIP | Official Unlock & Forensic</title>
+    <title>GSM SHTOOL VIP | Global Forensic & iCloud Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #00d2ff; --s: #9d50bb; --bg: #030305; --card: #0f111a; --gold: #ffd700; --neon: #00ff88; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #fff; margin: 0; scroll-behavior: smooth; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15,17,26,0.95); position: sticky; top:0; z-index:1000; border-bottom: 1px solid #1f2235; backdrop-filter: blur(10px); }
-        .logo { font-size: 22px; font-weight: 800; font-family: 'Orbitron'; text-decoration: none; color: #fff; }
-        .logo span { color: var(--p); }
-        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
-        .section-title { font-family: 'Orbitron'; text-align: center; margin-bottom: 30px; color: var(--p); letter-spacing: 2px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .card { background: var(--card); border: 1px solid #1f2235; border-radius: 20px; padding: 25px; transition: 0.3s; }
-        .card:hover { border-color: var(--p); }
-        select, input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; font-size: 14px; box-sizing: border-box; }
-        .price-box { font-size: 32px; color: var(--gold); text-align: center; margin: 15px 0; font-weight: 800; }
-        .wallet-area { background: rgba(0,210,255,0.05); border: 1px dashed var(--p); padding: 15px; border-radius: 12px; margin-top: 15px; display: none; }
-        .btn-main { width: 100%; padding: 16px; border-radius: 50px; border: none; background: linear-gradient(45deg, var(--p), var(--s)); color: #fff; font-weight: bold; cursor: pointer; margin-top: 15px; }
-        .soft-card { background: #0a0a0f; border: 1px solid #1f2235; padding: 15px; border-radius: 15px; margin-bottom: 10px; }
-        .dl-btn { color: var(--neon); text-decoration: none; font-size: 12px; font-weight: bold; border: 1px solid var(--neon); padding: 4px 12px; border-radius: 5px; float: right; }
-        footer { text-align: center; padding: 40px; color: #666; font-size: 12px; border-top: 1px solid #1f2235; }
+        :root { --gold: #ffd700; --cyan: #00d2ff; --bg: #050507; --card: #11131c; }
+        body { background: var(--bg); color: #fff; font-family: 'Orbitron', sans-serif; margin: 0; }
+        
+        .header { text-align: center; padding: 60px 0; background: radial-gradient(circle, #1a1c2c 0%, #050507 100%); }
+        .logo-glow { font-size: 3.5rem; font-weight: 900; background: linear-gradient(90deg, #fff, var(--cyan), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: flow 3s infinite linear; letter-spacing: 4px; }
+        @keyframes flow { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+
+        nav { display: flex; justify-content: center; gap: 30px; padding: 20px; border-bottom: 1px solid #222; sticky; top: 0; background: rgba(5,5,7,0.9); backdrop-filter: blur(10px); z-index: 1000; }
+        nav a { color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
+        nav a:hover { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
+
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 10%; }
+        .card { background: var(--card); border: 1px solid #222; padding: 40px; border-radius: 20px; text-align: center; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); border-color: var(--cyan); box-shadow: 0 0 30px rgba(0,210,255,0.2); }
+        .card i { font-size: 45px; color: var(--cyan); margin-bottom: 20px; }
+        .btn { display: inline-block; margin-top: 25px; padding: 12px 35px; background: var(--cyan); color: #000; border-radius: 50px; text-decoration: none; font-weight: bold; font-family: sans-serif; }
+
+        .testimonials { padding: 60px 10%; background: #08090d; }
+        .test-box { display: flex; overflow-x: auto; gap: 20px; padding: 20px; }
+        .test-card { min-width: 320px; background: #000; padding: 25px; border-radius: 15px; border-left: 4px solid var(--gold); }
+        .stars { color: var(--gold); margin-bottom: 10px; }
+
+        footer { text-align: center; padding: 80px 10%; border-top: 1px solid #222; }
+        .footer-logo { font-size: 1.5rem; color: var(--cyan); margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
+<div class="header">
+    <div class="logo-glow">GSM SHTOOL VIP</div>
+    <p style="color: var(--gold); font-size: 14px;">PREMIUM MOBILE FORENSICS & UNLOCKING SOLUTIONS</p>
+</div>
+
 <nav>
-    <a href="#" class="logo">GSM <span>SHTOOL VIP</span></a>
-    <a href="https://t.me/gsmshtool" style="color:white; text-decoration:none;"><i class="fab fa-telegram"></i> Support</a>
+    <a href="index.html">HOME</a>
+    <a href="unlock.html">OFFICIAL UNLOCK</a>
+    <a href="software.html">SOFTWARE</a>
+    <a href="check.html">FREE CHECK</a>
+    <a href="tracking.html">TRACK ORDER</a>
 </nav>
 
-<div class="container">
-    <h2 class="section-title">Official iCloud Unlock</h2>
-    <div class="grid">
-        <div class="card">
-            <h3 style="font-family:'Orbitron'; font-size:16px; color:var(--p);">Order Form</h3>
-            <label>Select Service:</label>
-            <select id="mainSelect" onchange="updatePrice()">
-                <option value="0" data-price="0">-- Select Model --</option>
-                <optgroup label="iPhone Series">
-                    <option data-price="25">iPhone 6 / 6 Plus / 6s / 6s Plus</option>
-                    <option data-price="30">iPhone SE / 7 / 7 Plus</option>
-                    <option data-price="35">iPhone 8 / 8 Plus / X</option>
-                    <option data-price="40">iPhone XR / XS</option>
-                    <option data-price="45">iPhone XS Max / 11</option>
-                    <option data-price="55">iPhone 11 Pro</option>
-                    <option data-price="75">iPhone 11 Pro Max</option>
-                    <option data-price="90">iPhone 12 / 12 mini</option>
-                    <option data-price="95">iPhone 12 Pro</option>
-                    <option data-price="100">iPhone 12 Pro Max</option>
-                    <option data-price="115">iPhone 13 / 13 mini</option>
-                    <option data-price="135">iPhone 13 Pro</option>
-                    <option data-price="150">iPhone 13 Pro Max</option>
-                    <option data-price="160">iPhone 14 / 14 Plus</option>
-                    <option data-price="165">iPhone 14 Pro / 15</option>
-                    <option data-price="175">iPhone 14 Pro Max / 15 Plus</option>
-                    <option data-price="180">iPhone 15 Pro</option>
-                    <option data-price="190">iPhone 15 Pro Max / 16</option>
-                    <option data-price="195">iPhone 16 Plus/e / 16 Pro / 17 / 17 Air</option>
-                    <option data-price="200">iPhone 17 Pro</option>
-                    <option data-price="205">iPhone 16 Pro Max</option>
-                    <option data-price="210">iPhone 17 Pro Max</option>
-                </optgroup>
-                <optgroup label="iPad Series">
-                    <option data-price="50">iPad 8</option>
-                    <option data-price="55">iPad 9</option>
-                    <option data-price="65">iPad 10</option>
-                    <option data-price="80">iPad Air 4</option>
-                    <option data-price="85">iPad Air 5</option>
-                    <option data-price="140">iPad Pro (9.7 / 10.5 / 11 Gen 1-4)</option>
-                    <option data-price="150">iPad Pro 12.9 (Gen 1-6)</option>
-                </optgroup>
-                <optgroup label="Apple Watch">
-                    <option data-price="50">Watch Series 4</option>
-                    <option data-price="60">Watch Series 5</option>
-                    <option data-price="80">Watch Series 6 / 7</option>
-                    <option data-price="90">Watch Series 8</option>
-                    <option data-price="100">Watch Series 9 / 10 / 11</option>
-                    <option data-price="110">Watch Ultra 1</option>
-                    <option data-price="120">Watch Ultra 2 / 3</option>
-                </optgroup>
-            </select>
-            <input type="text" id="snInput" placeholder="IMEI / Serial Number">
-            <div class="price-box">$<span id="priceVal">0</span></div>
-            
-            <div id="payInfo" class="wallet-area">
-                <p style="font-size:11px; color:var(--p);">USDT (TRC20/ERC20):</p>
-                <code style="font-size:10px; color:var(--neon);">0x77Ba12EeB09C2006ad2C0BF893557070194D7ec2</code>
-                <p style="font-size:10px; margin-top:10px;">Upload payment screenshot:</p>
-                <input type="file" id="fileUp">
-            </div>
-            <button class="btn-main" onclick="sendOrder()">SUBMIT ORDER</button>
-        </div>
-
-        <div class="card">
-            <h3 style="font-family:'Orbitron'; font-size:16px; color:var(--p);">Software Downloads</h3>
-            <div class="soft-card">
-                UFED 7.71 Detective <a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" class="dl-btn">DL</a>
-            </div>
-            <div class="soft-card">
-                Oxygen Forensic 17.1 <a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" class="dl-btn">DL</a>
-            </div>
-            <div class="soft-card">
-                ArabiCloud Tool v5 <a href="https://arabfrp.com/" class="dl-btn">DL</a>
-            </div>
-            <div class="soft-card">
-                MD-NEXT 2.0.3 <a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" class="dl-btn">DL</a>
-            </div>
-            <p style="font-size:11px; color:#555;">Support Group: t.me/ArabFrp_Support</p>
-        </div>
+<div class="services">
+    <div class="card">
+        <i class="fas fa-unlock"></i>
+        <h3>OFFICIAL UNLOCK</h3>
+        <p style="font-family: sans-serif; font-size: 14px; color: #888;">Factory permanent unlock for iPhone, iPad & Apple Watch.</p>
+        <a href="unlock.html" class="btn">ORDER NOW</a>
+    </div>
+    <div class="card">
+        <i class="fas fa-search"></i>
+        <h3>FORENSIC SEARCH</h3>
+        <p style="font-family: sans-serif; font-size: 14px; color: #888;">Free analysis for supported forensic extraction devices.</p>
+        <a href="check.html" class="btn" style="background:#fff">START CHECK</a>
+    </div>
+    <div class="card">
+        <i class="fas fa-code"></i>
+        <h3>SOFTWARE HUB</h3>
+        <p style="font-family: sans-serif; font-size: 14px; color: #888;">Download UFED, Oxygen & MD-NEXT with activation keys.</p>
+        <a href="software.html" class="btn">DOWNLOADS</a>
     </div>
 </div>
 
-<footer>© 2026 GSM SHTOOL VIP | Eng. Shamsan Sha'ban</footer>
+<section class="testimonials">
+    <h2 style="text-align:center; color: var(--gold);">CLIENT REVIEWS</h2>
+    <div class="test-box">
+        <div class="test-card">
+            <div class="stars">★★★★★</div>
+            <p style="font-family: sans-serif;">"iPhone 16 Pro Max unlocked in 48 hours. Best service ever!"</p>
+            <small style="color: #555;">Client: +966****542</small>
+        </div>
+        <div class="test-card">
+            <div class="stars">★★★★★</div>
+            <p style="font-family: sans-serif;">"Forensic tools working perfectly. Key-gen included as promised."</p>
+            <small style="color: #555;">Client: +967****789</small>
+        </div>
+    </div>
+</section>
 
-<script>
-    function updatePrice() {
-        const sel = document.getElementById('mainSelect');
-        const price = sel.options[sel.selectedIndex].getAttribute('data-price');
-        document.getElementById('priceVal').innerText = price;
-        document.getElementById('payInfo').style.display = price > 0 ? 'block' : 'none';
-    }
-    function sendOrder() {
-        const model = document.getElementById('mainSelect').options[document.getElementById('mainSelect').selectedIndex].text;
-        const sn = document.getElementById('snInput').value;
-        const price = document.getElementById('priceVal').innerText;
-        if(!sn || price == "0") { alert("Missing data!"); return; }
-        const msg = `🚀 GSM SHTOOL VIP ORDER%0AModel: ${model}%0ASN/IMEI: ${sn}%0APrice: $${price}%0AStatus: Paid USDT`;
-        window.location.href = `https://t.me/gsmshtool?text=${msg}`;
-    }
-</script>
+<footer>
+    <div class="footer-logo">ENGINEERED BY SHAMSAN SHA'BAN</div>
+    <p style="font-family: sans-serif; color:#444; margin-bottom: 30px;">Global Mobile Forensic & Unlocking Experts.</p>
+    <a href="https://t.me/GSMSHTOOL" style="color:var(--cyan); text-decoration:none; font-size: 1.2rem;"><i class="fab fa-telegram"></i> CONTACT SUPPORT</a>
+</footer>
+
 </body>
 </html>
