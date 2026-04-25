@@ -2,32 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Processing Order</title>
+    <title>Processing Your Order | GSM SHTOOL VIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #050507; color: white; text-align: center; padding-top: 15%; }
-        .loader { border: 4px solid #161b22; border-top: 4px solid #00d2ff; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .card { background: #0f111a; border: 1px solid #1f2235; padding: 40px; border-radius: 20px; display: inline-block; }
-        .id-box { color: #00d2ff; font-size: 24px; font-weight: bold; margin: 15px 0; letter-spacing: 2px; }
-        .btn { background: #161b22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 14px; border: 1px solid #30363d; }
+        body { background: #050507; color: #fff; font-family: 'Orbitron', sans-serif; text-align: center; padding: 100px 5%; }
+        .loader-box { max-width: 500px; margin: auto; background: #11131c; padding: 50px; border-radius: 30px; border: 1px solid #222; }
+        .spinner { font-size: 50px; color: #00d2ff; margin-bottom: 30px; animation: spin 2s infinite linear; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .progress-bar { width: 100%; background: #000; height: 10px; border-radius: 10px; margin-top: 30px; overflow: hidden; }
+        .progress-fill { width: 45%; height: 100%; background: #00d2ff; box-shadow: 0 0 10px #00d2ff; animation: load 5s forwards; }
+        @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="loader"></div>
-        <h2>⏳ Order Processing</h2>
-        <p>Please save your Order ID:</p>
-        <div class="id-box" id="orderIdDisplay">---</div>
-        <p style="color:#888">Our team is reviewing your request.</p>
-        <br>
-        <a href="track.html" class="btn">Go to Tracking Page</a>
+    <div class="loader-box">
+        <i class="fas fa-sync spinner"></i>
+        <h2>Order Processing</h2>
+        <p style="font-family: sans-serif; color: #888;">Verifying your IMEI & Payment...</p>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <p style="font-size: 12px; margin-top: 20px; color: #ffd700;">Redirecting to Tracking Page in 5 seconds...</p>
     </div>
-
     <script>
-        const stored = JSON.parse(localStorage.getItem('currentOrder'));
-        if (stored) {
-            document.getElementById('orderIdDisplay').innerText = stored.id;
-        }
+        setTimeout(() => { window.location.href = "tracking.html"; }, 6000);
     </script>
 </body>
 </html>
